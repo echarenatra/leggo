@@ -3,9 +3,9 @@
     "short_name": "Leggo",
     "icons": [
       {
-        "src": "assets/logo.svg",
-        "sizes": "any",
-        "type": "image/svg+xml",
+        "src": "assets/logo-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
         "purpose": "any maskable"
       }
     ],
