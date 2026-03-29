@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leggo — My Trips</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ── INDEX-SPECIFIC STYLES ── */
+
+    /* HERO */
+    .hero {
+      background: var(--ink);
+      color: var(--sand);
+      padding: 72px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      border: 1px solid rgba(196,98,45,.18);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 38%;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(168,212,214,.12);
+      pointer-events: none;
+    }
+    .hero__label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 18px;
+    }
+    .hero__wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 108px);
+      font-weight: 400;
+      line-height: .95;
+      margin-bottom: 6px;
+    }
+    .hero__wordmark em { font-style: italic; color: var(--accent-light); }
+    .hero__tagline {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 300;
+      letter-spacing: .5px;
+      margin-top: 12px;
+    }
+    .hero__stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .stat { display: flex; flex-direction: column; gap: 3px; }
+    .stat__num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      line-height: 1;
+      color: var(--sand);
+    }
+    .stat__label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stat__num--accent { color: var(--accent-light); }
+
+    /* COUNTDOWN */
+    .countdown {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(196,98,45,.12);
+      border: 1px solid rgba(196,98,45,.25);
+      border-radius: var(--radius-sm);
+      padding: 8px 16px;
+    }
+    .countdown__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(.8); }
+    }
+    .countdown__text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+    }
+
+    /* MAIN */
+    .main {
+      padding: 60px 0 80px;
+    }
+
+    /* SECTION LABEL */
+    .section-header { margin-bottom: 24px; }
+
+    /* TRIP GRID */
+    .trips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    /* TRIP CARD */
+    .trip-card {
+      background: white;
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .trip-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    .trip-card--private {
+      border-style: dashed;
+    }
+
+    .trip-card__top {
+      padding: 24px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .trip-card__flag { font-size: 32px; line-height: 1; }
+    .trip-card__badges {
+      display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end;
+    }
+
+    .private-icon {
+      font-size: 13px;
+      color: var(--muted);
+      cursor: default;
+    }
+
+    .trip-card__body { padding: 16px 24px 20px; flex: 1; }
+    .trip-card__dest {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .trip-card__sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .trip-card__dates {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .trip-card__tags { margin-top: 12px; }
+
+    .trip-card__footer {
+      border-top: 1px solid var(--divider);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .trip-card__nights {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .trip-card__link {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap .2s;
+    }
+    .trip-card__link:hover { gap: 10px; }
+
+    /* ADD TRIP CARD */
+    .trip-card--add {
+      border: 1px dashed var(--divider);
+      background: transparent;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      text-align: center;
+      padding: 32px;
+      cursor: default;
+    }
+    .trip-card--add:hover { box-shadow: none; transform: none; }
+    .add-card__icon { font-size: 28px; margin-bottom: 10px; color: var(--divider); }
+    .add-card__text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--divider);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: var(--ink);
+      color: var(--muted);
+      padding: 28px 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .5px;
+    }
+    .site-footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .site-footer span { color: var(--accent-light); }
+
+    @media (max-width: 768px) {
+      .hero { padding: 52px 0 40px; }
+      .trips-grid { grid-template-columns: 1fr; }
+      .hero__stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="container">
+    <p class="hero__label">✈ My Travel Hub</p>
+    <h1 class="hero__wordmark">Leg<em>go</em></h1>
+    <p class="hero__tagline">Let's go, planned.</p>
+
+    <!-- COUNTDOWN — update DEPARTURE_DATE below -->
+    <div class="countdown">
+      <div class="countdown__dot"></div>
+      <span class="countdown__text" id="countdown-text">Loading...</span>
+    </div>
+
+    <!-- STATS — update these numbers manually when you add trips -->
+    <div class="hero__stats">
+      <div class="stat">
+        <!-- UPDATE: total number of trips -->
+        <div class="stat__num">1</div>
+        <div class="stat__label">Trips</div>
+      </div>
+      <div class="stat">
+        <!-- UPDATE: total countries across all trips -->
+        <div class="stat__num">3</div>
+        <div class="stat__label">Countries</div>
+      </div>
+      <div class="stat">
+        <!-- UPDATE: total nights across all trips -->
+        <div class="stat__num">15</div>
+        <div class="stat__label">Nights Away</div>
+      </div>
+      <div class="stat">
+        <!-- UPDATE: year of furthest trip -->
+        <div class="stat__num stat__num--accent">2026</div>
+        <div class="stat__label">Next Trip</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     TRIPS
+════════════════════════════════════════════ -->
+<main class="main">
+  <div class="container">
+
+    <div class="section-header">
+      <h2 class="display" style="font-size:26px;font-weight:400">All Trips</h2>
+    </div>
+
+    <div class="trips-grid">
+
+      <!-- ─────────────────────────────────────
+           TRIP CARD: Scotland & Ireland 2026
+           Status: Planning · Private
+      ───────────────────────────────────────── -->
+      <a href="scotland-2026.html" class="trip-card">
+        <div class="trip-card__top">
+          <div class="trip-card__flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿🇮🇪</div>
+          <div class="trip-card__badges">
+            <span class="badge badge--planning">Planning</span>
+            <span class="private-icon" title="Family only — do not share">🔒</span> <!-- remove this if the trip is shared -->
+          </div>
+        </div>
+        <div class="trip-card__body">
+          <div class="trip-card__dest">UK & Ireland</div>
+          <div class="trip-card__sub">Scotland · Northern Ireland · Ireland</div>
+          <div class="trip-card__dates">18 Apr — 03 May 2026</div>
+          <div class="trip-card__tags">
+            <span class="tag">private</span>
+            <span class="tag">meivakantie</span>
+            <span class="tag">road-trip</span>
+            <span class="tag">highlands</span>
+          </div>
+        </div>
+        <div class="trip-card__footer">
+          <span class="trip-card__nights">15 nights</span>
+          <span class="trip-card__link">Open trip →</span>
+        </div>
+      </a>
+
+      <!-- ─────────────────────────────────────
+           ADD NEW TRIP placeholder
+           Duplicate a trip card above when
+           adding a new trip.
+      ───────────────────────────────────────── -->
+      <div class="trip-card trip-card--add">
+        <div class="add-card__icon">+</div>
+        <div class="add-card__text">Add a new trip<br>duplicate a card in the HTML</div>
+      </div>
+      
+      <!-- Private trip example 
+      <div class="trip-card trip-card--private">
+        <div class="trip-card__top">
+          <div class="trip-card__flag">🇲🇦</div>
+          <div class="trip-card__badges">
+            <span class="badge badge--planning">Planning</span>
+            <span class="private-icon" title="Family only — do not share">🔒</span>
+          </div>
+        </div>
+        ...
+      </div> -->
+
+    </div><!-- /trips-grid -->
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <span style="color:var(--muted)">Leggo · Private Dashboard</span>
+    <span>Let's go, planned.</span>
+  </div>
+</footer>
+
+<script>
+  // ── COUNTDOWN ──────────────────────────────────────
+  // UPDATE: Set your next departure date here (YYYY-MM-DD)
+  const DEPARTURE_DATE = '2026-04-18';
+  const TRIP_NAME      = 'Scotland & Ireland';
+  // ───────────────────────────────────────────────────
+
+  function updateCountdown() {
+    const now  = new Date();
+    const dep  = new Date(DEPARTURE_DATE);
+    const diff = dep - now;
+    const el   = document.getElementById('countdown-text');
+
+    if (diff <= 0) {
+      el.textContent = `${TRIP_NAME} — bon voyage! 🛫`;
+      return;
+    }
+    const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    el.textContent = `${days}d ${hours}h until ${TRIP_NAME}`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+</script>
+
+</body>
+</html>
