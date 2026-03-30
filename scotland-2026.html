@@ -1300,5 +1300,26 @@ function calculateBudget() {
   }
 </script>
 
+<script>
+  document.querySelectorAll('.route-timeline').forEach(function(el) {
+    function updateMask() {
+      var scrollLeft = el.scrollLeft;
+      var maxScroll = el.scrollWidth - el.clientWidth;
+      var atStart = scrollLeft <= 4;
+      var atEnd = scrollLeft >= maxScroll - 4;
+
+      var leftFade  = atStart  ? 'transparent 0%, black 0%'   : 'transparent 0%, black 8%';
+      var rightFade = atEnd    ? 'black 100%, black 100%'     : 'black 85%, transparent 100%';
+
+      var mask = 'linear-gradient(to right, ' + leftFade + ', ' + rightFade + ')';
+      el.style.webkitMaskImage = mask;
+      el.style.maskImage = mask;
+    }
+
+    el.addEventListener('scroll', updateMask, { passive: true });
+    updateMask(); // run once on load
+  });
+</script>
+
 </body>
 </html>
