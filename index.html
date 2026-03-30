@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   <title>Leggo — My Trips</title>
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="manifest" href="manifest.json">
   <style>
     /* ── INDEX-SPECIFIC STYLES ── */
 
@@ -395,6 +397,13 @@
 
   updateCountdown();
   setInterval(updateCountdown, 60000);
+</script>
+
+<!-- SERVICE WORKER, add for every trip pages --> 
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
 </script>
 
 </body>

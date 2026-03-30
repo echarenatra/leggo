@@ -1,16 +1,17 @@
 {
-    "name": "Leggo Trips",
-    "short_name": "Leggo",
-    "icons": [
-      {
-        "src": "assets/logo-512.svg",
-        "sizes": "192x192 512x512",
-        "type": "image/png",
-        "purpose": "any maskable"
-      }
-    ],
-    "start_url": "/scotland-2026.html",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#1E3A8A"
-  }
+  "name": "Leggo Trips",
+  "short_name": "Leggo",
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FDFAF6",
+  "theme_color": "#C4622D" 
+}

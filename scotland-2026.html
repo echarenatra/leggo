@@ -13,7 +13,26 @@
 
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/trip.css">
+
+  <style>
+    :root {
+      /* Scotland Vibe: Deep Highland Green */
+      --accent: #2D6A4F; 
+      --accent-light: #B7D8C0;
+      --accent-pale: #EBF5EE;
+    }
+  
+    /* Make the italicized word in the title pop */
+    .trip-hero__title em {
+      color: var(--accent-light);
+      font-family: var(--font-display);
+      font-style: italic;
+      border-bottom: 2px solid rgba(183, 216, 192, 0.3);
+    }
+  </style>
+
 </head>
+
 <body>
 
 <!-- ══════════════════════════════════════════
@@ -1179,6 +1198,13 @@
     }).catch(() => {
       prompt('Copy this link:', url);
     });
+  }
+</script>
+
+<!-- SERVICE WORKER, add for every trip pages --> 
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
   }
 </script>
 
