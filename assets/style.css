@@ -158,7 +158,7 @@ hr.fancy {
   color: var(--muted);
   border: 1px solid var(--divider);
 }
-.btn--ghost:hover { color: var(--ink); border-color: var(--ink); }
+.btn--ghost:hover { color: var(--sand); border-color: var(--sand); background: rgba(255,255,255,0.1); }
 
 /* ── RESPONSIVE HELPERS ── */
 .container {
