@@ -1155,6 +1155,205 @@
 
     <hr class="fancy">
 
+    <!-- ── PACKING LIST ── -->
+    <div class="section-header">
+      <h2>Packing List</h2>
+      <span class="label">Click to check off · <span id="pack-progress">0 / 0</span> packed</span>
+    </div>
+
+    <div class="pack-wrapper" id="pack-wrapper">
+
+      <!-- 📄 Documents & Money -->
+      <div class="pack-category" id="pack-docs">
+        <div class="pack-category__header" onclick="togglePack('pack-docs')">
+          📄 Documents &amp; Money
+          <span class="pack-category__count" id="pcount-docs"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <div class="pack-sub-label">All adults</div>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Passport (valid &gt; 6 months)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>UK tourist visa printout</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Travel insurance documents</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>International driving permit</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>EU/NL driving licence</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>All hotel confirmation printouts</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Flight e-tickets (easyJet, Ryanair)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Car rental confirmations (SIXT x3)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Credit / debit cards (notify bank)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Cash (GBP + EUR)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Emergency contact card</span></label>
+          <div class="pack-sub-label">Child</div>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Child's passport</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Child's UK tourist visa</span></label>
+        </div>
+      </div>
+
+      <!-- 👕 Clothing -->
+      <div class="pack-category" id="pack-clothes">
+        <div class="pack-category__header" onclick="togglePack('pack-clothes')">
+          👕 Clothing
+          <span class="pack-category__count" id="pcount-clothes"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <div class="pack-sub-label">All — Scotland &amp; Ireland weather (8–15°C, expect rain)</div>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Waterproof jacket / rain shell</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Fleece or mid-layer</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Long-sleeve tops × 5</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>T-shirts × 3</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Jeans / trousers × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Comfortable walking trousers × 1</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Underwear × 7</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Socks × 7 (incl. wool pair)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Pyjamas</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Waterproof hiking boots / sturdy shoes</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Casual shoes / trainers</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Sandals or slip-ons</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Light scarf / neck warmer</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Gloves (light)</span></label>
+          <div class="pack-sub-label">Child (age 6)</div>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Waterproof jacket</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Warm layers × 3</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Tops × 5, trousers × 3</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Underwear + socks × 7</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Pyjamas × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Waterproof boots + trainers</span></label>
+        </div>
+      </div>
+
+      <!-- 🧴 Toiletries -->
+      <div class="pack-category" id="pack-toiletries">
+        <div class="pack-category__header" onclick="togglePack('pack-toiletries')">
+          🧴 Toiletries
+          <span class="pack-category__count" id="pcount-toiletries"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Shampoo + conditioner</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Body wash / soap</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Toothbrush × 3 + toothpaste</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Deodorant × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Face wash + moisturiser</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Sunscreen SPF 50</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Lip balm</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Razor + shaving cream</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Hairbrush / comb</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Hair ties</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Cotton pads / buds</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Feminine hygiene products</span></label>
+          <div class="pack-sub-label">Child</div>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Kids shampoo + body wash</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Kids toothbrush + toothpaste</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Kids sunscreen</span></label>
+        </div>
+      </div>
+
+      <!-- 💊 Health & First Aid -->
+      <div class="pack-category" id="pack-health">
+        <div class="pack-category__header" onclick="togglePack('pack-health')">
+          💊 Health &amp; First Aid
+          <span class="pack-category__count" id="pcount-health"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Prescription medications</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Paracetamol / ibuprofen</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Antihistamine (hay fever, bites)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Motion sickness tablets (for child)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Plasters / bandages</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Antiseptic wipes / cream</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Thermometer</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Insect repellent (Scotland midges!)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Hand sanitiser</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Face masks (optional)</span></label>
+        </div>
+      </div>
+
+      <!-- 🎒 Bags & Gear -->
+      <div class="pack-category" id="pack-gear">
+        <div class="pack-category__header" onclick="togglePack('pack-gear')">
+          🎒 Bags &amp; Gear
+          <span class="pack-category__count" id="pcount-gear"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Main suitcase × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Carry-on / cabin bag × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Child's small backpack</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Day pack / hiking backpack</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Packing cubes</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Reusable bags × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Dry bags / waterproof pouches</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Luggage locks</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Luggage tags</span></label>
+        </div>
+      </div>
+
+      <!-- 📱 Tech & Electrics -->
+      <div class="pack-category" id="pack-tech">
+        <div class="pack-category__header" onclick="togglePack('pack-tech')">
+          📱 Tech &amp; Electrics
+          <span class="pack-category__count" id="pcount-tech"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Phones + chargers × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Portable power bank</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>UK plug adapter (Type G)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Multi-port USB charger</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Camera + memory cards</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Camera charger / spare battery</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Earphones / headphones × 2</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Tablet or e-reader (for child)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>SIM card or travel eSIM</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Offline maps downloaded (Google Maps)</span></label>
+        </div>
+      </div>
+
+      <!-- 🧒 Kids Essentials -->
+      <div class="pack-category" id="pack-kids">
+        <div class="pack-category__header" onclick="togglePack('pack-kids')">
+          🧒 Kids Essentials
+          <span class="pack-category__count" id="pcount-kids"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Booster / car seat (confirm with SIXT)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Favourite small toy / comfort item</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Colouring book + pencils</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Downloaded shows / games on tablet</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Snacks for car + flights</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Reusable water bottle</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Kids rain poncho</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Night light (small, travel)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Wet wipes × 2 packs</span></label>
+        </div>
+      </div>
+
+      <!-- 🏔️ Outdoors & Hiking -->
+      <div class="pack-category" id="pack-outdoor">
+        <div class="pack-category__header" onclick="togglePack('pack-outdoor')">
+          🏔️ Outdoors &amp; Hiking
+          <span class="pack-category__count" id="pcount-outdoor"></span>
+          <span class="pack-category__toggle">▾</span>
+        </div>
+        <div class="pack-rows">
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Trekking poles (optional, Fairy Pools)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Waterproof trousers / gaiters</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Warm hat / beanie</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Reusable water bottles × 3</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Energy bars / trail snacks</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Small dry bag for camera gear</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Binoculars (optional, wildlife)</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Midge repellent (critical for Skye!)</span></label>
+        </div>
+      </div>
+
+    </div><!-- /pack-wrapper -->
+
+    <hr class="fancy">
+
     <!-- ── WHO'S COMING ── -->
     <div class="section-header">
       <h2>Who's Coming</h2>
