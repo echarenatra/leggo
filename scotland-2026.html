@@ -69,7 +69,7 @@
       <div class="route-line"></div>
       <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Isle of Skye</div><div class="route-stop__nights">3 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Causeway Coast</div><div class="route-stop__nights">3 nights</div></div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Belfast</div><div class="route-stop__nights">3 nights</div></div>
       <div class="route-line"></div>
       <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Galway</div><div class="route-stop__nights">2 nights</div></div>
       <div class="route-line"></div>
@@ -94,12 +94,20 @@
         <table class="stays-table">
           <thead><tr><th>Night</th><th>City</th><th>Accommodation</th></tr></thead>
           <tbody>
-            <tr><td class="night-num">1–2</td><td class="city-name">Stirling</td><td class="hotel-name">Holiday Inn Express Stirling</td></tr>
-            <tr><td class="night-num">3–4</td><td class="city-name">Fort William</td><td class="hotel-name">Muthu Fort William Hotel</td></tr>
-            <tr><td class="night-num">5–7</td><td class="city-name">Isle of Skye</td><td class="hotel-name">Duisdale House Hotel (Sleat)</td></tr>
-            <tr><td class="night-num">8–10</td><td class="city-name">Causeway Coast</td><td class="hotel-name">Ibis Coleraine Riverside</td></tr>
-            <tr><td class="night-num">11–12</td><td class="city-name">Galway</td><td class="hotel-name">Clybaun Hotel (Salthill)</td></tr>
-            <tr><td class="night-num">13–15</td><td class="city-name">Dublin</td><td class="hotel-name">The Samuel Hotel</td></tr>
+            <tr><td class="night-num">18-20 Apr</td><td class="city-name">Stirling - 2 nights</td><td class="hotel-name">
+              <a href="https://maps.app.goo.gl/Z5Q4UBtF6JNBviX6A">Premier Inn Stirling South</a></td></tr>
+            <tr><td class="night-num">20-22 Apr</td><td class="city-name">Fort William - 2 nights</td><td class="hotel-name">
+              <a href="https://maps.app.goo.gl/Gjchd6bboeaGWrjW8">Base Camp Hotel Nevis Range</a></td></tr>
+            <tr><td class="night-num">22-25 Apr</td><td class="city-name">Isle of Skye - 3 nights</td><td class="hotel-name">
+              <a href="https://maps.app.goo.gl/g75YRrKUhuRXnYLS8">Hebridean - Rooms & Apartments</a></td></tr>
+            <tr><td class="night-num">25-28 Apr</td><td class="city-name">Belfast - 3 nights</td><td class="hotel-name">
+              <a href="https://maps.app.goo.gl/za4HQ1DWNaUtRddW8">ibis Belfast City Centre</a></td></tr>
+            <tr><td class="night-num">28-30 Apr</td><td class="city-name">Galway - 2 nights</td><td class="hotel-name">
+              <a href ="https://maps.app.goo.gl/ePcbNspnNRbYwBH18">Maldron Hotel Sandy Road Galway</a></td></tr>
+            <tr><td class="night-num">30 Apr-2 May</td><td class="city-name">Dublin - 3 nights</td><td class="hotel-name">
+              <a href ="https://maps.app.goo.gl/EDbtd2QFhgACrCoP7">Maldron Hotel Merrion Road</a></td></tr>
+            <tr><td class="night-num">2-3 May</td><td class="city-name">Belfast City Centre or BFS - 1 night</td><td class="hotel-name">
+              <a href ="https://maps.app.goo.gl/GqgHsBLczvgqT9fGA">Maldron Hotel Belfast International Airport</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -233,40 +241,46 @@
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Stirling — 2 nights<small>Holiday Inn Express</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 276" oninput="convertRow(this)"></div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Stirling — 2 nights<small>Premier Inn Stirling South</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 109.00" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 276.00</span></div>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Fort William — 2 nights<small>Muthu Hotel</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 448" oninput="convertRow(this)"></div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Fort William — 2 nights<small>Base Camp Hotel Nevis Range</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 258.40" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 448.00</span></div>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Isle of Skye — 3 nights<small>Duisdale House</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 1,094" oninput="convertRow(this)"></div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Isle of Skye — 3 nights<small>Hebridean - Rooms & Apartments</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 615" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 1,094.00</span></div>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Causeway Coast — 3 nights<small>Ibis Coleraine</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 355" oninput="convertRow(this)"></div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Belfast — 3 nights<small>ibis Belfast City Centre</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 319.60" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 355.00</span></div>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Galway — 2 nights<small>Clybaun Hotel</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 304" oninput="convertRow(this)"></div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Galway — 2 nights<small>Maldron Hotel Sandy Road Galway</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 259.18" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 304.00</span></div>
+          </div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Dublin — 2 nights<small>Maldron Hotel Merrion Road</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 359.55" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 691.00</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Dublin — 3 nights<small>The Samuel Hotel</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 691" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Belfast City Centre or BFS — 1 night<small>Maldron Hotel Belfast International Airport</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 229.00" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 691.00</span></div>
           </div>
         </div>
@@ -283,13 +297,13 @@
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI)<small>SIXT · 18 Apr 09:00 – 25 Apr 13:30</small></div>
+            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI)<small>SIXT · Volkswagen T-Cross · 18 Apr 09:00 – 25 Apr 13:30</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 311.49" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 311.49</span></div>
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Belfast Airport (BFS)<small>SIXT · 25 Apr 17:00 – 28 Apr 16:30</small></div>
+            <div class="budget-row__desc">Car Rental Belfast Airport (BFS)<small>SIXT · Kia Sportage · 25 Apr 17:00 – 28 Apr 16:30</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 112.26" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 132.47</span></div>
           </div>
@@ -401,8 +415,8 @@
             <div class="budget-row__foreign"><input class="budget-input" value="€ 150" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 150.00</span></div>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
             <div class="budget-row__desc">UK Tourist Visas<small>Indonesian passport holders</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 0" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
@@ -481,7 +495,7 @@
           <div>
             <div class="day-card__date">Sat, 18 Apr 2026</div>
             <div class="day-card__title">Arrival & Stirling</div>
-            <div class="day-card__stay">🏨 Holiday Inn Express Stirling</div>
+            <div class="day-card__stay">🏨 Premier Inn Stirling South</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Travel day</div>
@@ -501,7 +515,7 @@
             <div class="day-block">
               <div class="day-block__label"><span>☀️</span> Afternoon</div>
               <ul class="day-block__items">
-                <li>Drop bags at Holiday Inn Express</li>
+                <li>Drop bags at Premier Inn Stirling South</li>
                 <li>Visit Stirling Castle</li>
                 <li>Explore Argyll's Lodging</li>
               </ul>
@@ -524,7 +538,7 @@
           <div>
             <div class="day-card__date">Sun, 19 Apr 2026</div>
             <div class="day-card__title">Stirling Buffer Day</div>
-            <div class="day-card__stay">🏨 Holiday Inn Express Stirling</div>
+            <div class="day-card__stay">🏨 Premier Inn Stirling South</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Easy day</div>
@@ -565,7 +579,7 @@
           <div>
             <div class="day-card__date">Mon, 20 Apr 2026</div>
             <div class="day-card__title">The Glencoe Drive</div>
-            <div class="day-card__stay">🏨 Muthu Fort William Hotel</div>
+            <div class="day-card__stay">🏨 Base Camp Hotel Nevis Range</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Scenic drive</div>
@@ -593,7 +607,7 @@
               <div class="day-block__label"><span>🌙</span> Evening</div>
               <ul class="day-block__items">
                 <li>Arrive Fort William</li>
-                <li>Check into Muthu Fort William Hotel</li>
+                <li>Check into Base Camp Hotel Nevis Range</li>
               </ul>
             </div>
           </div>
@@ -607,7 +621,7 @@
           <div>
             <div class="day-card__date">Tue, 21 Apr 2026</div>
             <div class="day-card__title">Monster Hunting & Mountains</div>
-            <div class="day-card__stay">🏨 Muthu Fort William Hotel</div>
+            <div class="day-card__stay">🏨 Base Camp Hotel Nevis Range</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Kids highlight</div>
@@ -647,7 +661,7 @@
           <div>
             <div class="day-card__date">Wed, 22 Apr 2026</div>
             <div class="day-card__title">Castles & Crossing to Skye</div>
-            <div class="day-card__stay">🏨 Duisdale House Hotel (Sleat)</div>
+            <div class="day-card__stay">🏨 Hebridean - Rooms & Apartments</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Skye arrival</div>
@@ -668,7 +682,7 @@
               <ul class="day-block__items">
                 <li>Cross the Skye Bridge</li>
                 <li>Arrive in Sleat</li>
-                <li>Check into Duisdale House Hotel</li>
+                <li>Check into Hebridean - Rooms & Apartments</li>
               </ul>
             </div>
             <div class="day-block">
@@ -688,7 +702,7 @@
           <div>
             <div class="day-card__date">Thu, 23 Apr 2026</div>
             <div class="day-card__title">Skye — The Trotternish Loop</div>
-            <div class="day-card__stay">🏨 Duisdale House Hotel (Sleat)</div>
+            <div class="day-card__stay">🏨 Hebridean - Rooms & Apartments</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Full day</div>
@@ -730,7 +744,7 @@
           <div>
             <div class="day-card__date">Fri, 24 Apr 2026</div>
             <div class="day-card__title">Skye — West Coast Magic</div>
-            <div class="day-card__stay">🏨 Duisdale House Hotel (Sleat)</div>
+            <div class="day-card__stay">🏨 Hebridean - Rooms & Apartments</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Kids highlight</div>
@@ -756,7 +770,7 @@
               <div class="day-block__label"><span>🌙</span> Evening</div>
               <ul class="day-block__items">
                 <li>Neist Point Lighthouse sunset (if energy permits)</li>
-                <li>Drive back to Duisdale</li>
+                <li>Drive back to Hebridean - Rooms & Apartments</li>
               </ul>
             </div>
           </div>
@@ -770,7 +784,7 @@
           <div>
             <div class="day-card__date">Sat, 25 Apr 2026</div>
             <div class="day-card__title">Flight to Northern Ireland</div>
-            <div class="day-card__stay">🏨 Ibis Coleraine Riverside</div>
+            <div class="day-card__stay">🏨 ibis Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Travel day</div>
@@ -792,13 +806,13 @@
               <ul class="day-block__items">
                 <li>Fly EDI → BFS (15:40–16:30)</li>
                 <li>Pick up rental car T4</li>
-                <li>Drive to Causeway Coast (~1 hr)</li>
+                <li>Drive to Belfast (~1 hr)</li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><span>🌙</span> Evening</div>
               <ul class="day-block__items">
-                <li>Check into Ibis Coleraine Riverside</li>
+                <li>Check into ibis Belfast City Centre</li>
                 <li>Rest after heavy travel day</li>
               </ul>
             </div>
@@ -813,7 +827,7 @@
           <div>
             <div class="day-card__date">Sun, 26 Apr 2026</div>
             <div class="day-card__title">Giant's Causeway & Coast</div>
-            <div class="day-card__stay">🏨 Ibis Coleraine Riverside</div>
+            <div class="day-card__stay">🏨 ibis Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Full day</div>
@@ -854,7 +868,7 @@
           <div>
             <div class="day-card__date">Mon, 27 Apr 2026</div>
             <div class="day-card__title">Belfast Day Trip</div>
-            <div class="day-card__stay">🏨 Ibis Coleraine Riverside</div>
+            <div class="day-card__stay">🏨 ibis Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Day trip</div>
@@ -896,7 +910,7 @@
           <div>
             <div class="day-card__date">Tue, 28 Apr 2026</div>
             <div class="day-card__title">Train to Dublin, Drive to Galway</div>
-            <div class="day-card__stay">🏨 Clybaun Hotel (Salthill, Galway)</div>
+            <div class="day-card__stay">🏨 Maldron Hotel Sandy Road Galway</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Travel day</div>
@@ -923,7 +937,7 @@
             <div class="day-block">
               <div class="day-block__label"><span>🌙</span> Evening</div>
               <ul class="day-block__items">
-                <li>Check into Clybaun Hotel, Salthill</li>
+                <li>Check into Maldron Hotel Sandy Road Galway</li>
                 <li>Explore Galway Latin Quarter and Shop Street</li>
               </ul>
             </div>
@@ -938,7 +952,7 @@
           <div>
             <div class="day-card__date">Wed, 29 Apr 2026</div>
             <div class="day-card__title">Connemara Coast</div>
-            <div class="day-card__stay">🏨 Clybaun Hotel (Salthill, Galway)</div>
+            <div class="day-card__stay">🏨 Maldron Hotel Sandy Road Galway</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Scenic + relax</div>
@@ -963,7 +977,7 @@
             <div class="day-block">
               <div class="day-block__label"><span>🌙</span> Evening</div>
               <ul class="day-block__items">
-                <li>Kid's pool time at Clybaun Hotel</li>
+                <li>Kid's pool time at Maldron Hotel Sandy Road Galway</li>
                 <li>Easy dinner in Salthill</li>
               </ul>
             </div>
@@ -978,7 +992,7 @@
           <div>
             <div class="day-card__date">Thu, 30 Apr 2026</div>
             <div class="day-card__title">The Mega Loop to Dublin</div>
-            <div class="day-card__stay">🏨 The Samuel Hotel, Dublin</div>
+            <div class="day-card__stay">🏨 Maldron Hotel Merrion Road</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Epic drive day</div>
@@ -990,7 +1004,7 @@
             <div class="day-block">
               <div class="day-block__label"><span>🌅</span> Morning</div>
               <ul class="day-block__items">
-                <li>08:00 Check out from Clybaun</li>
+                <li>08:00 Check out from Maldron Hotel Sandy Road Galway</li>
                 <li>Cliffs of Moher by 09:30</li>
                 <li>Drive through The Burren limestone</li>
               </ul>
@@ -1007,7 +1021,7 @@
               <div class="day-block__label"><span>🌙</span> Evening</div>
               <ul class="day-block__items">
                 <li>2hr drive to Dublin</li>
-                <li>Arrive ~08:15, check into The Samuel Hotel</li>
+                <li>Arrive ~08:15, check into Maldron Hotel Merrion Road</li>
                 <li>Sleep!</li>
               </ul>
             </div>
@@ -1022,7 +1036,7 @@
           <div>
             <div class="day-card__date">Fri, 1 May 2026</div>
             <div class="day-card__title">Wicklow Mountains</div>
-            <div class="day-card__stay">🏨 The Samuel Hotel, Dublin</div>
+            <div class="day-card__stay">🏨 Maldron Hotel Merrion Road</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">Nature day</div>
@@ -1063,7 +1077,7 @@
           <div>
             <div class="day-card__date">Sat, 2 May 2026</div>
             <div class="day-card__title">Dublin City</div>
-            <div class="day-card__stay">🏨 The Samuel Hotel, Dublin</div>
+            <div class="day-card__stay">🏨 Maldron Hotel Merrion Road</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type">City day</div>
