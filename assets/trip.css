@@ -18,7 +18,7 @@
   top: -80px; right: -80px;
   width: 480px; height: 480px;
   border-radius: 50%;
-  border: 1px solid rgba(196,98,45,.18);
+  border: 1px solid var(--hero-glow-1); /* Change this */
   pointer-events: none;
 }
 .trip-hero::after {
@@ -27,7 +27,7 @@
   bottom: -100px; left: 38%;
   width: 320px; height: 320px;
   border-radius: 50%;
-  border: 1px solid rgba(168,212,214,.12);
+  border: 1px solid var(--hero-glow-2); /* Change this */
   pointer-events: none;
 }
 
@@ -95,9 +95,19 @@
 
 .trip-hero__actions {
   position: absolute;
-  top: 40px; right: 0;
+  top: 40px;
+  left: 0;   /* Add this: allows the div to span the whole width */
+  right: 0;  /* Keep this */
+  pointer-events: none; /* Prevents the invisible wrapper from blocking other clicks */
 }
-.trip-hero__actions .container { display: flex; justify-content: flex-end; gap: 10px; }
+
+.trip-hero__actions .container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 36px; /* Match your global container padding */
+  pointer-events: auto; /* Re-enables clicking for the buttons */
+}
 
 /* ── MAIN CONTENT ── */
 .trip-main {
@@ -334,14 +344,48 @@
 .budget-rows { display: none; }
 .budget-category.is-open .budget-rows { display: block; }
 
+/* Update this in assets/trip.css */
 .budget-row {
   display: grid;
-  grid-template-columns: 24px 1fr 110px 110px;
+  /* Columns: Check (24px), Desc (1fr), Foreign (100px), EUR (110px) */
+  grid-template-columns: 24px 1fr 100px 110px; 
   align-items: center;
   gap: 12px;
   padding: 12px 24px;
   border-top: 1px solid var(--divider);
-  transition: background .1s;
+}
+
+/* Foreign input column (3rd) */
+.budget-row__foreign {
+  text-align: right;
+}
+.budget-row__foreign .budget-input {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted); /* Muted color for foreign entry */
+  width: 100%;
+}
+
+/* EUR final amount column (4th - Far Right) */
+.budget-row__eur {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: right;
+  font-weight: 500;
+  color: var(--charcoal); /* Default unpaid color */
+}
+
+/* Success color when the row is marked as paid */
+.budget-row.is-paid .budget-row__eur {
+  color: var(--teal); /* Teal for confirmed payments */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .budget-row { 
+    grid-template-columns: 20px 1fr 80px 90px; 
+    gap: 8px; 
+  }
 }
 .budget-row:hover { background: var(--accent-pale); }
 
@@ -644,7 +688,11 @@
   .trip-hero__title { font-size: 42px; }
   .trip-hero__actions { position: static; margin-top: 24px; }
   .trip-hero__actions .container { justify-content: flex-start; }
-  .budget-row { grid-template-columns: 20px 1fr 90px 90px; gap: 8px; padding: 10px 16px; }
+  .budget-row { 
+    grid-template-columns: 20px 1fr 90px; /* Three columns for mobile */
+    gap: 8px; 
+    padding: 10px 16px; 
+  }
   .budget-category__header { padding: 12px 16px; }
   .budget-totals { grid-template-columns: 1fr; }
   .budget-total-box:first-child { border-right: none; border-bottom: 1px solid var(--divider); }

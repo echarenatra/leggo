@@ -1,43 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scotland & Ireland 2026 — Leggo</title>
-  <meta name="description" content="15 nights across Scotland, Northern Ireland, and Ireland. April–May 2026.">
-
-  <meta name="theme-color" content="#1E3A8A">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-  <link rel="apple-touch-icon" href="assets/logo.svg">
-
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/trip.css">
-
-  <style>
-    :root {
-      /* Scotland Vibe: Deep Highland Green */
-      --accent: #2D6A4F; 
-      --accent-light: #B7D8C0;
-      --accent-pale: #EBF5EE;
-    }
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scotland & Ireland 2026 — Leggo</title>
+    <meta name="description" content="15 nights across Scotland, Northern Ireland, and Ireland. April–May 2026.">
   
-    /* Make the italicized word in the title pop */
-    .trip-hero__title em {
-      color: var(--accent-light);
-      font-family: var(--font-display);
-      font-style: italic;
-      border-bottom: 2px solid rgba(183, 216, 192, 0.3);
-    }
-  </style>
-
-</head>
+    <meta name="theme-color" content="#1E3A8A">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+    <link rel="apple-touch-icon" href="assets/logo.svg">
+  
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/trip.css">
+  </head>
 
 <body>
 
-<!-- ══════════════════════════════════════════
-     TRIP HERO
-════════════════════════════════════════════ -->
 <header class="trip-hero">
   <div class="container">
     <a href="index.html" class="trip-hero__back no-print">← All Trips</a>
@@ -68,7 +47,7 @@
     </div>
 
     <div class="trip-hero__actions no-print">
-      <div class="container" style="padding:0">
+      <div class="container">
         <button class="btn btn--ghost" onclick="copyURL()">⎘ Copy share link</button>
         <button class="btn btn--ghost" onclick="window.print()">⎙ Print</button>
       </div>
@@ -77,56 +56,26 @@
 </header>
 
 
-<!-- ══════════════════════════════════════════
-     MAIN CONTENT
-════════════════════════════════════════════ -->
 <main class="trip-main">
   <div class="container">
 
-    <!-- ════════════════════════════════════
-         SECTION 1 · TRIP SNAPSHOT
-    ═════════════════════════════════════ -->
     <div class="section-header">
       <h2>Trip Snapshot</h2>
       <span class="label">The big picture</span>
     </div>
 
     <div class="route-timeline">
-      <div class="route-stop">
-        <div class="route-stop__dot"></div>
-        <div class="route-stop__name">Stirling</div>
-        <div class="route-stop__nights">2 nights</div>
-      </div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Stirling</div><div class="route-stop__nights">2 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop">
-        <div class="route-stop__dot"></div>
-        <div class="route-stop__name">Fort William</div>
-        <div class="route-stop__nights">2 nights</div>
-      </div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Fort William</div><div class="route-stop__nights">2 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop">
-        <div class="route-stop__dot"></div>
-        <div class="route-stop__name">Isle of Skye</div>
-        <div class="route-stop__nights">3 nights</div>
-      </div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Isle of Skye</div><div class="route-stop__nights">3 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop">
-        <div class="route-stop__dot"></div>
-        <div class="route-stop__name">Causeway Coast</div>
-        <div class="route-stop__nights">3 nights</div>
-      </div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Causeway Coast</div><div class="route-stop__nights">3 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop">
-        <div class="route-stop__dot"></div>
-        <div class="route-stop__name">Galway</div>
-        <div class="route-stop__nights">2 nights</div>
-      </div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Galway</div><div class="route-stop__nights">2 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop">
-        <div class="route-stop__dot"></div>
-        <div class="route-stop__name">Dublin</div>
-        <div class="route-stop__nights">3 nights</div>
-      </div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Dublin</div><div class="route-stop__nights">3 nights</div></div>
     </div>
 
     <div class="snapshot-grid">
@@ -145,44 +94,14 @@
       <div class="snapshot-card">
         <div class="snapshot-card__title">🏨 Where We Sleep</div>
         <table class="stays-table">
-          <thead>
-            <tr>
-              <th>Night</th>
-              <th>City</th>
-              <th>Accommodation</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Night</th><th>City</th><th>Accommodation</th></tr></thead>
           <tbody>
-            <tr>
-              <td class="night-num">1–2</td>
-              <td class="city-name">Stirling</td>
-              <td class="hotel-name">Holiday Inn Express Stirling</td>
-            </tr>
-            <tr>
-              <td class="night-num">3–4</td>
-              <td class="city-name">Fort William</td>
-              <td class="hotel-name">Muthu Fort William Hotel</td>
-            </tr>
-            <tr>
-              <td class="night-num">5–7</td>
-              <td class="city-name">Isle of Skye</td>
-              <td class="hotel-name">Duisdale House Hotel (Sleat)</td>
-            </tr>
-            <tr>
-              <td class="night-num">8–10</td>
-              <td class="city-name">Causeway Coast</td>
-              <td class="hotel-name">Ibis Coleraine Riverside</td>
-            </tr>
-            <tr>
-              <td class="night-num">11–12</td>
-              <td class="city-name">Galway</td>
-              <td class="hotel-name">Clybaun Hotel (Salthill)</td>
-            </tr>
-            <tr>
-              <td class="night-num">13–15</td>
-              <td class="city-name">Dublin</td>
-              <td class="hotel-name">The Samuel Hotel</td>
-            </tr>
+            <tr><td class="night-num">1–2</td><td class="city-name">Stirling</td><td class="hotel-name">Holiday Inn Express Stirling</td></tr>
+            <tr><td class="night-num">3–4</td><td class="city-name">Fort William</td><td class="hotel-name">Muthu Fort William Hotel</td></tr>
+            <tr><td class="night-num">5–7</td><td class="city-name">Isle of Skye</td><td class="hotel-name">Duisdale House Hotel (Sleat)</td></tr>
+            <tr><td class="night-num">8–10</td><td class="city-name">Causeway Coast</td><td class="hotel-name">Ibis Coleraine Riverside</td></tr>
+            <tr><td class="night-num">11–12</td><td class="city-name">Galway</td><td class="hotel-name">Clybaun Hotel (Salthill)</td></tr>
+            <tr><td class="night-num">13–15</td><td class="city-name">Dublin</td><td class="hotel-name">The Samuel Hotel</td></tr>
           </tbody>
         </table>
       </div>
@@ -190,81 +109,30 @@
       <div class="snapshot-card">
         <div class="snapshot-card__title">🚗 Getting Around</div>
         <ul class="transport-list">
-          <li>
-            <span class="transport-icon">✈</span>
-            <div>Fly AMS → EDI <span class="transport-day">Day 1 · Apr 18 · ~1h30m</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">🚗</span>
-            <div>Car T2: EDI → Stirling → Fort William → Skye → EDI <span class="transport-day">Days 1-8 · Auto, child seat</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">✈</span>
-            <div>Fly EDI → BFS <span class="transport-day">Day 8 · Apr 25 · ~50m flight</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">🚗</span>
-            <div>Car T4: BFS → Causeway Coast → BFS <span class="transport-day">Days 8-11 · Auto, child seat</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">🚂</span>
-            <div>Train Belfast → Dublin <span class="transport-day">Day 11 · Apr 28 · ~2h Enterprise</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">🚗</span>
-            <div>Car T6: Dublin → Galway → Cashel → Dublin <span class="transport-day">Days 11-14 · Auto, child seat</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">🚂</span>
-            <div>Train Dublin → Belfast <span class="transport-day">Day 16 · May 3 · ~2h Enterprise</span></div>
-          </li>
-          <li>
-            <span class="transport-icon">✈</span>
-            <div>Fly BFS → AMS <span class="transport-day">Day 16 · May 3 · ~1h40m</span></div>
-          </li>
+          <li><span class="transport-icon">✈</span><div>Fly AMS → EDI <span class="transport-day">Day 1 · Apr 18</span></div></li>
+          <li><span class="transport-icon">🚗</span><div>Car T2: Scotland <span class="transport-day">Days 1-8</span></div></li>
+          <li><span class="transport-icon">✈</span><div>Fly EDI → BFS <span class="transport-day">Day 8 · Apr 25</span></div></li>
+          <li><span class="transport-icon">🚗</span><div>Car T4: NI <span class="transport-day">Days 8-11</span></div></li>
+          <li><span class="transport-icon">🚂</span><div>Train Belfast → Dublin <span class="transport-day">Day 11 · Apr 28</span></div></li>
+          <li><span class="transport-icon">🚗</span><div>Car T6: Ireland <span class="transport-day">Days 11-14</span></div></li>
+          <li><span class="transport-icon">🚂</span><div>Train Dublin → Belfast <span class="transport-day">Day 16 · May 3</span></div></li>
+          <li><span class="transport-icon">✈</span><div>Fly BFS → AMS <span class="transport-day">Day 16 · May 3</span></div></li>
         </ul>
       </div>
 
       <div class="snapshot-card">
         <div class="snapshot-card__title">📋 Logistics & Docs</div>
         <ul class="logistics-list">
-          <li>
-            <span class="logistics-key">Indonesian passport</span>
-            <span class="logistics-val logistics-ok">✓ Valid</span>
-          </li>
-          <li>
-            <span class="logistics-key">Dutch residence permit</span>
-            <span class="logistics-val logistics-ok">✓ Valid</span>
-          </li>
-          <li>
-            <span class="logistics-key">UK tourist visa</span>
-            <span class="logistics-val logistics-ok">✓ Confirmed</span>
-          </li>
-          <li>
-            <span class="logistics-key">Ireland entry</span>
-            <span class="logistics-val logistics-ok">✓ No visa needed</span>
-          </li>
-          <li>
-            <span class="logistics-key">Travel insurance</span>
-            <span class="logistics-val logistics-warn">⚠ Not yet booked</span>
-          </li>
-          <li>
-            <span class="logistics-key">Child car seat</span>
-            <span class="logistics-val logistics-warn">⚠ Confirm with rentals</span>
-          </li>
-          <li>
-            <span class="logistics-key">Driving side</span>
-            <span class="logistics-val" style="color:var(--accent)">⚠ Drive on the LEFT</span>
-          </li>
+          <li><span class="logistics-key">Indonesian passport</span><span class="logistics-val logistics-ok">✓ Valid</span></li>
+          <li><span class="logistics-key">UK tourist visa</span><span class="logistics-val logistics-ok">✓ Confirmed</span></li>
+          <li><span class="logistics-key">Travel insurance</span><span class="logistics-val logistics-warn">⚠ Not yet booked</span></li>
+          <li><span class="logistics-key">Driving side</span><span class="logistics-val" style="color:var(--accent)">⚠ Drive on the LEFT</span></li>
         </ul>
       </div>
     </div>
 
     <hr class="fancy">
 
-    <!-- ════════════════════════════════════
-         SECTION 2 · BUDGET (AUTO-CALCULATING)
-    ═════════════════════════════════════ -->
     <div class="section-header">
       <h2>Budget</h2>
       <span class="label">Family of 3 · EUR · Click circle to mark as Paid</span>
@@ -279,9 +147,15 @@
         <div class="budget-rows">
           <div class="budget-row">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">All Flights (AMS→EDI, EDI→BFS, BFS→AMS)<small>easyJet & Ryanair UK (3 pax)</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 780"></div>
-            <div class="budget-row__act"><input class="budget-input" value="€ 780"></div>
+            <div class="budget-row__desc">Flight Amsterdam (AMS) to Edinburgh (EDI)<small>easyJet EJU7837 · 18 Apr 07:20 - 07:50</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 619.67" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 619.67</div>
+          </div>
+          <div class="budget-row">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Flight Edinburgh (EDI) to Belfast (BFS)<small>Ryanair RK179 · 25 Apr 15:40 - 16:30</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 129.76" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 0.00</div>
           </div>
         </div>
       </div>
@@ -293,39 +167,39 @@
         <div class="budget-rows">
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Stirling — 2 nights<small>Holiday Inn Express Stirling</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 276"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Stirling — 2 nights<small>Holiday Inn Express</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 276" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 276.00</div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Fort William — 2 nights<small>Muthu Fort William Hotel</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 448"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Fort William — 2 nights<small>Muthu Hotel</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 448" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 448.00</div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Isle of Skye — 3 nights<small>Duisdale House Hotel (Urgent)</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 1,094"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Isle of Skye — 3 nights<small>Duisdale House</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 1,094" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 1,094.00</div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Causeway Coast — 3 nights<small>Ibis Coleraine Riverside</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 355"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Causeway Coast — 3 nights<small>Ibis Coleraine</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 355" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 355.00</div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
             <div class="budget-row__desc">Galway — 2 nights<small>Clybaun Hotel</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 304"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 304" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 304.00</div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
             <div class="budget-row__desc">Dublin — 3 nights<small>The Samuel Hotel</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 691"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 691" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 691.00</div>
           </div>
         </div>
       </div>
@@ -336,48 +210,58 @@
         </div>
         <div class="budget-rows">
           <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rentals x3 (Estimate)<small>Scotland, NI, and Ireland</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 900"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI)<small>SIXT · 18 Apr 09:00 - 25 Apr 13:30</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 311.49" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 311.49</div>
           </div>
           <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Trains Belfast ↔ Dublin<small>Enterprise service (Return for 3 pax)</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 150"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Fuel Estimate<small>Across all 3 car rentals</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 300"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Car Rental Belfast Airport (BFS)<small>SIXT · 25 Apr 17:00 - 28 Apr 16:30</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 112.26" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 900.00</div>
           </div>
         </div>
       </div>
 
-      <div class="budget-category" id="cat-food">
-        <div class="budget-category__header" onclick="toggleCategory('cat-food')">
-          🍽 Food, Activities & Misc <span class="budget-category__toggle">▾</span>
+      <div class="budget-category is-open" id="cat-attractions">
+        <div class="budget-category__header" onclick="toggleCategory('cat-attractions')">
+          🎟️ Attractions <span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Food Estimate<small>15 days @ ~€100/day</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 1,500"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Car Rentals x3 (Estimate)<small>Scotland, NI, and Ireland</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 900" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 900.00</div>
           </div>
+        </div>
+      </div>
+
+      <div class="budget-category is-open" id="cat-admin">
+        <div class="budget-category__header" onclick="toggleCategory('cat-admin')">
+          🛂 Admin & Prep <span class="budget-category__toggle">▾</span>
+        </div>
+        <div class="budget-rows">
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Attractions & Entries<small>Titanic, Castles, Cliffs, etc.</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 350"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Car Rentals x3 (Estimate)<small>Scotland, NI, and Ireland</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 900" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 900.00</div>
           </div>
+        </div>
+      </div>
+
+      <div class="budget-category is-open" id="cat-daily">
+        <div class="budget-category__header" onclick="toggleCategory('cat-daily')">
+          🍴 Daily Spend <span class="budget-category__toggle">▾</span>
+        </div>
+        <div class="budget-rows">
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Misc / Emergency Buffer<small>Insurance, shopping, SIM</small></div>
-            <div class="budget-row__est"><input class="budget-input" value="€ 400"></div>
-            <div class="budget-row__act"><input class="budget-input" value=""></div>
+            <div class="budget-row__desc">Car Rentals x3 (Estimate)<small>Scotland, NI, and Ireland</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 900" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur">€ 900.00</div>
           </div>
         </div>
       </div>
@@ -386,718 +270,37 @@
         <div class="budget-total-box budget-total-box--paid">
           <span class="budget-total-box__label">✓ Total Paid</span>
           <span class="budget-total-box__amount" id="total-paid">€ 0</span>
-          <span style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">confirmed bookings</span>
         </div>
         <div class="budget-total-box budget-total-box--unpaid">
           <span class="budget-total-box__label">○ Still to Pay</span>
           <span class="budget-total-box__amount" id="total-unpaid">€ 0</span>
-          <span style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">estimated remaining</span>
         </div>
       </div>
-
     </div>
 
-    <hr class="fancy">
-
-    <!-- ════════════════════════════════════
-         SECTION 3 · ITINERARY
-    ═════════════════════════════════════ -->
     <div class="section-header">
       <h2>Day by Day</h2>
-      <span class="label">Click any day to expand detailed plans</span>
+      <span class="label">Detailed plans</span>
     </div>
-
-    <div class="itinerary-list">
-
-      <!-- DAY 1 -->
-      <div class="day-card is-key" id="day-1">
-        <div class="day-card__header" onclick="toggleDay('day-1')">
-          <div class="day-card__num">01</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Sat 18 Apr 2026</div>
-            <div class="day-card__title">Arrival & Stirling</div>
-            <div class="day-card__stay">🏨 Holiday Inn Express Stirling</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Travel</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Fly AMS → EDI (07:20 → 07:50)</li>
-                <li>Pick up rental car T2 — confirm child seat</li>
-                <li>Drive to Stirling (~45 min)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Drop bags at hotel</li>
-                <li>Visit Stirling Castle and Argyll's Lodging</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Stroll the Back Walk ramparts</li>
-                <li>Early dinner and sleep after the early flight</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 2 -->
-      <div class="day-card is-key" id="day-2">
-        <div class="day-card__header" onclick="toggleDay('day-2')">
-          <div class="day-card__num">02</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Sun 19 Apr 2026</div>
-            <div class="day-card__title">Stirling Buffer Day</div>
-            <div class="day-card__stay">🏨 Holiday Inn Express Stirling</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Sleep in and enjoy a relaxed breakfast</li>
-                <li>Visit Old Town Jail (very fun/interactive for kids)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Optional: Short drive to The Kelpies or Falkirk Wheel</li>
-                <li>Easy afternoon exploring Stirling town center</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Relaxed local dinner</li>
-                <li>Pack up for the Highland drive tomorrow</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 3 -->
-      <div class="day-card is-key" id="day-3">
-        <div class="day-card__header" onclick="toggleDay('day-3')">
-          <div class="day-card__num">03</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Mon 20 Apr 2026</div>
-            <div class="day-card__title">The Glencoe Drive</div>
-            <div class="day-card__stay">🏨 Muthu Fort William</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Moving day</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Check out, drive towards Fort William (~2h total)</li>
-                <li>Stop at Loch Lomond viewpoint (Tarbet) to stretch legs</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Buachaille Etive Mòr photo stop</li>
-                <li>Glen Etive detour (Skyfall road)</li>
-                <li>Glencoe Three Sisters viewpoint + short walk</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Arrive Fort William, check in</li>
-                <li>Dinner at hotel or local pub</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 4 -->
-      <div class="day-card is-key" id="day-4">
-        <div class="day-card__header" onclick="toggleDay('day-4')">
-          <div class="day-card__num">04</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Tue 21 Apr 2026</div>
-            <div class="day-card__title">Monster Hunting & Mountains</div>
-            <div class="day-card__stay">🏨 Muthu Fort William</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Nevis Range Gondola (huge hit for a 6-year-old)</li>
-                <li>Neptune's Staircase (watching the canal locks)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Drive up to Urquhart Castle</li>
-                <li>Loch Ness Centre in Drumnadrochit</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Drive back to Fort William</li>
-                <li>Dinner in town</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 5 -->
-      <div class="day-card is-key" id="day-5">
-        <div class="day-card__header" onclick="toggleDay('day-5')">
-          <div class="day-card__num">05</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Wed 22 Apr 2026</div>
-            <div class="day-card__title">Castles & Crossing to Skye</div>
-            <div class="day-card__stay">🏨 Duisdale House (Sleat)</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Moving day</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Check out of Fort William</li>
-                <li>Drive A87 to Eilean Donan Castle (zero detour)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Cross the Skye Bridge</li>
-                <li>Arrive in Sleat, check into Duisdale House Hotel</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Relax at hotel — Sleat is quiet and beautiful</li>
-                <li>Dinner at the hotel or nearby</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 6 -->
-      <div class="day-card is-key" id="day-6">
-        <div class="day-card__header" onclick="toggleDay('day-6')">
-          <div class="day-card__num">06</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Thu 23 Apr 2026</div>
-            <div class="day-card__title">Skye — Trotternish Loop</div>
-            <div class="day-card__stay">🏨 Duisdale House (Sleat)</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Early start to beat crowds</li>
-                <li>Old Man of Storr hike</li>
-                <li>The Quiraing viewpoint</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Kilt Rock & Mealt Falls</li>
-                <li>Fairy Glen (feels like a miniature playground for kids)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Golden hour at Portree Harbour</li>
-                <li>Fish and chips in Portree before driving back to Sleat</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 7 -->
-      <div class="day-card is-key" id="day-7">
-        <div class="day-card__header" onclick="toggleDay('day-7')">
-          <div class="day-card__num">07</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Fri 24 Apr 2026</div>
-            <div class="day-card__title">Skye — West Coast Magic</div>
-            <div class="day-card__stay">🏨 Duisdale House (Sleat)</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Arrive early at the Fairy Pools</li>
-                <li>Walk and take photos along the crystal clear water</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Dunvegan Castle</li>
-                <li>Seal Boat Trip (guaranteed child highlight)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Neist Point Lighthouse for sunset (only if energy permits)</li>
-                <li>Drive back to accommodation</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 8 -->
-      <div class="day-card is-key" id="day-8">
-        <div class="day-card__header" onclick="toggleDay('day-8')">
-          <div class="day-card__num">08</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Sat 25 Apr 2026</div>
-            <div class="day-card__title">Flight to Northern Ireland</div>
-            <div class="day-card__stay">🏨 Ibis Coleraine Riverside</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Travel</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Leave Sleat early (~08:30) for 4.5hr drive to EDI</li>
-                <li>Drop rental car T2 at Edinburgh Airport</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Fly EDI → BFS (15:40 → 16:30)</li>
-                <li>Pick up rental car T4 at Belfast International</li>
-                <li>Drive to Causeway Coast (~1hr)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Check into Ibis Coleraine</li>
-                <li>Grab quick dinner nearby and rest after a heavy travel day</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 9 -->
-      <div class="day-card is-key" id="day-9">
-        <div class="day-card__header" onclick="toggleDay('day-9')">
-          <div class="day-card__num">09</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Sun 26 Apr 2026</div>
-            <div class="day-card__title">Giant's Causeway & Coast</div>
-            <div class="day-card__stay">🏨 Ibis Coleraine Riverside</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Giant's Causeway (arrive 08:30 sharp to beat buses)</li>
-                <li>Carrick-a-Rede Rope Bridge (pre-booked)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Dunluce Castle photo stop</li>
-                <li>Mussenden Temple and Downhill Beach (let the 6yo run wild!)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Dinner on the Causeway Coast</li>
-                <li>Relax at hotel</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 10 -->
-      <div class="day-card is-key" id="day-10">
-        <div class="day-card__header" onclick="toggleDay('day-10')">
-          <div class="day-card__num">10</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Mon 27 Apr 2026</div>
-            <div class="day-card__title">Belfast Day Trip</div>
-            <div class="day-card__stay">🏨 Ibis Coleraine Riverside</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Drive down to Belfast (~1h15m)</li>
-                <li>Titanic Belfast (pre-booked timed entry)</li>
-                <li>Explore SS Nomadic (included with ticket)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Cathedral Quarter walk</li>
-                <li>Black Cab Murals Tour (Falls/Shankill Road)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Dinner in Belfast</li>
-                <li>Drive back to Coleraine</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 11 -->
-      <div class="day-card is-key" id="day-11">
-        <div class="day-card__header" onclick="toggleDay('day-11')">
-          <div class="day-card__num">11</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Tue 28 Apr 2026</div>
-            <div class="day-card__title">Train to Dublin, Drive to Galway</div>
-            <div class="day-card__stay">🏨 Clybaun Hotel (Salthill)</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Moving day</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Drive to BFS Airport, drop car T4</li>
-                <li>Taxi to Belfast Central, take Enterprise Train to Dublin (~2h)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Pick up rental car T6 in Dublin</li>
-                <li>Drive across to Galway (~2.5h)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Check in to Clybaun Hotel</li>
-                <li>Explore Galway Latin Quarter & Shop Street buskers</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 12 -->
-      <div class="day-card is-key" id="day-12">
-        <div class="day-card__header" onclick="toggleDay('day-12')">
-          <div class="day-card__num">12</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Wed 29 Apr 2026</div>
-            <div class="day-card__title">Connemara Coast</div>
-            <div class="day-card__stay">🏨 Clybaun Hotel (Salthill)</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Scenic drive through the Connemara landscape</li>
-                <li>Plenty of photo stops along the wild Atlantic way</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Visit Kylemore Abbey (classic family photo spot across the lake)</li>
-                <li>Drive back to the hotel early</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Kid's pool time at Clybaun Hotel</li>
-                <li>Easy dinner in Salthill</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 13 -->
-      <div class="day-card is-key" id="day-13">
-        <div class="day-card__header" onclick="toggleDay('day-13')">
-          <div class="day-card__num">13</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Thu 30 Apr 2026</div>
-            <div class="day-card__title">The Mega Loop to Dublin</div>
-            <div class="day-card__stay">🏨 The Samuel Hotel</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Epic transit</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>08:00 AM Check out of Galway. Drive south.</li>
-                <li>09:30 AM Cliffs of Moher (pre-booked). Epic family photos.</li>
-                <li>11:30 AM Drive through The Burren limestone pavement</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>12:15 PM Aillwee Cave & Birds of Prey (Lunch here)</li>
-                <li>02:30 PM Begin long drive across to Cashel</li>
-                <li>04:45 PM Rock of Cashel (golden hour photos of the ruins)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>06:15 PM Drive 2h to Dublin.</li>
-                <li>08:15 PM Arrive at The Samuel Hotel, grab a quick bite and sleep!</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 14 -->
-      <div class="day-card is-key" id="day-14">
-        <div class="day-card__header" onclick="toggleDay('day-14')">
-          <div class="day-card__num">14</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Fri 01 May 2026</div>
-            <div class="day-card__title">Wicklow Mountains</div>
-            <div class="day-card__stay">🏨 The Samuel Hotel</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Sleep in a bit to recover from Day 13!</li>
-                <li>Drive down to Powerscourt Estate & Waterfall</li>
-                <li>Take family portraits in the formal gardens</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Explore Glendalough (ancient monastic site and two beautiful lakes)</li>
-                <li>Enjoy the nature trails</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Drive back to Dublin</li>
-                <li>Drop rental car T6 so you don't need it in the city</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 15 -->
-      <div class="day-card is-key" id="day-15">
-        <div class="day-card__header" onclick="toggleDay('day-15')">
-          <div class="day-card__num">15</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Sat 02 May 2026</div>
-            <div class="day-card__title">Dublin City</div>
-            <div class="day-card__stay">🏨 The Samuel Hotel</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Explore</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Visit Phoenix Park</li>
-                <li>Hunt for the free-roaming deer (huge kid highlight)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Trinity College Long Room (pre-booked)</li>
-                <li>Dublin Castle walk-around</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
-              <ul class="day-block__items">
-                <li>Grafton Street shopping and buskers</li>
-                <li>Final celebratory trip dinner!</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 16 -->
-      <div class="day-card is-key" id="day-16">
-        <div class="day-card__header" onclick="toggleDay('day-16')">
-          <div class="day-card__num">16</div>
-          <div class="day-card__info">
-            <div class="day-card__date">Sun 03 May 2026</div>
-            <div class="day-card__title">Departure</div>
-            <div class="day-card__stay">Fly Home</div>
-          </div>
-          <div class="day-card__right">
-            <span class="day-card__type">Travel</span>
-            <span class="day-card__toggle">▾</span>
-          </div>
-        </div>
-        <div class="day-card__body">
-          <div class="day-blocks">
-            <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
-              <ul class="day-block__items">
-                <li>Early Enterprise Train Dublin → Belfast Central (~2h)</li>
-                <li>Taxi or bus to Belfast International Airport (BFS)</li>
-              </ul>
-            </div>
-            <div class="day-block">
-              <div class="day-block__label"><span>☀</span> Afternoon</div>
-              <ul class="day-block__items">
-                <li>Fly BFS → AMS (13:25 → 16:05)</li>
-                <li>Arrive home!</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
     <hr class="fancy">
 
-    <!-- ════════════════════════════════════
-         SECTION 4 · FAMILIES
-    ═════════════════════════════════════ -->
     <div class="section-header">
       <h2>Who's Coming</h2>
       <span class="label">Family of 3</span>
     </div>
-
     <div class="families-grid">
       <div class="family-card">
         <div class="family-card__name">The Family</div>
         <div class="family-card__size">2 adults · 1 child (age 6)</div>
-        <div class="family-card__notes">
-          Indonesian passports · Dutch residence permit · UK tourist visa confirmed valid until June 2026.
-        </div>
+        <div class="family-card__notes">Visas confirmed valid until June 2026.</div>
       </div>
     </div>
 
     <hr class="fancy">
 
     <div class="share-banner no-print">
-      <div class="share-banner__text">
-        <strong>Share this trip</strong>
-        Send this link to anyone who needs to see the plan
-      </div>
-      <div class="share-banner__url" onclick="copyURL()" title="Click to copy">
-        leggo.vercel.app/scotland-2026
-      </div>
+      <div class="share-banner__text"><strong>Share this trip</strong> Send this link to others</div>
+      <div class="share-banner__url" onclick="copyURL()" title="Click to copy">leggo.vercel.app/scotland-2026</div>
     </div>
 
   </div>
@@ -1105,104 +308,79 @@
 
 <footer class="site-footer">
   <div class="container">
-    <span style="color:var(--muted)">Leggo · Scotland & Ireland 2026</span>
+    <span>Leggo · Scotland & Ireland 2026</span>
     <span>Let's go, planned.</span>
   </div>
 </footer>
 
 <script>
-  // ── TOGGLE BUDGET CATEGORIES ──────────────────
-  function toggleCategory(id) {
-    document.getElementById(id).classList.toggle('is-open');
+  // ── SETTINGS ─────────────────────────────────
+  const GBP_TO_EUR = 1.18; // 1 GBP = 1.18 EUR
+
+  // ── TOGGLE FUNCTIONS ─────────────────────────
+  function toggleCategory(id) { document.getElementById(id).classList.toggle('is-open'); }
+  function toggleDay(id) { document.getElementById(id).classList.toggle('is-open'); }
+
+  // ── BUDGET CONVERSION & CALCULATION ──────────
+  function convertRow(inputEl) {
+    const row = inputEl.closest('.budget-row');
+    const eurDisplay = row.querySelector('.budget-row__eur');
+    let val = inputEl.value.toUpperCase();
+    
+    const isGBP = val.includes('£') || val.includes('GBP');
+    const num = parseFloat(val.replace(/[€£GBP\s,]/g, ""));
+    
+    if (!isNaN(num)) {
+      const eurVal = isGBP ? num * GBP_TO_EUR : num;
+      eurDisplay.innerText = '€ ' + eurVal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+      eurDisplay.setAttribute('data-eur-val', eurVal);
+    } else {
+      eurDisplay.innerText = '€ 0.00';
+      eurDisplay.setAttribute('data-eur-val', 0);
+    }
+    calculateBudget();
   }
 
-  // ── BUDGET LIVE CALCULATOR ────────────────────
   function calculateBudget() {
     let totalPaid = 0;
     let totalUnpaid = 0;
 
-    const rows = document.querySelectorAll('.budget-row');
-    rows.forEach(row => {
+    document.querySelectorAll('.budget-row').forEach(row => {
       const isPaid = row.querySelector('.check').classList.contains('is-checked');
-      
-      // Get the string values from inputs
-      const estInput = row.querySelector('.budget-row__est input').value;
-      const actInput = row.querySelector('.budget-row__act input').value;
+      const eurDisplay = row.querySelector('.budget-row__eur');
+      const val = parseFloat(eurDisplay.getAttribute('data-eur-val')) || 0;
 
-      // Clean the string (remove euro sign, spaces, and commas)
-      const parseMoney = (str) => {
-        const cleanStr = str.replace(/[€\s,]/g, "");
-        const num = parseFloat(cleanStr);
-        return isNaN(num) ? 0 : num;
-      };
-
-      const estVal = parseMoney(estInput);
-      const actVal = parseMoney(actInput);
-
-      if (isPaid) {
-        // If marked paid, add Actual. If Actual is empty, fallback to Estimated.
-        totalPaid += (actVal > 0) ? actVal : estVal;
-      } else {
-        // If not paid, add to estimated total
-        totalUnpaid += estVal;
-      }
+      if (isPaid) totalPaid += val;
+      else totalUnpaid += val;
     });
 
-    // Format with commas and Euro symbol
-    document.getElementById('total-paid').innerText = '€ ' + totalPaid.toLocaleString('en-US');
-    document.getElementById('total-unpaid').innerText = '€ ' + totalUnpaid.toLocaleString('en-US');
+    document.getElementById('total-paid').innerText = '€ ' + totalPaid.toLocaleString('en-US', {minimumFractionDigits: 2});
+    document.getElementById('total-unpaid').innerText = '€ ' + totalUnpaid.toLocaleString('en-US', {minimumFractionDigits: 2});
   }
 
-  // ── TOGGLE PAID CHECKBOXES ────────────────────
   function toggleCheck(el) {
+    const row = el.closest('.budget-row');
     el.classList.toggle('is-checked');
-    calculateBudget(); // Recalculate instantly on click
-  }
-
-  // ── INITIALIZE CALCULATOR ON LOAD ─────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    const inputs = document.querySelectorAll('.budget-input');
-    inputs.forEach(input => {
-      // Re-calculate anytime an input is typed into
-      input.addEventListener('input', calculateBudget);
-      
-      // Auto-format the input on blur (when user clicks away)
-      input.addEventListener('blur', (e) => {
-        let val = e.target.value;
-        const cleanStr = val.replace(/[€\s,]/g, "");
-        const num = parseFloat(cleanStr);
-        if (!isNaN(num) && num > 0) {
-          e.target.value = '€ ' + num.toLocaleString('en-US');
-        } else if (val.trim() === '') {
-          e.target.value = '';
-        }
-      });
-    });
-    // Run once on page load
+    row.classList.toggle('is-paid'); // Toggles Teal/Charcoal color
     calculateBudget();
-  });
-
-  // ── TOGGLE DAY CARDS ─────────────────────────
-  function toggleDay(id) {
-    document.getElementById(id).classList.toggle('is-open');
   }
+
+  // ── INITIALIZE ON LOAD ───────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.budget-row .budget-input').forEach(input => convertRow(input));
+  });
 
   // ── COPY SHARE URL ───────────────────────────
   function copyURL() {
     const url = 'https://leggo-murex.vercel.app/scotland-2026.html';
     navigator.clipboard.writeText(url).then(() => {
       const el = document.querySelector('.share-banner__url');
-      const orig = el.textContent;
       el.textContent = 'Copied! ✓';
-      setTimeout(() => el.textContent = orig, 2000);
-    }).catch(() => {
-      prompt('Copy this link:', url);
+      setTimeout(() => el.textContent = 'leggo.vercel.app/scotland-2026', 2000);
     });
   }
-</script>
 
-<!-- SERVICE WORKER, add for every trip pages --> 
-<script>
+  // ── SERVICE WORKER ───────────────────────────
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
