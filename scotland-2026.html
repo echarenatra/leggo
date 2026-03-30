@@ -1393,6 +1393,7 @@
   // ── TOGGLE FUNCTIONS ─────────────────────────
   function toggleCategory(id) { document.getElementById(id).classList.toggle('is-open'); }
   function toggleDay(id) { document.getElementById(id).classList.toggle('is-open'); }
+  function togglePack(id) { document.getElementById(id).classList.toggle('is-open'); }
 
   // ── BUDGET CONVERSION ────────────────────────
   function convertRow(inputEl) {
@@ -1479,6 +1480,32 @@ function calculateBudget() {
   // ── INITIALIZE ON LOAD ───────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.budget-row .budget-input').forEach(input => convertRow(input));
+
+    // ── PACKING LIST ─────────────────────────────
+    function updatePackProgress() {
+      const allChecks = document.querySelectorAll('.pack-check');
+      const checked   = document.querySelectorAll('.pack-check:checked');
+      const progressEl = document.getElementById('pack-progress');
+      if (progressEl) progressEl.textContent = checked.length + ' / ' + allChecks.length;
+      document.querySelectorAll('.pack-category').forEach(cat => {
+        const total   = cat.querySelectorAll('.pack-check').length;
+        const done    = cat.querySelectorAll('.pack-check:checked').length;
+        const countEl = cat.querySelector('.pack-category__count');
+        if (countEl) {
+          countEl.textContent = done + ' / ' + total;
+          countEl.classList.toggle('all-done', done === total);
+        }
+      });
+    }
+    updatePackProgress();
+    document.querySelectorAll('.pack-row').forEach(row => {
+      row.addEventListener('click', () => {
+        const cb = row.querySelector('.pack-check');
+        cb.checked = !cb.checked;
+        row.classList.toggle('is-checked', cb.checked);
+        updatePackProgress();
+      });
+    });
   });
 
   // ── COPY SHARE URL ───────────────────────────
