@@ -54,10 +54,14 @@
     <link rel="stylesheet" href="assets/trip.css">
     <style>
       :root {
-        --accent: #C4622D;
-        --accent-light: #E8A882;
-        --divider: #DDD4C8;
-        --hero-glow: rgba(196, 98, 45, 0.18);
+        --trip-accent:       #3A7CA5;
+        --trip-accent-light: #8EC5E3;
+        --divider:           #CDD8E0;
+        --hero-glow:         rgba(58, 124, 165, 0.22);
+      }
+      [data-theme='dark'] {
+        --trip-accent:       #5AAED4;
+        --trip-accent-light: #A8D9F0;
       }
     </style>
   </head>
@@ -146,14 +150,27 @@
     <path d="M16 9.5c2.76.44 5 1.62 5 3V17c0 1.66-3.13 3-7 3-2.68 0-5-.73-6.24-1.8"/>
     <path d="M2 11v4c0 1.66 3.13 3 7 3"/>
   </symbol>
+
+  <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="5" r="3"/>
+    <circle cx="6" cy="12" r="3"/>
+    <circle cx="18" cy="19" r="3"/>
+    <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+  </symbol>
+
+  <symbol id="icon-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9V2h12v7"/>
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+    <rect x="6" y="14" width="12" height="8"/>
+  </symbol>
 </svg>
 
 <header class="trip-hero">
   <div class="container">
     <a href="index.html" class="trip-hero__back no-print">← All Trips</a>
-    <p class="trip-hero__label">Bergen → Voss → Oslo → Stockholm → Helsinki</p>
-    <h1 class="trip-hero__title">Scandinavia Family Trip</h1>
-    <p class="trip-hero__sub">5-17 July 2026 - Norway → Sweden → Finland</p>
+    <p class="trip-hero__label">🇳🇴 Norway · 🇸🇪 Sweden · 🇫🇮 Finland</p>
+    <h1 class="trip-hero__title">Norway,<br>Sweden,<br><em>Finland</em></h1>
+    <p class="trip-hero__sub">5 July — 17 July 2026 · 12 nights</p>
 
     <div class="countdown">
       <div class="countdown__dot"></div>
@@ -171,21 +188,33 @@
       </div>
       <div class="trip-meta-item">
         <span class="trip-meta-item__label">Travel</span>
-        <span class="trip-meta-item__value">Flight, train, cruise, car</span>
+        <span class="trip-meta-item__value">Flight, Train, Cruise, Car</span>
       </div>
       <div class="trip-meta-item">
         <span class="trip-meta-item__label">Status</span>
         <span class="trip-meta-item__value">
-          <span class="badge badge--planning">Partially booked</span>
+          <span class="badge badge--planning">Planning</span>
         </span>
       </div>
     </div>
 
     <div class="trip-hero__actions no-print">
       <div class="container">
-        <button class="btn btn--ghost" type="button" data-theme-toggle>Dark mode</button>
-        <button class="btn btn--ghost" onclick="copyURL(this)">⎘ Copy share link</button>
-        <button class="btn btn--ghost" onclick="window.print()">⎙ Print</button>
+        <button class="btn-icon" id="theme-toggle-btn" title="Toggle light / dark mode" type="button" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <use id="theme-icon-use" href="#icon-moon"/>
+          </svg>
+        </button>
+        <button class="btn-icon" title="Copy share link" onclick="copyURL()" aria-label="Copy share link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <use href="#icon-share"/>
+          </svg>
+        </button>
+        <button class="btn-icon" title="Print" onclick="window.print()" aria-label="Print">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <use href="#icon-print"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -232,12 +261,12 @@
           <thead><tr><th>Night</th><th>City</th><th>Accommodation</th></tr></thead>
           <tbody>
             <!-- UPDATE: STAYS_TABLE_START -->
-            <tr><td class="night-num">5-7 Jul</td><td class="city-name">Bergen</td><td class="hotel-name"><a href="#">Keyser Apartments 8 (3BR Ground Floor)</a></td></tr>
-            <tr><td class="night-num">7-11 Jul</td><td class="city-name">Voss (Myrkdalen)</td><td class="hotel-name"><a href="#">ChaletMons, stor trivelig leilighet i Myrkdalen (4BR)</a></td></tr>
-            <tr><td class="night-num">11-13 Jul</td><td class="city-name">Oslo</td><td class="hotel-name"><a href="#">Citybox Oslo (3 x Double Room)</a></td></tr>
-            <tr><td class="night-num">13-15 Jul</td><td class="city-name">Stockholm</td><td class="hotel-name"><a href="#">Scandic No 53 (3 x Standard Double Room)</a></td></tr>
-            <tr><td class="night-num">15-16 Jul</td><td class="city-name">Stockholm → Helsinki</td><td class="hotel-name"><a href="#">Tallink Silja Serenade - B-Standard Inside</a></td></tr>
-            <tr><td class="night-num">16-17 Jul</td><td class="city-name">Helsinki</td><td class="hotel-name"><a href="#">Accommodation TBD (to book)</a></td></tr>
+            <tr><td class="night-num">5-7 Jul</td><td class="city-name">Bergen</td><td class="hotel-name"><a href="#">Keyser Apartments 8</a></td></tr>
+            <tr><td class="night-num">7-11 Jul</td><td class="city-name">Voss (Myrkdalen)</td><td class="hotel-name"><a href="#">ChaletMons, stor trivelig leilighet i Myrkdalen</a></td></tr>
+            <tr><td class="night-num">11-13 Jul</td><td class="city-name">Oslo</td><td class="hotel-name"><a href="#">Citybox Oslo</a></td></tr>
+            <tr><td class="night-num">13-15 Jul</td><td class="city-name">Stockholm</td><td class="hotel-name"><a href="#">Scandic No 53</a></td></tr>
+            <tr><td class="night-num">15-16 Jul</td><td class="city-name">Stockholm → Helsinki</td><td class="hotel-name"><a href="#">Tallink Silja Serenade</a></td></tr>
+            <tr><td class="night-num">16-17 Jul</td><td class="city-name">Helsinki</td><td class="hotel-name"><a href="#">Accommodation TBD</a></td></tr>
             <!-- UPDATE: STAYS_TABLE_END -->
           </tbody>
         </table>
@@ -1208,7 +1237,7 @@
 
 <script>
   const PAGE_SECURITY_CONFIG = {
-    enabled: false,
+    enabled: true,
     pageId: 'scandinavia-2026',
     backUrl: 'index.html',
     passwordHash: 'cb2c986d472f1b801f1d31b64d4b49e793a82af5eda1af8b19cec0cb805c1d11',
@@ -1216,6 +1245,7 @@
     // Deterrence-level only: this is client-side protection on a static page.
     // Test password for this page right now: test123
     // await LeggoTripSecurity.sha256Hex('YOUR_REAL_PASSWORD')
+    // sessionStorage.clear()
   };
 
   // ── TEMPLATE CONFIG ───────────────────────────
@@ -1422,27 +1452,64 @@
         updatePackProgress();
       });
     });
+
+    // ── SCROLL FADE-UP ────────────────────────
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll(
+      '.section-header, .snapshot-card, .day-card, .family-card, .budget-wrapper, .pack-wrapper, .share-banner, .budget-progress'
+    ).forEach(el => {
+      el.classList.add('animate-in');
+      fadeObserver.observe(el);
+    });
   });
 
   // ── COPY SHARE URL ───────────────────────────
-  function copyURL(btn) {
+  function copyURL() {
     const url = TRIP_CONFIG.shareUrl;
     const banner = document.querySelector('.share-banner__url');
     navigator.clipboard.writeText(url).then(() => {
       if (banner) {
-        banner.textContent = 'Copied! ✓';
+        banner.textContent = 'Copied!';
         banner.classList.add('is-copied');
         setTimeout(() => {
           banner.textContent = TRIP_CONFIG.shareUrl;
           banner.classList.remove('is-copied');
         }, 2000);
       }
-      if (btn) {
-        btn.textContent = '✓ Link copied!';
-        setTimeout(() => { btn.textContent = '⎘ Copy share link'; }, 2000);
-      }
     });
   }
+
+  // ── THEME TOGGLE ─────────────────────────────
+  function updateThemeIcon(theme) {
+    const useEl = document.getElementById('theme-icon-use');
+    if (useEl) useEl.setAttribute('href', theme === 'dark' ? '#icon-sun' : '#icon-moon');
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.classList.add('theme-transition');
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('leggo-theme', next); } catch(e) {}
+    updateThemeIcon(next);
+    setTimeout(() => html.classList.remove('theme-transition'), 400);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('theme-toggle-btn');
+    if (btn) btn.addEventListener('click', toggleTheme);
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeIcon(currentTheme);
+  });
 
   // ── SERVICE WORKER ───────────────────────────
   if ('serviceWorker' in navigator) {

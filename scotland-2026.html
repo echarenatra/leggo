@@ -26,10 +26,14 @@
     <link rel="stylesheet" href="assets/trip.css">
     <style>
       :root {
-        --accent: #5C6FA8;
-        --accent-light: #B7C5E6;
-        --divider: #D7DCE8;
-        --hero-glow: rgba(92, 111, 168, 0.22);
+        --trip-accent:       #5C6FA8;
+        --trip-accent-light: #B7C5E6;
+        --divider:           #D7DCE8;
+        --hero-glow:         rgba(92, 111, 168, 0.22);
+      }
+      [data-theme='dark'] {
+        --trip-accent:       #7B93C4;
+        --trip-accent-light: #C5D3ED;
       }
     </style>
   </head>
@@ -120,6 +124,28 @@
     <path d="M2 11v4c0 1.66 3.13 3 7 3"/>
   </symbol>
 
+  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </symbol>
+
+  <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </symbol>
+
+  <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18" cy="5" r="3"/>
+    <circle cx="6" cy="12" r="3"/>
+    <circle cx="18" cy="19" r="3"/>
+    <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+  </symbol>
+
+  <symbol id="icon-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 9V2h12v7"/>
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+    <rect x="6" y="14" width="12" height="8"/>
+  </symbol>
+
 </svg>
 
 <header class="trip-hero">
@@ -157,9 +183,21 @@
 
     <div class="trip-hero__actions no-print">
       <div class="container">
-        <button class="btn btn--ghost" type="button" data-theme-toggle>Dark mode</button>
-        <button class="btn btn--ghost" onclick="copyURL(this)">⎘ Copy share link</button>
-        <button class="btn btn--ghost" onclick="window.print()">⎙ Print</button>
+        <button class="btn-icon" id="theme-toggle-btn" title="Toggle light / dark mode" type="button" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="theme-icon-svg">
+            <use id="theme-icon-use" href="#icon-moon"/>
+          </svg>
+        </button>
+        <button class="btn-icon" title="Copy share link" onclick="copyURL()" aria-label="Copy share link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <use href="#icon-share"/>
+          </svg>
+        </button>
+        <button class="btn-icon" title="Print" onclick="window.print()" aria-label="Print">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <use href="#icon-print"/>
+          </svg>
+        </button>
       </div>
     </div>
   </div>
@@ -188,7 +226,7 @@
       <div class="route-line"></div>
       <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Dublin</div><div class="route-stop__nights">2 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Belfast</div><div class="route-stop__nights">1 night</div></div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Lisburn</div><div class="route-stop__nights">1 night</div></div>
     </div>
 
     <div class="snapshot-grid">
@@ -209,19 +247,20 @@
         <table class="stays-table">
           <thead><tr><th>Night</th><th>City</th><th>Accommodation</th></tr></thead>
           <tbody>
-            <tr><td class="night-num">18-20 Apr</td><td class="city-name">Stirling - 2 nights</td><td class="hotel-name">
+            <tr><td class="night-num">18-20 Apr</td><td class="city-name">Stirling</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/Z5Q4UBtF6JNBviX6A">Premier Inn Stirling South</a></td></tr>
-            <tr><td class="night-num">20-22 Apr</td><td class="city-name">Fort William - 2 nights</td><td class="hotel-name">
+            <tr><td class="night-num">20-22 Apr</td><td class="city-name">Fort William</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/Gjchd6bboeaGWrjW8">Base Camp Hotel Nevis Range</a></td></tr>
-            <tr><td class="night-num">22-25 Apr</td><td class="city-name">Skye - 3 nights</td><td class="hotel-name">
+            <tr><td class="night-num">22-25 Apr</td><td class="city-name">Skye</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/g75YRrKUhuRXnYLS8">Hebridean - Rooms & Apartments</a></td></tr>
-            <tr><td class="night-num">25-28 Apr</td><td class="city-name">Belfast - 3 nights</td><td class="hotel-name">
+            <tr><td class="night-num">25-28 Apr</td><td class="city-name">Belfast</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/za4HQ1DWNaUtRddW8">ibis Belfast City Centre</a></td></tr>
-            <tr><td class="night-num">28-30 Apr</td><td class="city-name">Galway - 2 nights</td><td class="hotel-name">
+            <tr><td class="night-num">28-30 Apr</td><td class="city-name">Galway</td><td class="hotel-name">
               <a href ="https://maps.app.goo.gl/ePcbNspnNRbYwBH18">Maldron Hotel Sandy Road Galway</a></td></tr>
-            <tr><td class="night-num">30 Apr-2 May</td><td class="city-name">Dublin - 2 nights</td><td class="hotel-name">
+            <tr><td class="night-num">30 Apr-2 May</td><td class="city-name">Dublin</td><td class="hotel-name">
               <a href ="https://maps.app.goo.gl/EDbtd2QFhgACrCoP7">Maldron Hotel Merrion Road</a></td></tr>
-            <tr><td class="night-num">2-3 May</td><td class="city-name">Belfast City Centre - 1 night</td><td class="hotel-name">TBD — ibis / Premier Inn near Belfast Central</td></tr>
+            <tr><td class="night-num">2-3 May</td><td class="city-name">Lisburn</td><td class="hotel-name">
+              <a href ="https://maps.app.goo.gl/6vPqUTob2SM2EWyq6">Premier Inn Lisburn hotel</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -232,49 +271,36 @@
           <li>
             <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-plane"/></svg></span>
             <div>Fly AMS → EDI
-              <span class="transport-day">Day 1 · 18 Apr · easyJet EJU7837 · 07:20–07:50</span>
+              <span class="transport-day">Day 1 · 18 Apr · 07:20–07:50</span>
+              <span class="transport-day">easyJet EJU7837</span>
             </div>
           </li>
           <li>
             <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
-            <div>Rental car · Edinburgh Airport
-              <span class="transport-day">Days 1–8 · SIXT · pickup 09:00, return 25 Apr 13:30</span>
+            <div>Rental Car · Edinburgh Airport (EDI)
+              <span class="transport-day">Day 1–8 · 18 Apr 09:00 · 25 Apr 13:30</span>
+              <span class="transport-day">SIXT · Volkswagen T-Cross</span>
             </div>
           </li>
           <li>
             <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-plane"/></svg></span>
             <div>Fly EDI → BFS
-              <span class="transport-day">Day 8 · 25 Apr · Ryanair RK179 · 15:40–16:30</span>
+              <span class="transport-day">Day 8 · 25 Apr 15:40–16:30</span>
+              <span class="transport-day">Ryanair RK179</span>
             </div>
           </li>
           <li>
             <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
-            <div>Rental car · Belfast Airport
-              <span class="transport-day">Days 8–11 · SIXT · pickup 17:00, return 28 Apr 16:30</span>
-            </div>
-          </li>
-          <li>
-            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-train"/></svg></span>
-            <div>Train Belfast → Dublin
-              <span class="transport-day">Day 11 · 28 Apr · Enterprise · Belfast Central → Dublin Connolly · ~2 hrs</span>
-            </div>
-          </li>
-          <li>
-            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
-            <div>Rental car · Dublin City
-              <span class="transport-day">Days 11–14 · pickup Dublin, return before Day 15 city day</span>
-            </div>
-          </li>
-          <li>
-            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-train"/></svg></span>
-            <div>Train Dublin → Belfast
-              <span class="transport-day">Day 15 · 2 May · Enterprise · Dublin Connolly → Belfast Central · evening · ~2 hrs</span>
+            <div>Rental Car · Belfast International Airport (BFS)
+              <span class="transport-day">Day 8–16 · 25 Apr 17:00 · 3 May 11:00</span>
+              <span class="transport-day">SIXT · Kia Sportage</span>
             </div>
           </li>
           <li>
             <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-plane"/></svg></span>
             <div>Fly BFS → AMS
-              <span class="transport-day">Day 16 · 3 May · 13:25–16:05 · taxi/bus to BFS Airport</span>
+              <span class="transport-day">Day 16 · 3 May 13:25–16:05</span>
+              <span class="transport-day">easyJet EZY3051</span>
             </div>
           </li>
         </ul>
@@ -412,8 +438,8 @@
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Belfast Airport (BFS) — 1 night<small>Maldron Hotel Belfast International Airport</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 209.00" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Lisburn — 1 night<small>Premier Inn Lisburn hotel · not booked</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 114.00" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 100.00</span></div>
           </div>
         </div>
@@ -436,7 +462,7 @@
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Edinburgh Car Rental Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
+            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI) Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 96" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
           </div>
@@ -448,27 +474,15 @@
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Belfast Car Rental Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
+            <div class="budget-row__desc">Car Rental Belfast Airport (BFS) Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 9.09" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Dublin — Ireland loop<small>SIXT · VW T-ROC · All-inclusive Protection · 28 Apr – 2 May</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 286.17" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Car Rental Belfast Airport (BFS) Extension<small>SIXT · Kia Sportage · 28 Apr 16:30 – 3 May 11:00 · booked, not paid</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 235" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 286.17</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Train Belfast → Dublin (Enterprise)<small>Day 11 · 28 Apr</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 60" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 60.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Train Dublin → Belfast (Enterprise)<small>Day 16 · 3 May</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 60" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 60.00</span></div>
           </div>
         </div>
       </div>
@@ -1258,7 +1272,7 @@
           <div>
             <div class="day-card__date">Sat, 2 May 2026</div>
             <div class="day-card__title">Dublin City + Train to Belfast</div>
-            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>TBD — Belfast City Centre</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Premier Inn Lisburn hotel</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">City day + travel</div>
@@ -1316,7 +1330,7 @@
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Leisurely breakfast at hotel</li>
-                <li>10:00 Taxi from Belfast City Centre → BFS Airport (~30min)</li>
+                <li>10:00 Taxi from Lisburn → BFS Airport (~15 min)</li>
                 <li>Check in, security, gate</li>
               </ul>
             </div>
@@ -1583,6 +1597,7 @@
     // Deterrence-level only: this is client-side protection on a static page.
     // Test password for this page right now: test123
     // await LeggoTripSecurity.sha256Hex('YOUR_REAL_PASSWORD')
+    // sessionStorage.clear()
   };
 
   // ── TEMPLATE CONFIG ───────────────────────────
@@ -1754,6 +1769,23 @@ function calculateBudget() {
 
     document.querySelectorAll('.budget-row .budget-input').forEach(input => convertRow(input));
 
+    // ── SCROLL FADE-UP ────────────────────────
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll(
+      '.section-header, .snapshot-card, .day-card, .family-card, .budget-wrapper, .pack-wrapper, .share-banner, .budget-progress'
+    ).forEach(el => {
+      el.classList.add('animate-in');
+      fadeObserver.observe(el);
+    });
+
     // ── PACKING LIST ─────────────────────────────
     function updatePackProgress() {
       const allChecks = document.querySelectorAll('.pack-check');
@@ -1782,24 +1814,44 @@ function calculateBudget() {
   });
 
   // ── COPY SHARE URL ───────────────────────────
-  function copyURL(btn) {
-  const url = TRIP_CONFIG.shareUrl;
-  const banner = document.querySelector('.share-banner__url');
-  navigator.clipboard.writeText(url).then(() => {
-    if (banner) {
-      banner.textContent = 'Copied! ✓';
-      banner.classList.add('is-copied');
-      setTimeout(() => {
-        banner.textContent = TRIP_CONFIG.shareUrl;
-        banner.classList.remove('is-copied');
-      }, 2000);
-    }
-    if (btn) {
-      btn.textContent = '✓ Link copied!';
-      setTimeout(() => { btn.textContent = '⎘ Copy share link'; }, 2000);
-    }
+  function copyURL() {
+    const url = TRIP_CONFIG.shareUrl;
+    const banner = document.querySelector('.share-banner__url');
+    navigator.clipboard.writeText(url).then(() => {
+      if (banner) {
+        banner.textContent = 'Copied!';
+        banner.classList.add('is-copied');
+        setTimeout(() => {
+          banner.textContent = TRIP_CONFIG.shareUrl;
+          banner.classList.remove('is-copied');
+        }, 2000);
+      }
+    });
+  }
+
+  // ── THEME TOGGLE ─────────────────────────────
+  function updateThemeIcon(theme) {
+    const useEl = document.getElementById('theme-icon-use');
+    if (useEl) useEl.setAttribute('href', theme === 'dark' ? '#icon-sun' : '#icon-moon');
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.classList.add('theme-transition');
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('leggo-theme', next); } catch(e) {}
+    updateThemeIcon(next);
+    setTimeout(() => html.classList.remove('theme-transition'), 400);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('theme-toggle-btn');
+    if (btn) btn.addEventListener('click', toggleTheme);
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeIcon(currentTheme);
   });
-}
 
   // ── SERVICE WORKER ───────────────────────────
   if ('serviceWorker' in navigator) {
