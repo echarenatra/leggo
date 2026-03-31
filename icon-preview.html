@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Preview — Leggo</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --sand:        #F5EFE6;
+      --warm-white:  #FDFAF6;
+      --ink:         #1C1917;
+      --charcoal:    #3D3835;
+      --muted:       #8C7B72;
+      --accent:      #C4622D;
+      --divider:     #DDD4C8;
+      --teal:        #2A6B6E;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      padding: 48px 40px;
+      max-width: 900px;
+    }
+
+    h1 {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .intro {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    /* ── SECTION ── */
+    .section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+      margin-top: 48px;
+    }
+
+    /* ── ICON GRID ── */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .icon-card {
+      background: white;
+      border: 1px solid var(--divider);
+      border-radius: 6px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .icon-card__name {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .icon-card__sizes {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--charcoal);
+    }
+    .icon-card__sizes span {
+      font-family: 'DM Mono', monospace;
+      font-size: 8px;
+      color: var(--divider);
+      display: block;
+      text-align: center;
+      margin-top: 4px;
+    }
+    .icon-card__size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── ICON STYLE ── */
+    svg.icon {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTEXT PREVIEWS ── */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .preview-card {
+      background: white;
+      border: 1px solid var(--divider);
+      border-radius: 6px;
+      padding: 20px;
+    }
+    .preview-card__label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* Day card stay line */
+    .day-stay {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    /* Day block label */
+    .block-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Snapshot section title */
+    .snap-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Transport row */
+    .transport-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--divider);
+      font-size: 13px;
+      color: var(--charcoal);
+    }
+    .transport-row:last-child { border-bottom: none; }
+    .t-icon {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--charcoal);
+    }
+
+    /* Budget header */
+    .budget-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--divider);
+      margin-bottom: 8px;
+    }
+
+    .note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 48px;
+      padding: 16px;
+      background: var(--sand);
+      border-radius: 6px;
+      border: 1px solid var(--divider);
+    }
+    .note strong { color: var(--charcoal); }
+  </style>
+</head>
+<body>
+
+<!-- ── ALL SVG SYMBOLS ── -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Bed: headboard left, footboard right, mattress, pillow -->
+  <symbol id="icon-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 7v12"/>
+    <path d="M21 13v6"/>
+    <path d="M3 19h18"/>
+    <path d="M3 13h18"/>
+    <rect x="6" y="8" width="6" height="5" rx="1"/>
+  </symbol>
+
+  <!-- Plane: top-down commercial aircraft (nose up, wings spread, tail fins) -->
+  <symbol id="icon-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2c-.6 0-1 .7-1 1.5V9.5L3 14v1.5l8-2.5V17l-2 1.5V20l3-1 3 1v-1.5L13 17v-4.5l8 2.5V14l-8-4.5V3.5C13 2.7 12.6 2 12 2z"/>
+  </symbol>
+
+  <!-- Car: side view with two wheels -->
+  <symbol id="icon-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 17H3a1 1 0 01-1-1v-3l2.5-5.5h15L22 13v3a1 1 0 01-1 1h-2"/>
+    <path d="M5 13h14"/>
+    <circle cx="7.5" cy="17" r="2"/>
+    <circle cx="16.5" cy="17" r="2"/>
+  </symbol>
+
+  <!-- Train: body, windows, wheels, tracks -->
+  <symbol id="icon-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="3" width="14" height="13" rx="2"/>
+    <path d="M5 10h14"/>
+    <circle cx="8.5" cy="17" r="1.5"/>
+    <circle cx="15.5" cy="17" r="1.5"/>
+    <path d="M8 20l-2 3"/>
+    <path d="M16 20l2 3"/>
+    <path d="M8.5 6.5h7"/>
+  </symbol>
+
+  <!-- Document / Clipboard (📋) -->
+  <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="3" width="16" height="18" rx="2"/>
+    <path d="M8 7h8"/>
+    <path d="M8 11h8"/>
+    <path d="M8 15h5"/>
+  </symbol>
+
+  <!-- Sunrise (Morning 🌅) -->
+  <symbol id="icon-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6v2"/>
+    <path d="M6 12H4"/>
+    <path d="M20 12h-2"/>
+    <path d="M7.76 8.76L6.34 7.34"/>
+    <path d="M16.24 8.76l1.42-1.42"/>
+    <path d="M3 18h18"/>
+    <path d="M7 18a5 5 0 0110 0"/>
+  </symbol>
+
+  <!-- Sun (Afternoon ☀️) -->
+  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2"/>
+    <path d="M12 20v2"/>
+    <path d="M4.22 4.22l1.42 1.42"/>
+    <path d="M18.36 18.36l1.42 1.42"/>
+    <path d="M2 12h2"/>
+    <path d="M20 12h2"/>
+    <path d="M4.22 19.78l1.42-1.42"/>
+    <path d="M18.36 5.64l1.42-1.42"/>
+  </symbol>
+
+  <!-- Moon (Evening 🌙) -->
+  <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+  </symbol>
+
+</svg>
+
+
+<!-- ══════════════════════════════════════════ -->
+
+<h1>Icon Preview — Leggo Trip Page</h1>
+<p class="intro">All 8 proposed icons shown at 12px, 16px, and 20px. Scroll down to see them in context.</p>
+
+<div class="section-title">All icons · three sizes</div>
+
+<div class="icon-grid">
+
+  <div class="icon-card">
+    <div class="icon-card__name">Bed (🏨)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-bed"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-bed"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-bed"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Plane (✈)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-plane"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-plane"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-plane"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Car (🚗)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-car"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-car"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-car"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Train (🚂)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-train"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-train"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-train"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Document (📋)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-doc"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-doc"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-doc"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Sunrise (🌅)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-sunrise"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-sunrise"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-sunrise"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Sun (☀️)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-sun"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-sun"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-sun"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="icon-card">
+    <div class="icon-card__name">Moon (🌙)</div>
+    <div class="icon-card__sizes">
+      <div class="icon-card__size-item">
+        <svg class="icon" width="12" height="12"><use href="#icon-moon"/></svg>
+        <span>12</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="16" height="16"><use href="#icon-moon"/></svg>
+        <span>16</span>
+      </div>
+      <div class="icon-card__size-item">
+        <svg class="icon" width="20" height="20"><use href="#icon-moon"/></svg>
+        <span>20</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ══ CONTEXT PREVIEWS ══ -->
+
+<div class="section-title">In context — how they'll actually look</div>
+
+<div class="preview-grid">
+
+  <!-- Day card stays -->
+  <div class="preview-card">
+    <div class="preview-card__label">Day card · stay line</div>
+    <div class="day-stay">
+      <svg class="icon" width="13" height="13"><use href="#icon-bed"/></svg>
+      Premier Inn Stirling South
+    </div>
+    <div class="day-stay">
+      <svg class="icon" width="13" height="13"><use href="#icon-bed"/></svg>
+      Hebridean - Rooms &amp; Apartments
+    </div>
+    <div class="day-stay">
+      <svg class="icon" width="13" height="13"><use href="#icon-plane"/></svg>
+      Fly BFS → AMS
+    </div>
+  </div>
+
+  <!-- Day block labels -->
+  <div class="preview-card">
+    <div class="preview-card__label">Day block · time-of-day labels</div>
+    <div class="block-label">
+      <svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg>
+      Morning
+    </div>
+    <div class="block-label">
+      <svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg>
+      Afternoon
+    </div>
+    <div class="block-label">
+      <svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg>
+      Evening
+    </div>
+  </div>
+
+  <!-- Snapshot section titles -->
+  <div class="preview-card">
+    <div class="preview-card__label">Snapshot card · titles</div>
+    <div class="snap-title">
+      <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>
+      Where We Sleep
+    </div>
+    <div class="snap-title">
+      <svg class="icon" width="14" height="14"><use href="#icon-car"/></svg>
+      Getting Around
+    </div>
+    <div class="snap-title">
+      <svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg>
+      Logistics &amp; Docs
+    </div>
+  </div>
+
+  <!-- Transport rows + budget headers -->
+  <div class="preview-card">
+    <div class="preview-card__label">Getting Around · transport rows</div>
+    <div class="transport-row">
+      <svg class="icon t-icon" width="15" height="15"><use href="#icon-plane"/></svg>
+      <div>AMS → EDI<span style="display:block;font-size:11px;color:#8C7B72">Sat 18 Apr</span></div>
+    </div>
+    <div class="transport-row">
+      <svg class="icon t-icon" width="15" height="15"><use href="#icon-car"/></svg>
+      <div>Rental car · Scotland leg<span style="display:block;font-size:11px;color:#8C7B72">18–25 Apr</span></div>
+    </div>
+    <div class="transport-row">
+      <svg class="icon t-icon" width="15" height="15"><use href="#icon-train"/></svg>
+      <div>Enterprise Train · Belfast → Dublin<span style="display:block;font-size:11px;color:#8C7B72">Tue 28 Apr</span></div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="preview-card__label" style="margin-bottom:12px;">Budget · category headers</div>
+      <div class="budget-header">
+        <svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg>
+        Flights
+      </div>
+      <div class="budget-header">
+        <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>
+        Accommodation
+      </div>
+      <div class="budget-header">
+        <svg class="icon" width="14" height="14"><use href="#icon-car"/></svg>
+        Ground Transport
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="note">
+  <strong>Note:</strong> These icons inherit the surrounding text color automatically — so they'll be muted grey in stay lines, orange in snapshot titles, dark in budget headers, etc. No per-instance styling needed.
+</div>
+
+</body>
+</html>
