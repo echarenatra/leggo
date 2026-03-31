@@ -182,7 +182,6 @@ Recipients see the full trip page: snapshot, budget, itinerary, families. No oth
 
 See `leggo-prd.md` for the full feature backlog including:
 - PDF/print export
-- Packing list per trip
 - Map embed
 - Photo gallery (planner → memory book)
 - Password protection per page
