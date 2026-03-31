@@ -133,6 +133,13 @@ hr.fancy {
   white-space: nowrap;
 }
 
+svg.icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  margin-right: 5px;
+}
+
 /* ── BUTTONS ── */
 .btn {
   display: inline-flex;

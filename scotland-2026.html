@@ -15,6 +15,73 @@
 
 <body>
 
+<!-- ── SVG ICON SPRITES ── -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+
+  <symbol id="icon-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 7v12"/>
+    <path d="M21 13v6"/>
+    <path d="M3 19h18"/>
+    <path d="M3 13h18"/>
+    <rect x="6" y="8" width="6" height="5" rx="1"/>
+  </symbol>
+
+  <symbol id="icon-plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2c-.6 0-1 .7-1 1.5V9.5L3 14v1.5l8-2.5V17l-2 1.5V20l3-1 3 1v-1.5L13 17v-4.5l8 2.5V14l-8-4.5V3.5C13 2.7 12.6 2 12 2z"/>
+  </symbol>
+
+  <symbol id="icon-car" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 17H3a1 1 0 01-1-1v-3l2.5-5.5h15L22 13v3a1 1 0 01-1 1h-2"/>
+    <path d="M5 13h14"/>
+    <circle cx="7.5" cy="17" r="2"/>
+    <circle cx="16.5" cy="17" r="2"/>
+  </symbol>
+
+  <symbol id="icon-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="5" y="3" width="14" height="13" rx="2"/>
+    <path d="M5 10h14"/>
+    <circle cx="8.5" cy="17" r="1.5"/>
+    <circle cx="15.5" cy="17" r="1.5"/>
+    <path d="M8 20l-2 3"/>
+    <path d="M16 20l2 3"/>
+    <path d="M8.5 6.5h7"/>
+  </symbol>
+
+  <symbol id="icon-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="4" y="3" width="16" height="18" rx="2"/>
+    <path d="M8 7h8"/>
+    <path d="M8 11h8"/>
+    <path d="M8 15h5"/>
+  </symbol>
+
+  <symbol id="icon-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 6v2"/>
+    <path d="M6 12H4"/>
+    <path d="M20 12h-2"/>
+    <path d="M7.76 8.76L6.34 7.34"/>
+    <path d="M16.24 8.76l1.42-1.42"/>
+    <path d="M3 18h18"/>
+    <path d="M7 18a5 5 0 0110 0"/>
+  </symbol>
+
+  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2"/>
+    <path d="M12 20v2"/>
+    <path d="M4.22 4.22l1.42 1.42"/>
+    <path d="M18.36 18.36l1.42 1.42"/>
+    <path d="M2 12h2"/>
+    <path d="M20 12h2"/>
+    <path d="M4.22 19.78l1.42-1.42"/>
+    <path d="M18.36 5.64l1.42-1.42"/>
+  </symbol>
+
+  <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+  </symbol>
+
+</svg>
+
 <header class="trip-hero">
   <div class="container">
     <a href="index.html" class="trip-hero__back no-print">← All Trips</a>
@@ -92,7 +159,7 @@
       </div>
 
       <div class="snapshot-card">
-        <div class="snapshot-card__title">🏨 Where We Sleep</div>
+        <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Where We Sleep</div>
         <table class="stays-table">
           <thead><tr><th>Night</th><th>City</th><th>Accommodation</th></tr></thead>
           <tbody>
@@ -114,52 +181,52 @@
       </div>
 
       <div class="snapshot-card">
-        <div class="snapshot-card__title">🚗 Getting Around</div>
+        <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-car"/></svg> Getting Around</div>
         <ul class="transport-list">
           <li>
-            <span class="transport-icon">✈</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-plane"/></svg></span>
             <div>Fly AMS → EDI
               <span class="transport-day">Day 1 · 18 Apr · easyJet EJU7837 · 07:20–07:50</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">🚗</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
             <div>Rental car · Edinburgh Airport
               <span class="transport-day">Days 1–8 · SIXT · pickup 09:00, return 25 Apr 13:30</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">✈</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-plane"/></svg></span>
             <div>Fly EDI → BFS
               <span class="transport-day">Day 8 · 25 Apr · Ryanair RK179 · 15:40–16:30</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">🚗</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
             <div>Rental car · Belfast Airport
               <span class="transport-day">Days 8–11 · SIXT · pickup 17:00, return 28 Apr 16:30</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">🚂</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-train"/></svg></span>
             <div>Train Belfast → Dublin
               <span class="transport-day">Day 11 · 28 Apr · Enterprise · Belfast Central → Dublin Connolly · ~2 hrs</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">🚗</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
             <div>Rental car · Dublin City
               <span class="transport-day">Days 11–14 · pickup Dublin, return before Day 15 city day</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">🚂</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-train"/></svg></span>
             <div>Train Dublin → Belfast
               <span class="transport-day">Day 15 · 2 May · Enterprise · Dublin Connolly → Belfast Central · evening · ~2 hrs</span>
             </div>
           </li>
           <li>
-            <span class="transport-icon">✈</span>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-plane"/></svg></span>
             <div>Fly BFS → AMS
               <span class="transport-day">Day 16 · 3 May · 13:25–16:05 · taxi/bus to BFS Airport</span>
             </div>
@@ -168,7 +235,7 @@
       </div>
 
       <div class="snapshot-card">
-        <div class="snapshot-card__title">📋 Logistics & Docs</div>
+        <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Logistics & Docs</div>
         <ul class="logistics-list">
           <li><span class="logistics-key">Indonesian passport</span><span class="logistics-val logistics-ok">✓ Valid · exp Jun 2026</span></li>
           <li><span class="logistics-key">Child's passport</span><span class="logistics-val logistics-ok">✓ Valid</span></li>
@@ -206,7 +273,7 @@
       <!-- ✈ FLIGHTS -->
       <div class="budget-category" id="cat-flights">
         <div class="budget-category__header" onclick="toggleCategory('cat-flights')">
-          ✈ Flights <span class="budget-category__subtotal" id="sub-flights"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg> Flights <span class="budget-category__subtotal" id="sub-flights"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
@@ -236,7 +303,7 @@
       <!-- 🏨 ACCOMMODATION -->
       <div class="budget-category" id="cat-stays">
         <div class="budget-category__header" onclick="toggleCategory('cat-stays')">
-          🏨 Accommodation <span class="budget-category__subtotal" id="sub-stays"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg> Accommodation <span class="budget-category__subtotal" id="sub-stays"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
@@ -290,7 +357,7 @@
       <!-- 🚗 GROUND TRANSPORT -->
       <div class="budget-category" id="cat-transport">
         <div class="budget-category__header" onclick="toggleCategory('cat-transport')">
-          🚗 Ground Transport <span class="budget-category__subtotal" id="sub-transport"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-car"/></svg> Ground Transport <span class="budget-category__subtotal" id="sub-transport"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
@@ -514,7 +581,7 @@
           <div>
             <div class="day-card__date">Sat, 18 Apr 2026</div>
             <div class="day-card__title">Arrival & Stirling</div>
-            <div class="day-card__stay">🏨 Premier Inn Stirling South</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Premier Inn Stirling South</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">Travel day</div>
@@ -524,7 +591,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Fly AMS → EDI (07:20–07:50)</li>
                 <li>Pick up rental car at EDI</li>
@@ -532,7 +599,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Drop bags at Premier Inn Stirling South</li>
                 <li>Visit Stirling Castle</li>
@@ -540,7 +607,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Stroll the Back Walk ramparts</li>
                 <li>Early dinner and sleep — big travel day!</li>
@@ -557,7 +624,7 @@
           <div>
             <div class="day-card__date">Sun, 19 Apr 2026</div>
             <div class="day-card__title">Stirling Buffer Day</div>
-            <div class="day-card__stay">🏨 Premier Inn Stirling South</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Premier Inn Stirling South</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="easy">Easy day</div>
@@ -567,21 +634,21 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Sleep in — recover from travel!</li>
                 <li>Old Town Jail (very interactive for kids)</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Easy walk around Stirling town</li>
                 <li>Optional: drive to The Kelpies or Falkirk Wheel</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Relaxed local dinner</li>
                 <li>Pack up for the Highlands</li>
@@ -598,7 +665,7 @@
           <div>
             <div class="day-card__date">Mon, 20 Apr 2026</div>
             <div class="day-card__title">The Glencoe Drive</div>
-            <div class="day-card__stay">🏨 Base Camp Hotel Nevis Range</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Base Camp Hotel Nevis Range</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="drive">Scenic drive</div>
@@ -608,14 +675,14 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Check out from Stirling</li>
                 <li>Loch Lomond stop at Tarbet to stretch</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Buachaille Etive Mòr photo stop</li>
                 <li>Glen Etive detour — the Skyfall road</li>
@@ -623,7 +690,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Quick stop at Neptune's Staircase canal locks (Banavie — on the way in)</li>
                 <li>Check into Base Camp Hotel Nevis Range</li>
@@ -640,7 +707,7 @@
           <div>
             <div class="day-card__date">Tue, 21 Apr 2026</div>
             <div class="day-card__title">Gondola, Glenfinnan & Loch Ness</div>
-            <div class="day-card__stay">🏨 Base Camp Hotel Nevis Range</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Base Camp Hotel Nevis Range</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="highlight">Kids highlight</div>
@@ -650,7 +717,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>08:30 Nevis Range Gondola — up and back (~45min, pre-book)</li>
                 <li>09:30 Drive to Glenfinnan (~20min west on A830)</li>
@@ -660,7 +727,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>12:30 Urquhart Castle — Loch Ness monster hunt begins!</li>
                 <li>13:30 Loch Ness Centre, Drumnadrochit</li>
@@ -668,7 +735,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>16:00 Back at Fort William</li>
                 <li>Dinner in Fort William</li>
@@ -686,7 +753,7 @@
           <div>
             <div class="day-card__date">Wed, 22 Apr 2026</div>
             <div class="day-card__title">Castles & Crossing to Skye</div>
-            <div class="day-card__stay">🏨 Hebridean - Rooms & Apartments</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Hebridean - Rooms & Apartments</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">Skye arrival</div>
@@ -696,14 +763,14 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Check out from Fort William</li>
                 <li>Drive the A87 to Eilean Donan Castle</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Cross the Skye Bridge</li>
                 <li>Arrive in Sleat</li>
@@ -711,7 +778,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Relax at the hotel — Sleat is quiet and beautiful</li>
               </ul>
@@ -727,7 +794,7 @@
           <div>
             <div class="day-card__date">Thu, 23 Apr 2026</div>
             <div class="day-card__title">Skye — The Trotternish Loop</div>
-            <div class="day-card__stay">🏨 Hebridean - Rooms & Apartments</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Hebridean - Rooms & Apartments</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="full">Full day</div>
@@ -737,7 +804,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Early start to beat crowds</li>
                 <li>Old Man of Storr hike</li>
@@ -745,14 +812,14 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Kilt Rock & Mealt Falls</li>
                 <li>Fairy Glen — feels like a miniature playground</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Fish & chips at Portree Harbour</li>
                 <li>Drive back to Sleat</li>
@@ -769,7 +836,7 @@
           <div>
             <div class="day-card__date">Fri, 24 Apr 2026</div>
             <div class="day-card__title">Skye — West Coast Magic</div>
-            <div class="day-card__stay">🏨 Hebridean - Rooms & Apartments</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Hebridean - Rooms & Apartments</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="highlight">Kids highlight</div>
@@ -779,20 +846,20 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Fairy Pools — arrive early for the walk</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Dunvegan Castle</li>
                 <li>Seal Boat Trip — guaranteed child highlight!</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Neist Point Lighthouse sunset (if energy permits)</li>
                 <li>Drive back to Hebridean - Rooms & Apartments</li>
@@ -809,7 +876,7 @@
           <div>
             <div class="day-card__date">Sat, 25 Apr 2026</div>
             <div class="day-card__title">Flight to Northern Ireland</div>
-            <div class="day-card__stay">🏨 ibis Belfast City Centre</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>ibis Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">Travel day</div>
@@ -819,7 +886,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Leave Sleat early (~08:30)</li>
                 <li>4.5hr drive to Edinburgh Airport</li>
@@ -827,7 +894,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Fly EDI → BFS (15:40–16:30)</li>
                 <li>Pick up rental car</li>
@@ -835,7 +902,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Check into ibis Belfast City Centre</li>
                 <li>Rest after heavy travel day</li>
@@ -852,7 +919,7 @@
           <div>
             <div class="day-card__date">Sun, 26 Apr 2026</div>
             <div class="day-card__title">The Gobbins & Game of Thrones Coast</div>
-            <div class="day-card__stay">🏨 ibis Belfast City Centre</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>ibis Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="full">Full day</div>
@@ -862,7 +929,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>07:30 Leave Belfast</li>
                 <li>08:15 The Gobbins Cliff Path — guided tour, Islandmagee (~2hrs, pre-book!)</li>
@@ -872,7 +939,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>13:00 Lunch near Ballycastle</li>
                 <li>14:00 Dark Hedges — GoT: The Kingsroad (quick photo stop, arrive early!)</li>
@@ -882,7 +949,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>17:30 Drive back to Belfast (~1h15)</li>
                 <li>18:45 Arrive Belfast — dinner near hotel</li>
@@ -899,7 +966,7 @@
           <div>
             <div class="day-card__date">Mon, 27 Apr 2026</div>
             <div class="day-card__title">Giant's Causeway + Belfast City</div>
-            <div class="day-card__stay">🏨 ibis Belfast City Centre</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>ibis Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="full">Full day</div>
@@ -909,7 +976,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>07:30 Leave Belfast</li>
                 <li>08:45 Giant's Causeway — pre-booked parking, beat the tour buses</li>
@@ -920,7 +987,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>13:45 Arrive Belfast</li>
                 <li>14:15 Titanic Belfast — timed entry (~2hrs)</li>
@@ -928,7 +995,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>17:15 Cathedral Quarter walk + dinner</li>
                 <li>19:30 Black Cab Murals Tour (pre-book, ~2hrs)</li>
@@ -945,7 +1012,7 @@
           <div>
             <div class="day-card__date">Tue, 28 Apr 2026</div>
             <div class="day-card__title">Train to Dublin, Drive to Galway</div>
-            <div class="day-card__stay">🏨 Maldron Hotel Sandy Road Galway</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Maldron Hotel Sandy Road Galway</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">Travel day</div>
@@ -955,7 +1022,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Drive to BFS Airport — drop rental car</li>
                 <li>Taxi to Belfast Central station</li>
@@ -963,14 +1030,14 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Pick up rental car in Dublin</li>
                 <li>Drive across to Galway (~2.5 hrs)</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Check into Maldron Hotel Sandy Road Galway</li>
                 <li>Explore Galway Latin Quarter and Shop Street</li>
@@ -987,7 +1054,7 @@
           <div>
             <div class="day-card__date">Wed, 29 Apr 2026</div>
             <div class="day-card__title">Connemara Coast</div>
-            <div class="day-card__stay">🏨 Maldron Hotel Sandy Road Galway</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Maldron Hotel Sandy Road Galway</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="easy">Scenic + relax</div>
@@ -997,20 +1064,20 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Scenic drive through wild Connemara</li>
                 <li>Kylemore Abbey — classic family photo spot</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Head back to hotel early</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>Kid's pool time at Maldron Hotel Sandy Road Galway</li>
                 <li>Easy dinner in Salthill</li>
@@ -1027,7 +1094,7 @@
           <div>
             <div class="day-card__date">Thu, 30 Apr 2026</div>
             <div class="day-card__title">The Mega Loop to Dublin</div>
-            <div class="day-card__stay">🏨 Maldron Hotel Merrion Road</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Maldron Hotel Merrion Road</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="drive">Epic drive day</div>
@@ -1037,7 +1104,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>08:00 Check out from Maldron Hotel Sandy Road Galway</li>
                 <li>Cliffs of Moher by 09:30</li>
@@ -1045,7 +1112,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>12:15 Aillwee Cave & Birds of Prey + lunch</li>
                 <li>02:30 Drive to Rock of Cashel</li>
@@ -1053,7 +1120,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>2hr drive to Dublin</li>
                 <li>Arrive ~20:00, check into Maldron Hotel Merrion Road</li>
@@ -1071,7 +1138,7 @@
           <div>
             <div class="day-card__date">Fri, 1 May 2026</div>
             <div class="day-card__title">Wicklow Mountains</div>
-            <div class="day-card__stay">🏨 Maldron Hotel Merrion Road</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Maldron Hotel Merrion Road</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="easy">Nature day</div>
@@ -1081,21 +1148,21 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Sleep in — recover from Day 13!</li>
                 <li>Powerscourt Estate & Waterfall — family portraits</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>Glendalough — ancient monastic site and lakes</li>
                 <li>Nature trails</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>~17:00 Drive back to Dublin (~1hr from Glendalough)</li>
                 <li>Drop rental car — no car needed in city from here</li>
@@ -1113,7 +1180,7 @@
           <div>
             <div class="day-card__date">Sat, 2 May 2026</div>
             <div class="day-card__title">Dublin City + Train to Belfast</div>
-            <div class="day-card__stay">🏨 TBD — Belfast City Centre</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>TBD — Belfast City Centre</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">City day + travel</div>
@@ -1123,7 +1190,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>09:30 Phoenix Park — hunt the free-roaming deer (free)</li>
                 <li>11:00 Head to city centre</li>
@@ -1131,7 +1198,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>13:30 Chester Beatty Library (free — inside Dublin Castle grounds)</li>
                 <li>14:30 Dublin Castle walk-around</li>
@@ -1140,7 +1207,7 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>18:30 Enterprise Train from Dublin Connolly → Belfast Central (~2hrs)</li>
                 <li>20:30 Arrive Belfast Central — taxi to hotel</li>
@@ -1158,7 +1225,7 @@
           <div>
             <div class="day-card__date">Sun, 3 May 2026</div>
             <div class="day-card__title">Departure Day</div>
-            <div class="day-card__stay">✈ Fly BFS → AMS</div>
+            <div class="day-card__stay"><svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg> Fly BFS → AMS</div>
           </div>
           <div class="day-card__right">
             <div class="day-card__type" data-type="travel">Travel day</div>
@@ -1168,7 +1235,7 @@
         <div class="day-card__body">
           <div class="day-blocks">
             <div class="day-block">
-              <div class="day-block__label"><span>🌅</span> Morning</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
                 <li>Leisurely breakfast at hotel</li>
                 <li>10:00 Taxi from Belfast City Centre → BFS Airport (~30min)</li>
@@ -1176,14 +1243,14 @@
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>☀️</span> Afternoon</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
                 <li>13:25 Fly BFS → AMS (easyJet EZY3051)</li>
                 <li>16:05 Arrive Amsterdam 🛬</li>
               </ul>
             </div>
             <div class="day-block">
-              <div class="day-block__label"><span>🌙</span> Evening</div>
+              <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
                 <li>🏠 Home sweet home</li>
               </ul>
