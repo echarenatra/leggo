@@ -565,10 +565,10 @@
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 700;
-  color: var(--divider);
+  color: var(--muted);
   line-height: 1;
 }
-.day-card.is-key .day-card__num { color: var(--accent); }
+.day-card.is-key .day-card__num { color: var(--muted); }
 
 .day-card__date {
   font-family: var(--font-mono);
@@ -602,6 +602,13 @@
   color: var(--muted);
 }
 .day-card.is-key .day-card__type { color: var(--accent); }
+
+/* Color-coded day types */
+.day-card__type[data-type="travel"]    { color: var(--teal); }
+.day-card__type[data-type="easy"]      { color: var(--green); }
+.day-card__type[data-type="drive"]     { color: var(--gold); }
+.day-card__type[data-type="highlight"] { color: var(--accent); }
+.day-card__type[data-type="full"]      { color: var(--charcoal); }
 
 .day-card__toggle {
   font-size: 12px;
