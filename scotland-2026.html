@@ -6,11 +6,32 @@
     <title>Scotland & Ireland 2026 — Leggo</title>
     <meta name="description" content="15 nights across Scotland, Northern Ireland, and Ireland. April–May 2026.">
     <meta name="theme-color" content="#1E3A8A">
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('leggo-theme');
+          var theme = (saved === 'light' || saved === 'dark')
+            ? saved
+            : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (error) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
     <link rel="apple-touch-icon" href="assets/logo.svg">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/trip.css">
+    <style>
+      :root {
+        --accent: #5C6FA8;
+        --accent-light: #B7C5E6;
+        --divider: #D7DCE8;
+        --hero-glow: rgba(92, 111, 168, 0.22);
+      }
+    </style>
   </head>
 
 <body>
@@ -80,6 +101,25 @@
     <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
   </symbol>
 
+  <symbol id="icon-ticket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 9a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a2 2 0 0 0 0 4v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a2 2 0 0 0 0-4V9z"/>
+    <line x1="15" y1="8" x2="15" y2="16" stroke-dasharray="2 2"/>
+  </symbol>
+
+  <symbol id="icon-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="2" width="8" height="4" rx="1"/>
+    <rect x="4" y="4" width="16" height="17" rx="2"/>
+    <path d="M9 12h6"/>
+    <path d="M9 16h4"/>
+  </symbol>
+
+  <symbol id="icon-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="9" cy="7" rx="7" ry="3"/>
+    <path d="M2 7v4c0 1.66 3.13 3 7 3s7-1.34 7-3V7"/>
+    <path d="M16 9.5c2.76.44 5 1.62 5 3V17c0 1.66-3.13 3-7 3-2.68 0-5-.73-6.24-1.8"/>
+    <path d="M2 11v4c0 1.66 3.13 3 7 3"/>
+  </symbol>
+
 </svg>
 
 <header class="trip-hero">
@@ -89,10 +129,15 @@
     <h1 class="trip-hero__title">Scotland,<br>Northern Ireland, &<br><em>Ireland</em></h1>
     <p class="trip-hero__sub">18 April — 03 May 2026 · 15 nights</p>
 
+    <div class="countdown">
+      <div class="countdown__dot"></div>
+      <span class="countdown__text" id="countdown-text">Set departure date</span>
+    </div>
+
     <div class="trip-hero__meta">
       <div class="trip-meta-item">
         <span class="trip-meta-item__label">Route</span>
-        <span class="trip-meta-item__value">Edinburgh → Stirling → Fort William → Isle of Skye → Belfast → Galway → Dublin → Belfast</span>
+        <span class="trip-meta-item__value">Edinburgh → Stirling → Fort William → Skye → Belfast → Galway → Dublin → Belfast</span>
       </div>
       <div class="trip-meta-item">
         <span class="trip-meta-item__label">Fly from</span>
@@ -112,6 +157,7 @@
 
     <div class="trip-hero__actions no-print">
       <div class="container">
+        <button class="btn btn--ghost" type="button" data-theme-toggle>Dark mode</button>
         <button class="btn btn--ghost" onclick="copyURL(this)">⎘ Copy share link</button>
         <button class="btn btn--ghost" onclick="window.print()">⎙ Print</button>
       </div>
@@ -134,7 +180,7 @@
       <div class="route-line"></div>
       <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Fort William</div><div class="route-stop__nights">2 nights</div></div>
       <div class="route-line"></div>
-      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Isle of Skye</div><div class="route-stop__nights">3 nights</div></div>
+      <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Skye</div><div class="route-stop__nights">3 nights</div></div>
       <div class="route-line"></div>
       <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Belfast</div><div class="route-stop__nights">3 nights</div></div>
       <div class="route-line"></div>
@@ -150,7 +196,7 @@
         <div class="snapshot-card__title">✦ Highlights</div>
         <ul class="highlights-list">
           <li>Drive the Scottish Highlands — Glencoe, Glen Etive, and Eilean Donan Castle</li>
-          <li>3 nights on the Isle of Skye — Old Man of Storr, Fairy Pools, and Neist Point at sunset</li>
+          <li>3 nights on Skye — Old Man of Storr, Fairy Pools, and Neist Point at sunset</li>
           <li>Giant's Causeway, Carrick-a-Rede Rope Bridge, and the dramatic Causeway Coastal Route</li>
           <li>Game of Thrones locations — Dark Hedges, Ballintoy Harbour, and Cushendun Caves</li>
           <li>Connemara and Kylemore Abbey — Ireland's wild Atlantic landscape</li>
@@ -167,7 +213,7 @@
               <a href="https://maps.app.goo.gl/Z5Q4UBtF6JNBviX6A">Premier Inn Stirling South</a></td></tr>
             <tr><td class="night-num">20-22 Apr</td><td class="city-name">Fort William - 2 nights</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/Gjchd6bboeaGWrjW8">Base Camp Hotel Nevis Range</a></td></tr>
-            <tr><td class="night-num">22-25 Apr</td><td class="city-name">Isle of Skye - 3 nights</td><td class="hotel-name">
+            <tr><td class="night-num">22-25 Apr</td><td class="city-name">Skye - 3 nights</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/g75YRrKUhuRXnYLS8">Hebridean - Rooms & Apartments</a></td></tr>
             <tr><td class="night-num">25-28 Apr</td><td class="city-name">Belfast - 3 nights</td><td class="hotel-name">
               <a href="https://maps.app.goo.gl/za4HQ1DWNaUtRddW8">ibis Belfast City Centre</a></td></tr>
@@ -237,14 +283,33 @@
       <div class="snapshot-card">
         <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Logistics & Docs</div>
         <ul class="logistics-list">
-          <li><span class="logistics-key">Indonesian passport</span><span class="logistics-val logistics-ok">✓ Valid · exp Jun 2026</span></li>
-          <li><span class="logistics-key">Child's passport</span><span class="logistics-val logistics-ok">✓ Valid</span></li>
-          <li><span class="logistics-key">UK tourist visa</span><span class="logistics-val logistics-ok">✓ Confirmed · all 3</span></li>
-          <li><span class="logistics-key">Travel insurance</span><span class="logistics-val logistics-warn">⚠ Not yet booked</span></li>
-          <li><span class="logistics-key">International driving permit</span><span class="logistics-val logistics-warn">⚠ Check requirement</span></li>
+          <li><span class="logistics-key">Indonesian passports</span><span class="logistics-val logistics-ok">✓ Valid · all 3</span></li>
+          <li><span class="logistics-key">UK tourist visa</span><span class="logistics-val logistics-ok">✓ Valid · exp Jun 2026</span></li>
+          <li>
+            <span class="logistics-key">Travel insurance</span>
+            <span class="logistics-val logistics-ok">✓ Confirmed</span>
+            <span class="logistics-detail">Allianz Direct · Annual · 1 Apr 2026–2027</span>
+          </li>
+          <li>
+            <span class="logistics-key">Driving permit</span>
+            <span class="logistics-val logistics-ok">✓ Not required</span>
+            <span class="logistics-detail">Dutch EU licence valid in UK & ROI ·</span>
+            <span class="logistics-detail">Get free DVLA check code before pickup</span>
+
+          </li>
           <li><span class="logistics-key">Driving side</span><span class="logistics-val" style="color:var(--accent)">⚠ Drive on the LEFT</span></li>
-          <li><span class="logistics-key">Data / SIM</span><span class="logistics-val logistics-warn">⚠ Not sorted</span></li>
-          <li><span class="logistics-key">Car seats / booster</span><span class="logistics-val logistics-ok">✓ Own seat (Cosatto Ninja R129) · confirm fitment with SIXT</span></li>
+          <li>
+            <span class="logistics-key">Data / SIM</span>
+            <span class="logistics-val logistics-ok">✓ Covered</span>
+            <span class="logistics-detail">Vodafone NL unlimited ·</span>
+            <span class="logistics-detail">UK & ROI included, fair use applies</span>
+          </li>
+          <li>
+            <span class="logistics-key">Car seats / booster</span>
+            <span class="logistics-val logistics-ok">✓ Own seat</span>
+            <span class="logistics-detail">Cosatto Ninja R129 ·</span>
+            <span class="logistics-detail">Confirm fitment with SIXT</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -323,7 +388,7 @@
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Isle of Skye — 3 nights<small>Hebridean - Rooms & Apartments</small></div>
+            <div class="budget-row__desc">Skye — 3 nights<small>Hebridean - Rooms & Apartments</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 615" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 1,094.00</span></div>
           </div>
@@ -347,8 +412,8 @@
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Belfast City Centre — 1 night<small>TBD — ibis / Premier Inn near Belfast Central station</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 100" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Belfast Airport (BFS) — 1 night<small>Maldron Hotel Belfast International Airport</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 209.00" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 100.00</span></div>
           </div>
         </div>
@@ -365,9 +430,15 @@
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI)<small>SIXT · Volkswagen T-Cross · 18 Apr 09:00 – 25 Apr 13:30</small></div>
+            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI)<small>SIXT · VW T-Cross · 18 Apr 09:00 – 25 Apr 13:30</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 311.49" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 311.49</span></div>
+          </div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Edinburgh Car Rental Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 96" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
@@ -375,11 +446,17 @@
             <div class="budget-row__foreign"><input class="budget-input" value="£ 112.26" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 132.47</span></div>
           </div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Belfast Car Rental Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 9.09" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
+          </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Dublin — Ireland loop<small>Estimate · 28 Apr – 1 May</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 300" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 300.00</span></div>
+            <div class="budget-row__desc">Car Rental Dublin — Ireland loop<small>SIXT · VW T-ROC · All-inclusive Protection · 28 Apr – 2 May</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 286.17" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 286.17</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
@@ -399,7 +476,7 @@
       <!-- 🎟️ ATTRACTIONS -->
       <div class="budget-category" id="cat-attractions">
         <div class="budget-category__header" onclick="toggleCategory('cat-attractions')">
-          🎟️ Attractions <span class="budget-category__subtotal" id="sub-attractions"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-ticket"/></svg> Attractions <span class="budget-category__subtotal" id="sub-attractions"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
@@ -425,7 +502,7 @@
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Dunvegan Castle + Seal Boat Trip<small>Day 7 · Isle of Skye</small></div>
+            <div class="budget-row__desc">Dunvegan Castle + Seal Boat Trip<small>Day 7 · Skye</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 75" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
@@ -489,17 +566,11 @@
       <!-- 🛂 ADMIN & PREP -->
       <div class="budget-category" id="cat-admin">
         <div class="budget-category__header" onclick="toggleCategory('cat-admin')">
-          🛂 Admin & Prep <span class="budget-category__subtotal" id="sub-admin"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-clipboard"/></svg> Admin & Prep <span class="budget-category__subtotal" id="sub-admin"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Travel Insurance — Family of 3<small>Estimate · 16 days</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 150" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 150.00</span></div>
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
@@ -513,13 +584,20 @@
             <div class="budget-row__foreign"><input class="budget-input" value="€ 131.95" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Travel and Cancellation Insurance — Family of 3<small>Allianz Direct · Annual · 1 Apr 2026 – 1 Apr 2027</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 272.36" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
+          </div>
+          
         </div>
       </div>
 
       <!-- 🍴 DAILY SPEND -->
       <div class="budget-category" id="cat-daily">
         <div class="budget-category__header" onclick="toggleCategory('cat-daily')">
-          🍴 Daily Spend <span class="budget-category__subtotal" id="sub-daily"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-coins"/></svg> Daily Spend <span class="budget-category__subtotal" id="sub-daily"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
@@ -1283,8 +1361,8 @@
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>Passport (valid &gt; 6 months)</span></label>
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>UK tourist visa printout</span></label>
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>Travel insurance documents</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>International driving permit</span></label>
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>EU/NL driving licence</span></label>
+          <label class="pack-row"><input type="checkbox" class="pack-check"><span>DVLA check code (generate free at gov.uk/check-driving-information before pickup)</span></label>
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>All hotel confirmation printouts</span></label>
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>Flight e-tickets (easyJet, Ryanair)</span></label>
           <label class="pack-row"><input type="checkbox" class="pack-check"><span>Car rental confirmations (SIXT x3)</span></label>
@@ -1492,7 +1570,28 @@
   </div>
 </footer>
 
+<script src="assets/app.js"></script>
+<script src="assets/trip-security.js"></script>
+
 <script>
+  const PAGE_SECURITY_CONFIG = {
+    enabled: true,
+    pageId: 'scotland-2026',
+    backUrl: 'index.html',
+    passwordHash: 'd09b69cbf04cb955eafa1fea838ec6cc251692a5bc313b83b2634c86c9ce35fe',
+    title: 'Enter password to view this trip.'
+    // Deterrence-level only: this is client-side protection on a static page.
+    // Test password for this page right now: test123
+    // await LeggoTripSecurity.sha256Hex('YOUR_REAL_PASSWORD')
+  };
+
+  // ── TEMPLATE CONFIG ───────────────────────────
+  const TRIP_CONFIG = {
+    tripName: "Scotland & Ireland",
+    departureDate: "2026-04-18",
+    shareUrl: "https://leggo-murex.vercel.app/scotland-2026.html"
+  };
+
   // ── SETTINGS ─────────────────────────────────
   const GBP_TO_EUR = 1.18; // 1 GBP = 1.18 EUR
 
@@ -1500,6 +1599,68 @@
   function toggleCategory(id) { document.getElementById(id).classList.toggle('is-open'); }
   function toggleDay(id) { document.getElementById(id).classList.toggle('is-open'); }
   function togglePack(id) { document.getElementById(id).classList.toggle('is-open'); }
+
+  // ── COUNTDOWN ────────────────────────────────
+  function parseDepartureDate(dateInput) {
+    if (typeof dateInput !== 'string' || !dateInput.trim()) return null;
+    const trimmed = dateInput.trim();
+    const ymdMatch = trimmed.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+    if (ymdMatch) {
+      const year = Number(ymdMatch[1]);
+      const month = Number(ymdMatch[2]);
+      const day = Number(ymdMatch[3]);
+      const localDate = new Date(year, month - 1, day);
+      if (
+        localDate.getFullYear() !== year ||
+        localDate.getMonth() !== month - 1 ||
+        localDate.getDate() !== day
+      ) {
+        return null;
+      }
+      return localDate;
+    }
+
+    const parsed = new Date(trimmed);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  function updateTripCountdown() {
+    const countdownEl = document.getElementById('countdown-text');
+    if (!countdownEl) return;
+
+    const tripName = (TRIP_CONFIG.tripName || '').trim() || 'your trip';
+    const departureDate = parseDepartureDate(TRIP_CONFIG.departureDate);
+
+    if (!departureDate) {
+      countdownEl.textContent = 'Set departure date';
+      return;
+    }
+
+    const now = new Date();
+    const departureStart = new Date(
+      departureDate.getFullYear(),
+      departureDate.getMonth(),
+      departureDate.getDate()
+    );
+    const departureEnd = new Date(departureStart);
+    departureEnd.setDate(departureEnd.getDate() + 1);
+
+    if (now >= departureEnd) {
+      countdownEl.textContent = `Bon voyage — ${tripName}`;
+      return;
+    }
+
+    if (now >= departureStart) {
+      countdownEl.textContent = `Today: ${tripName}`;
+      return;
+    }
+
+    const diffMs = departureStart.getTime() - now.getTime();
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    countdownEl.textContent = `${days}d ${hours}h until ${tripName}`;
+  }
 
   // ── BUDGET CONVERSION ────────────────────────
   function convertRow(inputEl) {
@@ -1549,9 +1710,9 @@ function calculateBudget() {
     });
     const subEl = document.getElementById(catMap[catId]);
     if (subEl) {
-      subEl.textContent = fmt(catTotal);
       const rows = catEl.querySelectorAll('.budget-row');
       const allPaid = rows.length > 0 && [...rows].every(r => r.querySelector('.check').classList.contains('is-checked'));
+      subEl.textContent = (allPaid ? '✓ ' : '') + fmt(catTotal);
       subEl.style.color = allPaid ? 'var(--teal)' : '';
     }
   });
@@ -1584,7 +1745,13 @@ function calculateBudget() {
   }
 
   // ── INITIALIZE ON LOAD ───────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (window.LeggoTripSecurity) {
+      await window.LeggoTripSecurity.applyTripPasswordGate(PAGE_SECURITY_CONFIG);
+    }
+    updateTripCountdown();
+    setInterval(updateTripCountdown, 60000);
+
     document.querySelectorAll('.budget-row .budget-input').forEach(input => convertRow(input));
 
     // ── PACKING LIST ─────────────────────────────
@@ -1616,14 +1783,14 @@ function calculateBudget() {
 
   // ── COPY SHARE URL ───────────────────────────
   function copyURL(btn) {
-  const url = 'https://leggo-murex.vercel.app/scotland-2026.html';
+  const url = TRIP_CONFIG.shareUrl;
   const banner = document.querySelector('.share-banner__url');
   navigator.clipboard.writeText(url).then(() => {
     if (banner) {
       banner.textContent = 'Copied! ✓';
       banner.classList.add('is-copied');
       setTimeout(() => {
-        banner.textContent = 'https://leggo-murex.vercel.app/scotland-2026.html';
+        banner.textContent = TRIP_CONFIG.shareUrl;
         banner.classList.remove('is-copied');
       }, 2000);
     }

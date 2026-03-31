@@ -6,7 +6,7 @@
 /* ── TRIP HERO ── */
 .trip-hero {
   background: var(--ink);
-  color: var(--sand);
+  color: var(--text-inverse);
   padding: 64px 0 52px;
   position: relative;
   overflow: hidden;
@@ -27,7 +27,7 @@
   bottom: -100px; left: 38%;
   width: 320px; height: 320px;
   border-radius: 50%;
-  border: 1px solid rgba(196,98,45,0.18);
+  border: 1px solid var(--hero-glow, rgba(196,98,45,0.18));
   pointer-events: none;
 }
 
@@ -71,6 +71,37 @@
   margin-bottom: 40px;
 }
 
+.countdown {
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(196,98,45,.12);
+  border: 1px solid rgba(196,98,45,.25);
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+}
+
+.countdown__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  animation: pulse 2s infinite;
+}
+
+.countdown__text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent-light);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.8); }
+}
+
 .trip-hero__meta {
   display: flex;
   flex-wrap: wrap;
@@ -90,7 +121,7 @@
 .trip-meta-item__value {
   font-size: 14px;
   font-weight: 500;
-  color: var(--sand);
+  color: var(--text-inverse);
 }
 
 .trip-hero__actions {
@@ -197,7 +228,7 @@
 }
 
 .snapshot-card {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--divider);
   border-radius: var(--radius-md);
   padding: 24px;
@@ -297,6 +328,8 @@
 .logistics-list { list-style: none; }
 .logistics-list li {
   display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
@@ -306,12 +339,20 @@
 .logistics-list li:last-child { border-bottom: none; }
 .logistics-key { color: var(--muted); }
 .logistics-val { font-weight: 500; text-align: right; }
+.logistics-detail {
+  flex: 0 0 100%;
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 2px;
+  font-weight: 400;
+}
 .logistics-ok   { color: var(--green); }
 .logistics-warn { color: var(--gold); }
 
 /* ── BUDGET SECTION ── */
 .budget-wrapper {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--divider);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -321,7 +362,7 @@
 /* Progress bar */
 .budget-progress {
   padding: 18px 24px 0;
-  background: white;
+  background: var(--surface);
 }
 .budget-progress__bar-track {
   height: 6px;
@@ -424,7 +465,7 @@
 .budget-row.is-paid { background: var(--teal-pale); }
 .budget-row.is-paid:hover { background: var(--teal-pale); }
 .budget-row.is-paid .budget-row__desc { color: var(--muted); }
-.budget-row.is-paid .budget-row__desc small { color: var(--teal-light); }
+.budget-row.is-paid .budget-row__desc small { color: var(--teal); opacity: 0.7; }
 .budget-row.is-paid .budget-row__eur-amount { color: var(--teal); }
 .budget-row.is-paid .budget-input { opacity: 0.6; }
 
@@ -534,6 +575,60 @@
 .budget-total-box--paid .budget-total-box__amount   { color: var(--teal); }
 .budget-total-box--unpaid .budget-total-box__amount { color: var(--accent); }
 
+/* Per-family budget summary */
+.budget-family-summary {
+  border-top: 1px solid var(--divider);
+  background: var(--warm-white);
+  padding: 14px 24px 16px;
+}
+.budget-family-summary__title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.budget-family-summary__head,
+.budget-family-summary__row {
+  display: grid;
+  grid-template-columns: 1fr 120px 140px;
+  gap: 8px;
+  align-items: center;
+}
+.budget-family-summary__head {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--divider);
+}
+.budget-family-summary__head span:nth-child(2),
+.budget-family-summary__head span:nth-child(3),
+.budget-family-summary__row span:nth-child(2),
+.budget-family-summary__row span:nth-child(3) {
+  text-align: right;
+}
+.budget-family-summary__rows {
+  display: flex;
+  flex-direction: column;
+}
+.budget-family-summary__row {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--divider);
+  font-size: 13px;
+  color: var(--charcoal);
+}
+.budget-family-summary__row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.budget-family-summary__name {
+  font-weight: 600;
+}
+
 /* ── ITINERARY ── */
 .itinerary-list {
   display: flex;
@@ -543,7 +638,7 @@
 }
 
 .day-card {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--divider);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -618,7 +713,7 @@
 .day-card.is-open .day-card__toggle { transform: rotate(180deg); }
 
 .day-card.is-light .day-card__header { cursor: default; }
-.day-card.is-light .day-card__header:hover { background: white; }
+.day-card.is-light .day-card__header:hover { background: var(--surface); }
 .day-card.is-light .day-card__toggle { display: none; }
 
 .day-card__summary {
@@ -689,7 +784,7 @@
 }
 
 .family-card {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--divider);
   border-radius: var(--radius-md);
   padding: 20px 22px;
@@ -777,9 +872,12 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .trip-hero { padding: 48px 0 40px; }
-  .trip-hero__title { font-size: 42px; }
+  .trip-hero__title { font-size: 40px; }
+  .trip-hero__sub { margin-bottom: 28px; }
+  .trip-hero__meta { gap: 18px 22px; }
   .trip-hero__actions { position: static; margin-top: 24px; }
-  .trip-hero__actions .container { justify-content: flex-start; }
+  .trip-hero__actions .container { justify-content: flex-start; flex-wrap: wrap; gap: 10px; }
+  .trip-hero__actions .btn { min-height: 44px; }
   .budget-col-header { display: none; }
   .budget-row {
     grid-template-columns: 20px 1fr auto;
@@ -795,10 +893,57 @@
   .budget-category__header { padding: 12px 16px; }
   .budget-totals { grid-template-columns: 1fr; }
   .budget-total-box:first-child { border-right: none; border-bottom: 1px solid var(--divider); }
+  .budget-family-summary { padding: 12px 16px 14px; }
+  .budget-family-summary__head,
+  .budget-family-summary__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .budget-family-summary__head span:nth-child(2),
+  .budget-family-summary__head span:nth-child(3),
+  .budget-family-summary__row span:nth-child(2),
+  .budget-family-summary__row span:nth-child(3) {
+    text-align: left;
+  }
   .day-card__header { grid-template-columns: 48px 1fr auto; padding: 14px 16px; }
+  .day-card__num { font-size: 24px; }
   .day-block { padding: 16px; }
+  .day-block__items li { font-size: 14px; }
   .share-banner { flex-direction: column; align-items: flex-start; }
   .budget-progress { padding: 12px 16px 0; }
+  .families-grid { grid-template-columns: 1fr; gap: 12px; }
+  .route-timeline { margin-bottom: 34px; }
+}
+
+@media (max-width: 430px) {
+  .trip-hero { padding: 42px 0 34px; }
+  .trip-hero__back { margin-bottom: 20px; font-size: 11px; }
+  .trip-hero__title { font-size: 34px; }
+  .trip-hero__sub { font-size: 13px; }
+  .trip-meta-item__value { font-size: 13px; }
+  .snapshot-card { padding: 18px 14px; }
+  .stays-table { display: block; overflow-x: auto; max-width: 100%; }
+  .stays-table th, .stays-table td { white-space: nowrap; }
+  .route-stop__name { max-width: 72px; font-size: 13px; }
+  .route-line { min-width: 26px; }
+  .budget-total-box__amount { font-size: 24px; }
+  .pack-category__header { padding: 13px 14px; }
+  .pack-row { padding: 12px 14px; }
+  .share-banner__url { width: 100%; white-space: normal; overflow-wrap: anywhere; }
+}
+
+@media (max-width: 375px) {
+  .trip-hero__title { font-size: 30px; }
+  .day-card__header { padding: 12px; gap: 10px; }
+  .day-card__num { font-size: 21px; }
+}
+
+@media (max-width: 320px) {
+  .trip-hero__title { font-size: 27px; }
+  .trip-hero__label { letter-spacing: 2px; }
+  .budget-category__header { padding: 10px 12px; }
+  .budget-row { padding: 9px 12px; }
+  .pack-row { padding: 10px 12px; }
 }
 
 /* ── PACKING LIST ── */
@@ -809,7 +954,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 48px;
-  background: white;
+  background: var(--surface);
 }
 
 .pack-category {
@@ -892,7 +1037,79 @@
   border-radius: 4px;
   flex-shrink: 0;
   transition: all .15s;
-  background: white;
+  background: var(--surface);
+}
+
+body.leggo-locked > *:not(.password-gate-overlay) {
+  display: none !important;
+}
+
+.password-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.password-gate {
+  width: min(440px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+}
+
+.password-gate h2 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.password-gate p {
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.password-gate label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.password-gate input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.password-gate input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.password-gate .btn {
+  min-height: 44px;
+}
+
+.password-gate__error {
+  min-height: 20px;
+  color: #D14343;
+  font-size: 13px;
+  margin-top: 8px;
 }
 .pack-row:hover::before { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-pale); }
 .pack-row.is-checked::before {
