@@ -783,6 +783,11 @@
   border-right: 1px solid var(--divider);
 }
 .day-block:last-child { border-right: none; }
+.day-block.day-block--notes {
+  grid-column: 1 / -1;
+  border-right: none;
+  border-top: 1px solid var(--divider);
+}
 
 .day-block__label {
   font-family: var(--font-mono);

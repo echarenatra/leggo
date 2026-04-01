@@ -346,6 +346,7 @@
     <div class="section-header">
       <h2>Budget</h2>
       <span class="label">Family of 3 · Click ○ to mark as Paid</span>
+      <span class="section-controls"><button class="section-ctrl" onclick="expandAll('.budget-category')">Expand all</button><span class="section-ctrl__sep">·</span><button class="section-ctrl" onclick="collapseAll('.budget-category')">Collapse all</button></span>
     </div>
 
     <div class="budget-wrapper">
@@ -496,83 +497,125 @@
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
           </div>
+          <!-- Day 1 -->
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Stirling Castle + Old Town Jail<small>Day 1–2 · Stirling</small></div>
+            <div class="budget-row__desc">Stirling Castle<small>Day 1 · Stirling</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 60" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
+          <!-- Day 2 -->
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Nevis Range Gondola<small>Day 4 · Fort William</small></div>
+            <div class="budget-row__desc">Doune Castle<small>Day 2 · Stirling area</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
+          <div class="budget-row">
+            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">SS Walter Scott / Loch Katrine cruise<small>Day 2 · Loch Katrine · pre-book via lochkatrine.com</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
+          <!-- Day 3 -->
+          <div class="budget-row">
+            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Nevis Range Gondola<small>Day 3 · Fort William</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 45" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
+          <!-- Day 4 -->
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Loch Ness boat cruise (Jacobite Cruises)<small>Day 4 · Loch Ness · pre-book via jacobite.co.uk</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 98.58" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Urquhart Castle + Loch Ness Centre<small>Day 4 · Drumnadrochit</small></div>
+            <div class="budget-row__desc">Urquhart Castle<small>Day 4 · Drumnadrochit</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 50" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
+          <!-- Day 5 -->
+          <div class="budget-row">
+            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Eilean Donan Castle<small>Day 5 · Glen Shiel</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
+          <!-- Day 7 -->
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
             <div class="budget-row__desc">Dunvegan Castle + Seal Boat Trip<small>Day 7 · Skye</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 75" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">The Gobbins Cliff Path (guided tour)<small>Day 9 · Islandmagee · pre-book at thegobbins.com</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 40" oninput="convertRow(this)"></div>
+          <!-- Day 9 -->
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Titanic Belfast (timed entry)<small>Day 9 · Belfast</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="£ 49.40" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Black Cab Tour (Belfast murals + Peace Wall)<small>Day 9 · Belfast</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
+          <!-- Day 10 -->
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
             <div class="budget-row__desc">Giant's Causeway + Carrick-a-Rede<small>Day 10 · Causeway Coast</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 40" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
+          <!-- Day 11 -->
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Bushmills Distillery Tour<small>Day 10 · optional · adults + child welcome</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 30" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Castle Ward archery — Clearsky Adventure Centre<small>Day 11 · Strangford · pre-book at clearskyadventurecentre.com</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Titanic Belfast (timed entry)<small>Day 10 · Belfast</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 60" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Newgrange / Brú na Bóinne (timed entry)<small>Day 11 · Boyne Valley · pre-book via heritageireland.ie</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
+          <!-- Day 12 -->
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Kylemore Abbey<small>Day 12 · Connemara</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 45" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 45.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Cliffs of Moher + Aillwee Cave<small>Day 13 · The Burren</small></div>
+            <div class="budget-row__desc">Cliffs of Moher + Aillwee Cave<small>Day 12 · The Burren</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 60" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 60.00</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Trinity College Long Room (pre-booked)<small>Day 15 · Dublin</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 45" oninput="convertRow(this)"></div>
+            <div class="budget-row__desc">Caherconnell Stone Fort (sheepdog demo)<small>Day 12 · The Burren</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
+          <!-- Day 13 -->
+          <div class="budget-row">
+            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Rock of Cashel<small>Day 13 · Cashel</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
+            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
+          </div>
+          <!-- Day 14 -->
+          <div class="budget-row is-paid">
+            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
+            <div class="budget-row__desc">Trinity Trails Campus Tour & Book of Kells Experience<small>Day 14 · Dublin</small></div>
+            <div class="budget-row__foreign"><input class="budget-input" value="€ 78" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 45.00</span></div>
           </div>
           <div class="budget-row">
             <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Guinness Storehouse<small>Day 14 evening · optional · Dublin · open until 20:00</small></div>
+            <div class="budget-row__desc">Guinness Storehouse<small>Day 14 · optional · Dublin · open until 20:00</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 55" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 55.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Powerscourt Estate + Glendalough<small>Day 14 · Wicklow</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 35" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 35.00</span></div>
           </div>
         </div>
       </div>
@@ -662,6 +705,7 @@
     <div class="section-header">
       <h2>Day by Day</h2>
       <span class="label">16 days · Detailed plans</span>
+      <span class="section-controls"><button class="section-ctrl" onclick="expandAll('.day-card')">Expand all</button><span class="section-ctrl__sep">·</span><button class="section-ctrl" onclick="collapseAll('.day-card')">Collapse all</button></span>
     </div>
 
     <div class="itinerary-list">
@@ -699,7 +743,7 @@
                 <li>Early dinner and sleep — long travel day!</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>⚠️ Indonesian passports (non-EEA): allow 45–60 min for immigration + baggage before car pickup. If significantly delayed, call the SIXT EDI desk to inform them.</li>
@@ -748,7 +792,7 @@
                 <li>Relaxed dinner — pack up for the Highlands tomorrow</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>📋 SS Walter Scott / Loch Katrine: seasonal service — runs from Easter onwards. Verify Sunday timetable for 19 Apr and pre-book a few days before. One sailing typically around midday in early season. Check lochkatrine.com.</li>
@@ -800,7 +844,7 @@
                 <li>Check into Base Camp Hotel Nevis Range</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>📋 Nevis Range Gondola: walk-up, no pre-booking needed. Buy on the day. Confirm April opening hours and last uplift time (typically ~16:30 in April) before the trip — nevisrange.co.uk.</li>
@@ -853,7 +897,7 @@
                 <li>Pack up — heading to Skye tomorrow</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>🔴 Loch Ness Boat Cruise (Jacobite Cruises): pre-book recommended — 21 Apr falls in the Easter school holiday window, boats fill up. Book via jacobite.co.uk.</li>
@@ -905,7 +949,7 @@
                 <li>Relax — Sleat is quiet and beautiful. Early night before two big Skye days.</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>ℹ️ Fairy Glen has moved to Day 6 — it sits naturally on the Trotternish Loop. Day 5 afternoon is intentionally relaxed: arrival days on Skye are long enough without backtracking north.</li>
@@ -954,7 +998,7 @@
                 <li>Dinner at or near the hotel</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>✂️ If weather is poor or energy is low: Kilt Rock is a quick 10-min roadside stop — the most skippable. Storr, Quiraing, and Fairy Glen are the three essentials of this day.</li>
@@ -1007,7 +1051,7 @@
                 <li>Drive back to Hebridean. Prepare for a very early morning tomorrow.</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>📋 Dunvegan Castle seal boat trips: runs from April but early season — call Dunvegan Castle ahead to confirm availability and operating days. Lower demand — no urgent pre-booking, but check closer to the trip.</li>
@@ -1060,7 +1104,7 @@
                 <li>Easy dinner nearby — heavy travel day, rest well</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>⚠️ 06:30 departure is critical. Skye to Edinburgh is 3.5–5 hrs on Scottish roads. Any traffic, fuel stop, or bathroom break with a 6yo adds time. The 15:40 flight is the hard deadline.</li>
@@ -1107,7 +1151,7 @@
                 <li>Early night — Causeway Coast is a full day tomorrow</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>🔴 MUST PRE-BOOK: Titanic Belfast — sells out weeks in advance, especially Sundays. Book via titanicbelfast.com as soon as possible.</li>
@@ -1159,7 +1203,7 @@
                 <li>Pack for the move to Galway tomorrow</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>🔴 MUST PRE-BOOK: Carrick-a-Rede Rope Bridge — timed entry, fills up fast even in April. Book via nationaltrust.org.uk/ni.</li>
@@ -1211,7 +1255,7 @@
                 <li>Pub dinner at Tig Cóilí or similar for a live Trad session (sessions warm up ~18:30–19:00 — arriving at 18:30 is perfect timing)</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>🔴 MUST PRE-BOOK: Newgrange (Brú na Bóinne) — book via heritageireland.ie. Booking opens 30 days before your visit (from 29 March 2026). Slots fill fast. Book the 13:30 or 14:00 time slot to match this day's timeline. You cannot rush or miss the timed slot.</li>
@@ -1262,7 +1306,7 @@
                 <li>Dinner in the city — last night in Galway</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>📋 Cliffs of Moher: pre-book the car park online — cliffsofmoher.ie. Cheaper and guarantees access.</li>
@@ -1313,7 +1357,7 @@
                 <li>Settle in — light dinner near the hotel</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>Rock of Cashel: buy on the day at the gate — lower demand.</li>
@@ -1362,7 +1406,7 @@
                 <li>Luas or taxi back to Maldron Merrion Road</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>🔴 MUST PRE-BOOK: Book of Kells / Trinity College — book via tcd.ie. Popular slots sell out. ⚠️ Verify the current display location before booking — the Old Library has been under renovation since 2023 and the Book of Kells display may have moved.</li>
@@ -1414,7 +1458,7 @@
                 <li>Set alarms — flight tomorrow</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>Glendalough: free to visit the valley and ruins. Small car park fee on-site. No pre-booking needed.</li>
@@ -1463,7 +1507,7 @@
                 <li>🏠 Home sweet home</li>
               </ul>
             </div>
-            <div class="day-block">
+            <div class="day-block day-block--notes">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Notes</div>
               <ul class="day-block__items">
                 <li>⚠️ SIXT car must be returned by 11:00. Leave hotel no later than 10:00.</li>
@@ -1482,6 +1526,7 @@
     <div class="section-header">
       <h2>Packing List</h2>
       <span class="label">Click to check off · <span id="pack-progress">0 / 0</span> packed</span>
+      <span class="section-controls"><button class="section-ctrl" onclick="expandAll('.pack-category')">Expand all</button><span class="section-ctrl__sep">·</span><button class="section-ctrl" onclick="collapseAll('.pack-category')">Collapse all</button></span>
     </div>
 
     <div class="pack-wrapper" id="pack-wrapper">
@@ -1737,6 +1782,8 @@
   function toggleCategory(id) { document.getElementById(id).classList.toggle('is-open'); }
   function toggleDay(id) { document.getElementById(id).classList.toggle('is-open'); }
   function togglePack(id) { document.getElementById(id).classList.toggle('is-open'); }
+  function expandAll(selector) { document.querySelectorAll(selector).forEach(el => el.classList.add('is-open')); }
+  function collapseAll(selector) { document.querySelectorAll(selector).forEach(el => el.classList.remove('is-open')); }
 
   // ── COUNTDOWN ────────────────────────────────
   function parseDepartureDate(dateInput) {

@@ -184,6 +184,26 @@ hr.fancy {
   font-weight: 400;
   white-space: nowrap;
 }
+.section-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-ctrl {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color .15s;
+}
+.section-ctrl:hover { color: var(--charcoal); }
+.section-ctrl__sep { color: var(--divider); font-size: 10px; }
 
 svg.icon {
   display: inline-block;
