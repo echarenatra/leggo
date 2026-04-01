@@ -214,12 +214,22 @@ svg.icon {
 }
 .btn--primary:hover { background: var(--charcoal); }
 
+[data-theme='dark'] .btn--primary {
+  background: var(--text-primary);
+  color: #1C1917;
+}
+[data-theme='dark'] .btn--primary:hover {
+  background: var(--charcoal);
+  color: #1C1917;
+}
+
 .btn--ghost {
   background: transparent;
   color: var(--muted);
   border: 1px solid var(--divider);
 }
 .btn--ghost:hover { color: var(--sand); border-color: var(--sand); background: rgba(255,255,255,0.1); }
+[data-theme='dark'] .btn--ghost:hover { color: var(--text-primary); border-color: var(--text-primary); }
 
 .theme-toggle {
   min-height: 44px;
