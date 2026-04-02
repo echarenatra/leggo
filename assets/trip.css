@@ -3,6 +3,44 @@
    trip.css · Used by all individual trip pages
    ============================================================ */
 
+/* ── SECTION NAV ── */
+.section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.section-nav .container {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.section-nav .container::-webkit-scrollbar { display: none; }
+.section-nav a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 11px 14px;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.section-nav a:first-child { padding-left: 0; }
+
+/* offset anchor scroll targets so section title clears the sticky nav */
+.section-header[id] { scroll-margin-top: 52px; }
+.section-nav a:hover { color: var(--trip-accent); }
+.section-nav a.active {
+  color: var(--trip-accent);
+  border-bottom-color: var(--trip-accent);
+}
+
 /* ── TRIP HERO ── */
 .trip-hero {
   background: var(--surface-inverse);
@@ -334,6 +372,39 @@
 }
 .stays-table .city-name { font-weight: 500; }
 .stays-table .hotel-name { color: var(--muted); font-size: 12px; }
+
+/* Highlights table */
+.highlights-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.highlights-table th {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--divider);
+}
+.highlights-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--divider);
+  vertical-align: top;
+  color: var(--charcoal);
+}
+.highlights-table tr:last-child td { border-bottom: none; }
+.highlights-table .night-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  width: 90px;
+}
+.highlights-table .city-name { font-weight: 500; }
+.highlights-table .hotel-name { color: var(--muted); font-size: 12px; }
 
 /* Transport list */
 .transport-list { list-style: none; }
@@ -1234,3 +1305,5 @@ body.leggo-locked > *:not(.password-gate-overlay) {
   .site-footer { background: white !important; border-top: 1px solid var(--divider); }
   .site-footer span { color: var(--accent); }
 }
+
+

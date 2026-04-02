@@ -146,6 +146,16 @@
     <rect x="6" y="14" width="12" height="8"/>
   </symbol>
 
+  <symbol id="icon-expand-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 7l8 5.5 8-5.5"/>
+    <path d="M4 12.5l8 5.5 8-5.5"/>
+  </symbol>
+
+  <symbol id="icon-collapse-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11.5l8-5.5 8 5.5"/>
+    <path d="M4 17l8-5.5 8 5.5"/>
+  </symbol>
+
 </svg>
 
 <header class="trip-hero">
@@ -176,7 +186,7 @@
       <div class="trip-meta-item">
         <span class="trip-meta-item__label">Status</span>
         <span class="trip-meta-item__value">
-          <span class="badge badge--planning">Planning</span>
+          <span class="badge badge--confirmed">Confirmed</span>
         </span>
       </div>
     </div>
@@ -203,12 +213,22 @@
   </div>
 </header>
 
+<nav class="section-nav no-print" aria-label="Jump to section">
+  <div class="container">
+    <a href="#snapshot">Snapshot</a>
+    <a href="#budget">Budget</a>
+    <a href="#itinerary">Itinerary</a>
+    <a href="#lookbook">Outfits</a>
+    <a href="#packing">Packing</a>
+    <a href="#families">Who's Coming</a>
+  </div>
+</nav>
 
 <main class="trip-main">
   <div class="container">
 
     <!-- ── TRIP SNAPSHOT ── -->
-    <div class="section-header">
+    <div class="section-header" id="snapshot">
       <h2>Trip Snapshot</h2>
       <span class="label">The big picture</span>
     </div>
@@ -233,12 +253,13 @@
       <div class="snapshot-card">
         <div class="snapshot-card__title">✦ Highlights</div>
         <ul class="highlights-list">
-          <li>Drive the Scottish Highlands — Glencoe, Glen Etive, and Eilean Donan Castle</li>
-          <li>3 nights on Skye — Old Man of Storr, Fairy Pools, and Neist Point at sunset</li>
-          <li>Giant's Causeway, Carrick-a-Rede Rope Bridge, and the dramatic Causeway Coastal Route</li>
-          <li>Game of Thrones locations — Dark Hedges, Ballintoy Harbour, and Cushendun Caves</li>
-          <li>Connemara and Kylemore Abbey — Ireland's wild Atlantic landscape</li>
-          <li>Cliffs of Moher, The Burren, and Rock of Cashel in one epic loop day</li>
+          <li><b>Highland Magic</b>Stirling Coos, Loch Katrine & Glencoe peaks</li>
+          <li><b>Hogwarts & Nessie</b> Glenfinnan Viaduct & Loch Ness sonar hunt</li>
+          <li><b>Skye Unfiltered</b> Old Man of Storr & Dunvegan seal boat trip</li>
+          <li><b>Causeway Coast</b> Carrick-a-Rede & Giant’s Causeway stones</li>
+          <li><b>Ancient Legends</b> Winterfell Archery & Newgrange passage tomb</li>
+          <li><b>The Grand Finale</b> Cliffs of Moher & Dublin’s Book of Kells</li>
+          <li><b>Wild Atlantic</b> The Burren falcons & Galway trad sessions</li>
         </ul>
       </div>
 
@@ -343,10 +364,13 @@
     <hr class="fancy">
 
     <!-- ── BUDGET ── -->
-    <div class="section-header">
+    <div class="section-header" id="budget">
       <h2>Budget</h2>
       <span class="label">Family of 3 · Click ○ to mark as Paid</span>
-      <span class="section-controls"><button class="section-ctrl" onclick="expandAll('.budget-category')">Expand all</button><span class="section-ctrl__sep">·</span><button class="section-ctrl" onclick="collapseAll('.budget-category')">Collapse all</button></span>
+      <span class="section-controls">
+        <button class="section-ctrl section-ctrl--icon" onclick="expandAll('.budget-category')" title="Expand all"><svg class="icon" width="16" height="16"><use href="#icon-expand-all"/></svg></button>
+        <button class="section-ctrl section-ctrl--icon" onclick="collapseAll('.budget-category')" title="Collapse all"><svg class="icon" width="16" height="16"><use href="#icon-collapse-all"/></svg></button>
+      </span>
     </div>
 
     <div class="budget-wrapper">
@@ -373,19 +397,19 @@
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Amsterdam (AMS) to Edinburgh (EDI)<small>easyJet EJU7837 · 18 Apr 07:20 – 07:50</small></div>
+            <div class="budget-row__desc">Flight Amsterdam (AMS) to Edinburgh (EDI)<small>easyJet EJU7837 · 18 Apr 07:20 – 07:50 · incl. seats & 2x23kg luggage</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="€ 619.67" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 619.67</span></div>
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Edinburgh (EDI) to Belfast (BFS)<small>Ryanair RK179 · 25 Apr 15:40 – 16:30</small></div>
+            <div class="budget-row__desc">Flight Edinburgh (EDI) to Belfast (BFS)<small>Ryanair RK179 · 25 Apr 15:40 – 16:30 · incl. seats & 2x23kg luggage</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 129.76" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
           </div>
           <div class="budget-row is-paid">
             <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Belfast (BFS) to Amsterdam (AMS)<small>easyJet EZY3051 · 3 May 13:25 – 16:05</small></div>
+            <div class="budget-row__desc">Flight Belfast (BFS) to Amsterdam (AMS)<small>easyJet EZY3051 · 3 May 13:25 – 16:05 · incl. seats & 2x23kg luggage</small></div>
             <div class="budget-row__foreign"><input class="budget-input" value="£ 304.42" oninput="convertRow(this)"></div>
             <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 276.00</span></div>
           </div>
@@ -702,10 +726,13 @@
     <hr class="fancy">
 
     <!-- ── DAY BY DAY ── -->
-    <div class="section-header">
-      <h2>Day by Day</h2>
+    <div class="section-header" id="itinerary">
+      <h2>Itinerary</h2>
       <span class="label">16 days · Detailed plans</span>
-      <span class="section-controls"><button class="section-ctrl" onclick="expandAll('.day-card')">Expand all</button><span class="section-ctrl__sep">·</span><button class="section-ctrl" onclick="collapseAll('.day-card')">Collapse all</button></span>
+      <span class="section-controls">
+        <button class="section-ctrl section-ctrl--icon" onclick="expandAll('.day-card')" title="Expand all"><svg class="icon" width="16" height="16"><use href="#icon-expand-all"/></svg></button>
+        <button class="section-ctrl section-ctrl--icon" onclick="collapseAll('.day-card')" title="Collapse all"><svg class="icon" width="16" height="16"><use href="#icon-collapse-all"/></svg></button>
+      </span>
     </div>
 
     <div class="itinerary-list">
@@ -1518,15 +1545,792 @@
         </div>
       </div>
 
-    </div><!-- /itinerary-list -->
+    </div>
+    <!-- END OF ITINERARY -->
+
+    <hr class="fancy">
+
+    <!-- OUTFIT PLAN -->
+
+<div class="section-header" id="lookbook">
+  <h2>Outfits</h2>
+  <span class="label">Family Wardrobe Plan</span>
+  <span class="section-controls">
+    <button class="section-ctrl section-ctrl--icon" onclick="expandAll('.look-card')" title="Expand all"><svg class="icon" width="16" height="16"><use href="#icon-expand-all"/></svg></button>
+    <button class="section-ctrl section-ctrl--icon" onclick="collapseAll('.look-card')" title="Collapse all"><svg class="icon" width="16" height="16"><use href="#icon-collapse-all"/></svg></button>
+  </span>
+</div>
+
+<div class="itinerary-list">
+
+  <div class="day-card look-card is-key" id="look-1">
+    <div class="day-card__header" onclick="toggleDay('look-1')">
+      <div class="day-card__num">01</div>
+      <div><div class="day-card__date">Sat, 18 Apr</div><div class="day-card__title">Arrival & The Kelpies</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Navy cashmere turtleneck (Tight/Fitted)</li>
+            <li>Wide-leg navy trousers (Loose)</li>
+            <li>Wool Long Coat (Cognac)</li>
+            <li>NB 327 Sneakers (White)</li>
+            <li>Tumi Halle Backpack (Transit)</li>
+            <li>White crew socks (meet sneaker edge)</li>
+            <li>Navy silk scarf</li>
+            <li>Gold hoops</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Cream cable-knit sweater</li>
+            <li>Navy chinos</li>
+            <li>Navy wool coat</li>
+            <li>Brown Chelsea boots</li>
+            <li>Black Kånken (Gear)</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Cream sweater</li>
+            <li>Navy leggings</li>
+            <li>Camel trench coat</li>
+            <li>White sneakers</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> At The Kelpies. Keep the Cognac coat open to show the navy "column of color."</li>
+            <li><strong>Notes (Mom):</strong> Tuck turtleneck fully. The monochromatic navy creates a 1/3-to-2/3 ratio that elongates your frame. Wide-leg trousers hide the widest part of the hip.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-2">
+    <div class="day-card__header" onclick="toggleDay('look-2')">
+      <div class="day-card__num">02</div>
+      <div><div class="day-card__date">Sun, 19 Apr</div><div class="day-card__title">Stirling Castle & Highlands</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>White fitted rib-knit top</li>
+            <li>Black straight-leg trousers (Loose)</li>
+            <li>Moncler Leda Cropped Jacket</li>
+            <li>Dune Pippie Ankle Boots</li>
+            <li>Longchamp Le Pliage M (Black)</li>
+            <li>Black crew socks (match trousers)</li>
+            <li>Gold pendant necklace</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Olive green utility jacket</li>
+            <li>White tee</li>
+            <li>Beige chinos</li>
+            <li>Brown boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>White long-sleeve tee</li>
+            <li>Beige corduroy pants</li>
+            <li>Olive puffer vest</li>
+            <li>Tan boots</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Stirling Castle. The cropped Leda jacket defines your waist against the grey stone.</li>
+            <li><strong>Notes (Mom):</strong> Matching black socks to black boots and trousers creates an unbroken vertical line for your legs.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-3">
+    <div class="day-card__header" onclick="toggleDay('look-3')">
+      <div class="day-card__num">03</div>
+      <div><div class="day-card__date">Mon, 20 Apr</div><div class="day-card__title">Glencoe Nature</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Grey thermal mock-neck (Fitted)</li>
+            <li>Beige hiking trousers (Loose)</li>
+            <li>Moncler Black Short Puffer</li>
+            <li>Timberland 6-Inch Boots (Camel)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>Beige wool crew socks (match boots)</li>
+            <li>Grey knit beanie</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Charcoal fleece</li>
+            <li>Black outdoor trousers</li>
+            <li>Olive raincoat</li>
+            <li>Hiking boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Black thermal leggings</li>
+            <li>Bright yellow raincoat</li>
+            <li>Sturdy boots</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Glencoe Three Sisters. Rugged utility-chic.</li>
+            <li><strong>Notes (Mom):</strong> French-tuck the thermal top. Beige socks matching Camel boots prevent the "short leg" effect of chunky boots.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-4">
+    <div class="day-card__header" onclick="toggleDay('look-4')">
+      <div class="day-card__num">04</div>
+      <div><div class="day-card__date">Tue, 21 Apr</div><div class="day-card__title">Viaduct & Monsters</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>White button-down (Fitted/Tucked)</li>
+            <li>Mid-wash straight jeans (Loose)</li>
+            <li>Moncler Leda Cropped Jacket</li>
+            <li>NB 327 Sneakers (White)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>No-show socks (show ankle bone)</li>
+            <li>Classic gold watch</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Grey sweatshirt</li>
+            <li>Dark jeans</li>
+            <li>White sneakers</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Denim overalls</li>
+            <li>White tee</li>
+            <li>Black puffer</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Waiting for the train. Preppy "Rich Mom" vibes.</li>
+            <li><strong>Notes (Mom):</strong> The cropped Leda jacket is the hero; it hits exactly at your waist, balancing the volume of the straight jeans.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-5">
+    <div class="day-card__header" onclick="toggleDay('look-5')">
+      <div class="day-card__num">05</div>
+      <div><div class="day-card__date">Wed, 22 Apr</div><div class="day-card__title">Eilean Donan Castle</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Charcoal mock-neck (Fitted)</li>
+            <li>Charcoal tailored trousers (Loose)</li>
+            <li>Wool Long Coat (Cognac)</li>
+            <li>Dune Pippie Ankle Boots</li>
+            <li>Longchamp Le Pliage M</li>
+            <li>Charcoal crew socks</li>
+            <li>Gold stud earrings</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Charcoal turtleneck</li>
+            <li>Black trousers</li>
+            <li>Black wool coat</li>
+            <li>Chelsea boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Grey knit dress</li>
+            <li>Black tights</li>
+            <li>Black wool coat</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Epic castle entrance. The charcoal column creates a powerful editorial frame inside the Cognac coat.</li>
+            <li><strong>Notes (Mom):</strong> Monochromatic grey elongates. Wide-leg trousers flowing over the ankle boots hide the hip width perfectly.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-6">
+    <div class="day-card__header" onclick="toggleDay('look-6')">
+      <div class="day-card__num">06</div>
+      <div><div class="day-card__date">Thu, 23 Apr</div><div class="day-card__title">The North Skye Loop</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Black thermal turtleneck (Tight)</li>
+            <li>Black hiking trousers (Loose)</li>
+            <li>Moncler Black Short Puffer</li>
+            <li>Timberland 6-Inch Boots (Camel)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>Black wool socks</li>
+            <li>Gold hoops</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Black thermals</li>
+            <li>Black technical jacket</li>
+            <li>Black Kånken</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Black thermals</li>
+            <li>Red beanie (pop color)</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Old Man of Storr. Stark black outfits vs the green/grey landscape.</li>
+            <li><strong>Notes (Mom):</strong> All-black is your best elongating tool. Camel boots add the only grounding contrast needed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-7">
+    <div class="day-card__header" onclick="toggleDay('look-7')">
+      <div class="day-card__num">07</div>
+      <div><div class="day-card__date">Fri, 24 Apr</div><div class="day-card__title">Fairy Pools & Seals</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Navy Breton top (Fitted/Tucked)</li>
+            <li>Navy straight trousers (Loose)</li>
+            <li>Raincoat Parka Coat (Beige)</li>
+            <li>Timberland 6-Inch Boots (Camel)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>Beige crew socks</li>
+            <li>Gold bracelet</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Navy sweater</li>
+            <li>Beige chinos</li>
+            <li>Beige raincoat</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Navy/White striped dress</li>
+            <li>Beige raincoat</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Crystal water shots. Nautical palette looks fresh and editorial.</li>
+            <li><strong>Notes (Mom):</strong> Breton stripes broaden the shoulders slightly, balancing your pear-shape hips.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-8">
+    <div class="day-card__header" onclick="toggleDay('look-8')">
+      <div class="day-card__num">08</div>
+      <div><div class="day-card__date">Sat, 25 Apr</div><div class="day-card__title">Migration to Belfast</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Grey cashmere sweater (Tight)</li>
+            <li>Matching Grey joggers (Loose/High-waist)</li>
+            <li>Wool Long Coat (Cognac)</li>
+            <li>NB 327 Sneakers (White)</li>
+            <li>Tumi Halle Backpack (Transit)</li>
+            <li>White crew socks</li>
+            <li>Oversized sunglasses</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Grey hoodie</li>
+            <li>Dark joggers</li>
+            <li>White sneakers</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Grey tracksuit</li>
+            <li>Slip-on shoes</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Airport candid. The "Rich Mom" jet-set aesthetic.</li>
+            <li><strong>Notes (Mom):</strong> High-waist joggers are essential. The long coat provides coverage over the hips for maximum travel confidence.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-9">
+    <div class="day-card__header" onclick="toggleDay('look-9')">
+      <div class="day-card__num">09</div>
+      <div><div class="day-card__date">Sun, 26 Apr</div><div class="day-card__title">Titanic & Belfast</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Black turtleneck (Tight/Fitted)</li>
+            <li>Black Mini Skirt (A-line/Loose)</li>
+            <li>Wool Long Coat (Cognac)</li>
+            <li>Dune Knee High Boots (Flat)</li>
+            <li>Gucci Blondie WOC (Black)</li>
+            <li>Sheer fleece-lined tights</li>
+            <li>Statement gold earrings</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>White button-down</li>
+            <li>Navy blazer</li>
+            <li>Dark jeans</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>White blouse</li>
+            <li>Black velvet skirt</li>
+            <li>Black tights</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Titanic Quarter. 1960s Mod editorial. Ditch the backpack!</li>
+            <li><strong>Notes (Mom):</strong> Per your rule: Knee-high boots paired with tights. The A-line skirt flares over hips, creating a tiny waist.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-10">
+    <div class="day-card__header" onclick="toggleDay('look-10')">
+      <div class="day-card__num">10</div>
+      <div><div class="day-card__date">Mon, 27 Apr</div><div class="day-card__title">Giant's Causeway</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Black mock-neck (Fitted)</li>
+            <li>Black high-waist jeans (Loose)</li>
+            <li>Moncler Black Short Puffer</li>
+            <li>Timberland 6-Inch Boots (Camel)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>Black crew socks</li>
+            <li>Black leather belt</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Black sweater</li>
+            <li>Black jeans</li>
+            <li>Brown boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Black fleece</li>
+            <li>Black leggings</li>
+            <li>Tan boots</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Striking all-black against the grey basalt columns.</li>
+            <li><strong>Notes (Mom):</strong> Safety first on the wet stones! Camel boots ground the all-black editorial look.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-11">
+    <div class="day-card__header" onclick="toggleDay('look-11')">
+      <div class="day-card__num">11</div>
+      <div><div class="day-card__date">Tue, 28 Apr</div><div class="day-card__title">Winterfell & Newgrange</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Beige fitted thermal top</li>
+            <li>Beige wide-leg trousers (Loose)</li>
+            <li>Moncler Leda Cropped Jacket</li>
+            <li>Dune Greyson Loafers</li>
+            <li>Longchamp Le Pliage M</li>
+            <li>No-show socks</li>
+            <li>Simple gold hoops</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Cream fisherman sweater</li>
+            <li>Olive chinos</li>
+            <li>Brown boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Cream sweater dress</li>
+            <li>Olive leggings</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Tonal "Stealth Wealth" browns and creams at the castle.</li>
+            <li><strong>Notes (Mom):</strong> Loafers with no-show socks show the ankle bone, which visually elongates the leg on a petite frame.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-12">
+    <div class="day-card__header" onclick="toggleDay('look-12')">
+      <div class="day-card__num">12</div>
+      <div><div class="day-card__date">Wed, 29 Apr</div><div class="day-card__title">Cliffs of Moher</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Navy crewneck (French tuck)</li>
+            <li>Dark wash jeans (Loose)</li>
+            <li>Raincoat Parka Coat (Beige)</li>
+            <li>Timberland 6-Inch Boots (Camel)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>Beige crew socks</li>
+            <li>Navy scarf</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Navy quarter-zip</li>
+            <li>Beige raincoat</li>
+            <li>Tan boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Navy sweater</li>
+            <li>Beige raincoat</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Windy cliff edge. The long parka catchs the wind beautifully.</li>
+            <li><strong>Notes (Mom):</strong> Secure footing for holding a 6-year-old’s hand. The navy base slims the silhouette under the beige outer.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-13">
+    <div class="day-card__header" onclick="toggleDay('look-13')">
+      <div class="day-card__num">13</div>
+      <div><div class="day-card__date">Thu, 30 Apr</div><div class="day-card__title">Rock of Cashel & Dublin</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Black knit top (Fitted)</li>
+            <li>Beige wide-leg trousers (Loose)</li>
+            <li>Wool Long Coat (Cognac)</li>
+            <li>Dune Pippie Ankle Boots</li>
+            <li>Longchamp Le Pliage M</li>
+            <li>Black crew socks</li>
+            <li>Gold layered necklaces</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Black polo</li>
+            <li>Beige chinos</li>
+            <li>Black Chelsea boots</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Black sweater</li>
+            <li>Beige skirt</li>
+            <li>Black tights</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Historic stone ruins. Refined, classic "Old Money" family look.</li>
+            <li><strong>Notes (Mom):</strong> Fully tuck the top to emphasize the waist. The Cognac coat over beige trousers is a high-fashion color pairing.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-14">
+    <div class="day-card__header" onclick="toggleDay('look-14')">
+      <div class="day-card__num">14</div>
+      <div><div class="day-card__date">Fri, 1 May</div><div class="day-card__title">Trinity College Library</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Black turtleneck (Tight)</li>
+            <li>Black Mini Skirt (A-line/Loose)</li>
+            <li>Moncler Leda Cropped Jacket</li>
+            <li>Dune Knee High Boots (Flat)</li>
+            <li>Gucci Blondie WOC (Black)</li>
+            <li>Sheer fleece-lined tights</li>
+            <li>Gold hoops</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>White tee</li>
+            <li>Grey chinos</li>
+            <li>Black bomber jacket</li>
+            <li>White sneakers</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>White tee</li>
+            <li>Grey leggings</li>
+            <li>Black denim jacket</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Academic-chic in the Long Room.</li>
+            <li><strong>Notes (Mom):</strong> The Leda jacket highlights the waist. The skirt/boot combo with tights is your best petite height hack.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-15">
+    <div class="day-card__header" onclick="toggleDay('look-15')">
+      <div class="day-card__num">15</div>
+      <div><div class="day-card__date">Sat, 2 May</div><div class="day-card__title">Glendalough Upper Lake</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>White chunky sweater (Loose)</li>
+            <li>Black thick leggings (Tight)</li>
+            <li>Raincoat Parka Coat (Beige)</li>
+            <li>Timberland 6-Inch Boots (Camel)</li>
+            <li>Polene Numéro Dix (Tan)</li>
+            <li>Black wool socks</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>White thermal</li>
+            <li>Black joggers</li>
+            <li>Beige overshirt</li>
+            <li>Sneakers</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>White fleece</li>
+            <li>Black leggings</li>
+            <li>Beige boots</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Serene lakeside trail. Comfy outdoorsy family aesthetic.</li>
+            <li><strong>Notes (Mom):</strong> Per your rule: Loose top + Tight bottom. The long parka adds necessary hip coverage for leggings.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card look-card is-key" id="look-16">
+    <div class="day-card__header" onclick="toggleDay('look-16')">
+      <div class="day-card__num">16</div>
+      <div><div class="day-card__date">Sun, 3 May</div><div class="day-card__title">Departure Day</div></div>
+      <div class="day-card__right"><div class="day-card__toggle">▾</div></div>
+    </div>
+    <div class="day-card__body">
+      <div class="day-blocks">
+        <div class="day-block">
+          <div class="day-block__label">👩 Mom's Look</div>
+          <ul class="day-block__items">
+            <li>Navy loungewear top (Fitted)</li>
+            <li>Navy loungewear pants (Loose)</li>
+            <li>Wool Long Coat (Cognac)</li>
+            <li>NB 327 Sneakers (White)</li>
+            <li>Tumi Halle Backpack (Transit)</li>
+            <li>White crew socks</li>
+            <li>Sunglasses</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👨 Husband's Look</div>
+          <ul class="day-block__items">
+            <li>Navy hoodie</li>
+            <li>Dark jeans</li>
+            <li>White sneakers</li>
+          </ul>
+        </div>
+        <div class="day-block">
+          <div class="day-block__label">👧 Daughter's Look</div>
+          <ul class="day-block__items">
+            <li>Cozy navy track pants</li>
+            <li>Matching sweater</li>
+          </ul>
+        </div>
+        <div class="day-block day-block--notes">
+          <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Styling & Photo Vision</div>
+          <ul class="day-block__items">
+            <li><strong>Photo Vision:</strong> Coordinated family navy-and-grey look at the gate.</li>
+            <li><strong>Notes (Mom):</strong> The long cognac coat over a dark navy column makes you look polished and tall even when wearing loungewear.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+    <!-- END OF OUTFIT PLAN -->
 
     <hr class="fancy">
 
     <!-- ── PACKING LIST ── -->
-    <div class="section-header">
+    <div class="section-header" id="packing">
       <h2>Packing List</h2>
       <span class="label">Click to check off · <span id="pack-progress">0 / 0</span> packed</span>
-      <span class="section-controls"><button class="section-ctrl" onclick="expandAll('.pack-category')">Expand all</button><span class="section-ctrl__sep">·</span><button class="section-ctrl" onclick="collapseAll('.pack-category')">Collapse all</button></span>
+      <span class="section-controls">
+        <button class="section-ctrl section-ctrl--icon" onclick="expandAll('.pack-category')" title="Expand all"><svg class="icon" width="16" height="16"><use href="#icon-expand-all"/></svg></button>
+        <button class="section-ctrl section-ctrl--icon" onclick="collapseAll('.pack-category')" title="Collapse all"><svg class="icon" width="16" height="16"><use href="#icon-collapse-all"/></svg></button>
+      </span>
     </div>
 
     <div class="pack-wrapper" id="pack-wrapper">
@@ -1723,7 +2527,7 @@
     <hr class="fancy">
 
     <!-- ── WHO'S COMING ── -->
-    <div class="section-header">
+    <div class="section-header" id="families">
       <h2>Who's Coming</h2>
       <span class="label">Family of 3</span>
     </div>
@@ -1777,6 +2581,19 @@
 
   // ── SETTINGS ─────────────────────────────────
   const GBP_TO_EUR = 1.18; // 1 GBP = 1.18 EUR
+
+  // ── SECTION NAV ACTIVE STATE ─────────────────
+  (function () {
+    const sections = Array.from(document.querySelectorAll('.section-header[id]'));
+    const links = document.querySelectorAll('.section-nav a[href^="#"]');
+    if (!sections.length || !links.length) return;
+    const setActive = (id) => links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }),
+      { rootMargin: '0px 0px -80% 0px' }
+    );
+    sections.forEach(s => observer.observe(s));
+  })();
 
   // ── TOGGLE FUNCTIONS ─────────────────────────
   function toggleCategory(id) { document.getElementById(id).classList.toggle('is-open'); }
