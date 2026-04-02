@@ -35,6 +35,131 @@
         --trip-accent:       #7B93C4;
         --trip-accent-light: #C5D3ED;
       }
+
+      .budget-row,
+      .budget-col-header {
+          display: grid !important;
+          grid-template-columns: 28px 34px 1fr 120px 100px 28px !important;
+          column-gap: 12px;
+          align-items: center;
+          width: 100%;
+          padding: 8px 16px !important;
+          box-sizing: border-box !important;
+          margin: 0 !important;
+      }
+      .budget-row { min-height: 56px; }
+      .budget-col-header {
+          border-bottom: 1px solid var(--divider);
+          background: transparent;
+          padding-top: 4px !important;
+          padding-bottom: 4px !important;
+      }
+      .budget-col-header span {
+          font-size: 10px;
+          text-transform: uppercase;
+          color: #888;
+          font-weight: 600;
+      }
+      .budget-col-header span:nth-child(3) { text-align: left !important; }
+      .budget-col-header span:nth-child(4) { text-align: right !important; }
+      .budget-col-header span:nth-child(5) { text-align: right !important; }
+      .budget-row__foreign, .budget-row__eur { text-align: right; }
+      .budget-row__eur { font-weight: 700; }
+      .budget-input {
+          width: 100%;
+          text-align: right;
+          border: none;
+          background: transparent;
+          border-bottom: 1px dotted #ccc;
+          font-family: inherit;
+          padding: 2px 0;
+      }
+      .add-item-btn {
+        background: none;
+        border: none;
+        color: var(--charcoal, #444);
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 2px 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.35;
+        transition: opacity 0.15s, color 0.15s;
+      }
+      .add-item-btn:hover {
+        opacity: 1;
+        color: var(--trip-accent);
+      }
+      .budget-desc-input {
+        display: block;
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        padding: 0;
+        outline: none;
+      }
+      .budget-desc-input:focus { border-bottom: 1px dotted #ccc; }
+      .budget-notes-input {
+        display: block;
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        font-size: 11px;
+        color: #999;
+        padding: 0;
+        margin-top: 0;
+        outline: none;
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .budget-row:hover .budget-notes-input,
+      .budget-notes-input:not(:placeholder-shown),
+      .budget-notes-input:focus {
+        height: auto;
+        overflow: visible;
+        opacity: 1;
+        margin-top: 2px;
+        padding: 1px 0;
+      }
+      .budget-notes-input:focus { border-bottom: 1px dotted #ccc; }
+      .budget-notes-input::placeholder { opacity: 0.5; }
+      .delete-item-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 0;
+        opacity: 0;
+        transition: opacity 0.15s, color 0.15s;
+        justify-self: center;
+        line-height: 1;
+      }
+      .budget-row:hover .delete-item-btn { opacity: 0.45; }
+      .delete-item-btn:hover { opacity: 1 !important; color: #d44; }
+      .drag-handle {
+          cursor: grab;
+          color: var(--trip-accent-light);
+          margin-right: 8px;
+          font-size: 18px;
+          user-select: none;
+          opacity: 0.5;
+          transition: opacity 0.2s;
+      }
+      .drag-handle:hover { opacity: 1; }
+      .drag-handle:active { cursor: grabbing; }
+      .sortable-ghost {
+          opacity: 0.3;
+          background: var(--trip-accent-light) !important;
+      }
     </style>
   </head>
 
@@ -389,326 +514,49 @@
       <!-- ✈ FLIGHTS -->
       <div class="budget-category" id="cat-flights">
         <div class="budget-category__header" onclick="toggleCategory('cat-flights')">
-          <svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg> Flights <span class="budget-category__subtotal" id="sub-flights"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg> Flights <button class="add-item-btn" onclick="addNewItem(event, 'flights', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-flights"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Amsterdam (AMS) to Edinburgh (EDI)<small>easyJet EJU7837 · 18 Apr 07:20 – 07:50 · incl. seats & 2x23kg luggage</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 619.67" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 619.67</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Edinburgh (EDI) to Belfast (BFS)<small>Ryanair RK179 · 25 Apr 15:40 – 16:30 · incl. seats & 2x23kg luggage</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 129.76" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Belfast (BFS) to Amsterdam (AMS)<small>easyJet EZY3051 · 3 May 13:25 – 16:05 · incl. seats & 2x23kg luggage</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 304.42" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 276.00</span></div>
-          </div>
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <!-- 🏨 ACCOMMODATION -->
       <div class="budget-category" id="cat-stays">
         <div class="budget-category__header" onclick="toggleCategory('cat-stays')">
-          <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg> Accommodation <span class="budget-category__subtotal" id="sub-stays"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg> Accommodation <button class="add-item-btn" onclick="addNewItem(event, 'stays', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-stays"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Stirling — 2 nights<small>Premier Inn Stirling South</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 109.00" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 276.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Fort William — 2 nights<small>Base Camp Hotel Nevis Range</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 258.40" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 448.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Skye — 3 nights<small>Hebridean - Rooms & Apartments</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 615" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 1,094.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Belfast — 3 nights<small>ibis Belfast City Centre</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 319.60" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 355.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Galway — 2 nights<small>Maldron Hotel Sandy Road Galway</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 259.18" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 304.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Dublin — 2 nights<small>Maldron Hotel Merrion Road</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 359.55" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 691.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Lisburn — 1 night<small>Premier Inn Lisburn hotel · not booked</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 114.00" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 100.00</span></div>
-          </div>
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <!-- 🚗 GROUND TRANSPORT -->
       <div class="budget-category" id="cat-transport">
         <div class="budget-category__header" onclick="toggleCategory('cat-transport')">
-          <svg class="icon" width="14" height="14"><use href="#icon-car"/></svg> Ground Transport <span class="budget-category__subtotal" id="sub-transport"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-car"/></svg> Ground Transport <button class="add-item-btn" onclick="addNewItem(event, 'transport', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-transport"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI)<small>SIXT · VW T-Cross · 18 Apr 09:00 – 25 Apr 13:30</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 311.49" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 311.49</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Edinburgh Airport (EDI) Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 96" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Belfast Airport (BFS)<small>SIXT · Kia Sportage · 25 Apr 17:00 – 28 Apr 16:30</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 112.26" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 132.47</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Belfast Airport (BFS) Insurance<small>AXA Premium Insurance · 100% Refundable Excess</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 9.09" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Car Rental Belfast Airport (BFS) Extension<small>SIXT · Kia Sportage · 28 Apr 16:30 – 3 May 11:00 · booked, not paid</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 235" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 286.17</span></div>
-          </div>
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <!-- 🎟️ ATTRACTIONS -->
       <div class="budget-category" id="cat-attractions">
         <div class="budget-category__header" onclick="toggleCategory('cat-attractions')">
-          <svg class="icon" width="14" height="14"><use href="#icon-ticket"/></svg> Attractions <span class="budget-category__subtotal" id="sub-attractions"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-ticket"/></svg> Attractions <button class="add-item-btn" onclick="addNewItem(event, 'attractions', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-attractions"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <!-- Day 1 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Stirling Castle<small>Day 1 · Stirling</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 60" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 2 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Doune Castle<small>Day 2 · Stirling area</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">SS Walter Scott / Loch Katrine cruise<small>Day 2 · Loch Katrine · pre-book via lochkatrine.com</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 3 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Nevis Range Gondola<small>Day 3 · Fort William</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 45" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 4 -->
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Loch Ness boat cruise (Jacobite Cruises)<small>Day 4 · Loch Ness · pre-book via jacobite.co.uk</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 98.58" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Urquhart Castle<small>Day 4 · Drumnadrochit</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 50" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 5 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Eilean Donan Castle<small>Day 5 · Glen Shiel</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 7 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Dunvegan Castle + Seal Boat Trip<small>Day 7 · Skye</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 75" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 9 -->
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Titanic Belfast (timed entry)<small>Day 9 · Belfast</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 49.40" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Black Cab Tour (Belfast murals + Peace Wall)<small>Day 9 · Belfast</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 10 -->
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Giant's Causeway + Carrick-a-Rede<small>Day 10 · Causeway Coast</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 40" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 11 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Castle Ward archery — Clearsky Adventure Centre<small>Day 11 · Strangford · pre-book at clearskyadventurecentre.com</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Newgrange / Brú na Bóinne (timed entry)<small>Day 11 · Boyne Valley · pre-book via heritageireland.ie</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 12 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Cliffs of Moher + Aillwee Cave<small>Day 12 · The Burren</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 60" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 60.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Caherconnell Stone Fort (sheepdog demo)<small>Day 12 · The Burren</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 13 -->
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Rock of Cashel<small>Day 13 · Cashel</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="TBD" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <!-- Day 14 -->
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Trinity Trails Campus Tour & Book of Kells Experience<small>Day 14 · Dublin</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 78" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 45.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Guinness Storehouse<small>Day 14 · optional · Dublin · open until 20:00</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 55" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 55.00</span></div>
-          </div>
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <!-- 🛂 ADMIN & PREP -->
       <div class="budget-category" id="cat-admin">
         <div class="budget-category__header" onclick="toggleCategory('cat-admin')">
-          <svg class="icon" width="14" height="14"><use href="#icon-clipboard"/></svg> Admin & Prep <span class="budget-category__subtotal" id="sub-admin"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-clipboard"/></svg> Admin & Prep <button class="add-item-btn" onclick="addNewItem(event, 'admin', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-admin"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">UK Tourist Visas<small>Indonesian passport holders</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 0" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Travel Car Seat<small>Cosatto Ninja i-Go R129 · Foxed</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 131.95" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Travel and Cancellation Insurance — Family of 3<small>Allianz Direct · Annual · 1 Apr 2026 – 1 Apr 2027</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 272.36" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 272.36</span></div>
-          </div>
-          
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <!-- 🍴 DAILY SPEND -->
       <div class="budget-category" id="cat-daily">
         <div class="budget-category__header" onclick="toggleCategory('cat-daily')">
-          <svg class="icon" width="14" height="14"><use href="#icon-coins"/></svg> Daily Spend <span class="budget-category__subtotal" id="sub-daily"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-coins"/></svg> Daily Spend <button class="add-item-btn" onclick="addNewItem(event, 'daily', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-daily"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Food & Drink — Scotland (8 days)<small>Estimate · €80/day family of 3</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="£ 540" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Food & Drink — NI + Ireland (8 days)<small>Estimate · €80/day family of 3</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 640" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 640.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Petrol / Fuel Estimate<small>3 rental cars · Scotland, NI, Ireland</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 250" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 250.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Miscellaneous + Shopping<small>Souvenirs, snacks, unexpected fun</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 200" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 200.00</span></div>
-          </div>
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <div class="budget-totals">
@@ -2556,6 +2404,8 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/db.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/trip-security.js"></script>
 
@@ -2580,7 +2430,7 @@
   };
 
   // ── SETTINGS ─────────────────────────────────
-  const GBP_TO_EUR = 1.18; // 1 GBP = 1.18 EUR
+  const GBP_TO_EUR = 1.15;
 
   // ── SECTION NAV ACTIVE STATE ─────────────────
   (function () {
@@ -2692,44 +2542,31 @@ function calculateBudget() {
   let totalPaid = 0;
   let totalAll  = 0;
 
-  const catMap = {
-    'cat-flights':     'sub-flights',
-    'cat-stays':       'sub-stays',
-    'cat-transport':   'sub-transport',
-    'cat-attractions': 'sub-attractions',
-    'cat-admin':       'sub-admin',
-    'cat-daily':       'sub-daily',
-  };
-
-  Object.keys(catMap).forEach(catId => {
-    const catEl = document.getElementById(catId);
-    if (!catEl) return;
+  document.querySelectorAll('.budget-category').forEach(catEl => {
+    const catKey = catEl.id.replace('cat-', '');
     let catTotal = 0;
+
     catEl.querySelectorAll('.budget-row').forEach(row => {
       const eurAmountEl = row.querySelector('.budget-row__eur-amount');
-      const val = Math.round((parseFloat(eurAmountEl.getAttribute('data-eur-val')) || 0) * 100) / 100;
+      const val = parseFloat(eurAmountEl.getAttribute('data-eur-val')) ||
+                  parseFloat(eurAmountEl.textContent.replace(/[€\s,]/g, '')) || 0;
       catTotal += val;
+
+      const isPaid = row.classList.contains('is-paid');
+      totalAll += val;
+      if (isPaid) totalPaid += val;
     });
-    const subEl = document.getElementById(catMap[catId]);
+
+    const subEl = document.getElementById(`sub-${catKey}`);
     if (subEl) {
       const rows = catEl.querySelectorAll('.budget-row');
-      const allPaid = rows.length > 0 && [...rows].every(r => r.querySelector('.check').classList.contains('is-checked'));
+      const allPaid = rows.length > 0 && [...rows].every(r => r.classList.contains('is-paid'));
       subEl.textContent = (allPaid ? '✓ ' : '') + fmt(catTotal);
-      subEl.style.color = allPaid ? 'var(--teal)' : '';
+      subEl.style.color = allPaid ? 'var(--trip-accent)' : '';
     }
   });
 
-  document.querySelectorAll('.budget-row').forEach(row => {
-    const isPaid = row.querySelector('.check').classList.contains('is-checked');
-    const eurAmountEl = row.querySelector('.budget-row__eur-amount');
-    const val = Math.round((parseFloat(eurAmountEl.getAttribute('data-eur-val')) || 0) * 100) / 100;
-    totalAll += val;
-    if (isPaid) totalPaid += val;
-  });
-
-  totalAll  = Math.round(totalAll  * 100) / 100;
-  totalPaid = Math.round(totalPaid * 100) / 100;
-  const totalUnpaid = Math.round((totalAll - totalPaid) * 100) / 100;
+  const totalUnpaid = Math.max(0, totalAll - totalPaid);
   const pct = totalAll > 0 ? (totalPaid / totalAll * 100) : 0;
 
   document.getElementById('total-paid').textContent    = fmt(totalPaid);

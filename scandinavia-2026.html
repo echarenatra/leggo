@@ -35,6 +35,142 @@
         --trip-accent:       #4c97aa;
         --trip-accent-light: #bde1e8;
       }
+      .add-item-btn {
+        background: none;
+        border: none;
+        color: var(--charcoal, #444);
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 2px 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.35;
+        transition: opacity 0.15s, color 0.15s;
+      }
+      .add-item-btn:hover {
+        opacity: 1;
+        color: var(--trip-accent);
+      }
+.budget-desc-input {
+        display: block;
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        padding: 0;
+        outline: none;
+      }
+      .budget-desc-input:focus { border-bottom: 1px dotted #ccc; }
+      .budget-notes-input {
+        display: block;
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-family: inherit;
+        font-size: 11px;
+        color: #999;
+        padding: 0;
+        margin-top: 0;
+        outline: none;
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .budget-row:hover .budget-notes-input,
+      .budget-notes-input:not(:placeholder-shown),
+      .budget-notes-input:focus {
+        height: auto;
+        overflow: visible;
+        opacity: 1;
+        margin-top: 2px;
+        padding: 1px 0;
+      }
+      .budget-notes-input:focus { border-bottom: 1px dotted #ccc; }
+      .budget-notes-input::placeholder { opacity: 0.5; }
+      .delete-item-btn {
+        background: none;
+        border: none;
+        color: #999;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 0;
+        opacity: 0;
+        transition: opacity 0.15s, color 0.15s;
+        justify-self: center;
+        line-height: 1;
+      }
+      .budget-row:hover .delete-item-btn { opacity: 0.45; }
+      .delete-item-btn:hover { opacity: 1 !important; color: #d44; }
+      .drag-handle {
+          cursor: grab;
+          color: var(--trip-accent-light);
+          margin-right: 8px;
+          font-size: 18px;
+          user-select: none;
+          opacity: 0.5;
+          transition: opacity 0.2s;
+      }
+      .drag-handle:hover { opacity: 1; }
+      .drag-handle:active { cursor: grabbing; }
+
+      /* Sortable Ghost Styling */
+      .sortable-ghost {
+          opacity: 0.3;
+          background: var(--trip-accent-light) !important;
+      }
+
+      .budget-row,
+      .budget-col-header {
+          display: grid !important;
+          grid-template-columns: 28px 34px 1fr 120px 100px 28px !important;
+          column-gap: 12px;
+          align-items: center;
+          width: 100%;
+          padding: 8px 16px !important;
+          box-sizing: border-box !important;
+          margin: 0 !important;
+      }
+      .budget-row { min-height: 56px; }
+
+      .budget-col-header {
+          border-bottom: 1px solid var(--divider);
+          background: transparent;
+          padding-top: 4px !important;
+          padding-bottom: 4px !important;
+      }
+
+      .budget-col-header span {
+          font-size: 10px;
+          text-transform: uppercase;
+          color: #888; 
+          font-weight: 600;
+      }
+
+      /* Force exact alignments for columns 3, 4, and 5 */
+      .budget-col-header span:nth-child(3) { text-align: left !important; }
+      .budget-col-header span:nth-child(4) { text-align: right !important; }
+      .budget-col-header span:nth-child(5) { text-align: right !important; }
+
+      .budget-row__foreign, .budget-row__eur { text-align: right; }
+      .budget-row__eur { font-weight: 700; }
+
+      /* THE CRITICAL INPUT FIX */
+      .budget-input {
+          width: 100%;
+          text-align: right;
+          border: none;
+          background: transparent;
+          border-bottom: 1px dotted #ccc;
+          font-family: inherit;
+          padding: 2px 0;
+      } 
+
+      
     </style>
   </head>
 
@@ -306,122 +442,56 @@
 
       <div class="budget-category" id="cat-flights">
         <div class="budget-category__header" onclick="toggleCategory('cat-flights')">
-          <svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg> Flights <span class="budget-category__subtotal" id="sub-flights"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-plane"/></svg> Flights <button class="add-item-btn" onclick="addNewItem(event, 'flights', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-flights"></span><span class="budget-category__toggle">▾</span>
         </div>
-        <div class="budget-rows">
-          <div class="budget-col-header">
-            <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Amsterdam (AMS) to Bergen (BGO)<small>KLM KL1163 · 5 Jul 08:20 – 10:00 · Ersalina family only</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 561.94" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 561.94</span></div>
-          </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Flight Helsinki (HEL) to Amsterdam (AMS)<small>KLM KL1254 · 17 Jul 18:25 – 19:55 · Ersalina family only</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 215.94" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 215.94</span></div>
-          </div>
-        </div>
+        <div class="budget-rows"></div>
       </div>
 
       <div class="budget-category" id="cat-stays">
         <div class="budget-category__header" onclick="toggleCategory('cat-stays')">
-          <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg> Accommodation (Ersalina Share) <span class="budget-category__subtotal" id="sub-stays"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg> Accommodation <button class="add-item-btn" onclick="addNewItem(event, 'stays', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-stays"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Bergen — 2 nights (1/3 share)<small>Keyser Apartments 8 · Booked by Ersalina · Pay before trip</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="NOK 2,899.66" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Myrkdalen — 4 nights (1/3 share)<small>ChaletMons · Booked by Angia · Pay Angia before trip</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 496.53" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 496.53</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Oslo — 2 nights (1/3 share)<small>Citybox Oslo · Booked by Ersalina · Pay at property</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="NOK 2,667.60" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Stockholm — 2 nights (1/3 share)<small>Scandic No 53 · Booked by Ersalina · Pay at property</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="SEK 2,502" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 0.00</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Helsinki — 1 night (Estimate)<small>TBD Hotel</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 150" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 150.00</span></div>
-          </div>
+          
         </div>
       </div>
 
       <div class="budget-category" id="cat-transport">
         <div class="budget-category__header" onclick="toggleCategory('cat-transport')">
-          <svg class="icon" width="14" height="14"><use href="#icon-train"/></svg> Transport & Cruise <span class="budget-category__subtotal" id="sub-transport"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-train"/></svg> Ground Transport <button class="add-item-btn" onclick="addNewItem(event, 'transport', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-transport"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
           </div>
-          <div class="budget-row is-paid">
-            <span class="check is-checked" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Silja Serenade Cruise (1/3 share)<small>Stockholm to Helsinki · Booked & Paid by Delania</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 252.70" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 252.70</span></div>
-          </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Trains & Transfers Estimate<small>Bergen Railway, SJ Train to Stockholm, Airport transfers</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 400" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 400.00</span></div>
-          </div>
+          
         </div>
       </div>
 
       <div class="budget-category" id="cat-attractions">
         <div class="budget-category__header" onclick="toggleCategory('cat-attractions')">
-          <svg class="icon" width="14" height="14"><use href="#icon-ticket"/></svg> Attractions (Est.) <span class="budget-category__subtotal" id="sub-attractions"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-ticket"/></svg> Attractions <button class="add-item-btn" onclick="addNewItem(event, 'attractions', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-attractions"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Attractions & Excursions Estimate<small>Flåmsbana, Nærøyfjord Cruise, Museums</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 350" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 350.00</span></div>
-          </div>
+          
         </div>
       </div>
 
       <div class="budget-category" id="cat-daily">
         <div class="budget-category__header" onclick="toggleCategory('cat-daily')">
-          <svg class="icon" width="14" height="14"><use href="#icon-coins"/></svg> Daily Spend <span class="budget-category__subtotal" id="sub-daily"></span><span class="budget-category__toggle">▾</span>
+          <svg class="icon" width="14" height="14"><use href="#icon-coins"/></svg> Daily Spend <button class="add-item-btn" onclick="addNewItem(event, 'daily', 'leggo_budget_items')" title="Add item">+</button><span class="budget-category__subtotal" id="sub-daily"></span><span class="budget-category__toggle">▾</span>
         </div>
         <div class="budget-rows">
           <div class="budget-col-header">
             <span></span><span>Item</span><span>Amount</span><span>≈ EUR</span>
           </div>
-          <div class="budget-row">
-            <span class="check" onclick="toggleCheck(this)" title="Mark as paid"></span>
-            <div class="budget-row__desc">Food & Drink Estimate (13 days)<small>Estimate · €120/day Ersalina family of 3 (Nordic prices)</small></div>
-            <div class="budget-row__foreign"><input class="budget-input" value="€ 1560" oninput="convertRow(this)"></div>
-            <div class="budget-row__eur"><span class="budget-row__eur-amount">€ 1,560.00</span></div>
-          </div>
+          
         </div>
       </div>
 
@@ -904,64 +974,44 @@
     </div>
 
     <div class="pack-wrapper" id="pack-wrapper">
-
+      
       <div class="pack-category" id="pack-docs">
         <div class="pack-category__header" onclick="togglePack('pack-docs')">
-          📄 Documents & Money
+          📄 Documents & Money <button class="add-item-btn" onclick="addNewItem(event, 'docs', 'leggo_packing_items')">+</button>
           <span class="pack-category__count" id="pcount-docs"></span>
           <span class="pack-category__toggle">▾</span>
         </div>
         <div class="pack-rows">
           <div class="pack-sub-label">All adults</div>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Passport (valid > 6 months)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Schengen visa printout (if applicable)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Flight e-tickets (KLM)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Train tickets (Bergen Rwy, SJ, Flåmsbana)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Silja Cruise confirmation</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>All hotel confirmation printouts</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Credit / debit cards (contactless)</span></label>
+          
           <div class="pack-sub-label">Child</div>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Child's passport</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Child's Schengen visa (if applicable)</span></label>
+          
         </div>
       </div>
 
       <div class="pack-category" id="pack-clothes">
         <div class="pack-category__header" onclick="togglePack('pack-clothes')">
-          👕 Clothing
+          👕 Clothing <button class="add-item-btn" onclick="addNewItem(event, 'clothes', 'leggo_packing_items')">+</button>
           <span class="pack-category__count" id="pcount-clothes"></span>
           <span class="pack-category__toggle">▾</span>
         </div>
         <div class="pack-rows">
           <div class="pack-sub-label">All — Nordic Summer (12–22°C, unpredictable)</div>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Waterproof light jacket / windbreaker</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Fleece or warm sweater</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>T-shirts & Long-sleeve tops</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Jeans / comfortable walking trousers</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Underwear & Socks</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Pyjamas</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Comfortable walking shoes / trainers</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Light hiking shoes (for Myrkdalen)</span></label>
+         
           <div class="pack-sub-label">Child (age 6)</div>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Kids waterproof jacket</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Warm layers & play clothes</span></label>
+          
         </div>
       </div>
 
       <div class="pack-category" id="pack-tech-kids">
         <div class="pack-category__header" onclick="togglePack('pack-tech-kids')">
-          🎒 Tech & Kids Essentials
+          🎒 Tech & Kids Essentials <button class="add-item-btn" onclick="addNewItem(event, 'tech-kids', 'leggo_packing_items')">+</button>
           <span class="pack-category__count" id="pcount-tech-kids"></span>
           <span class="pack-category__toggle">▾</span>
         </div>
         <div class="pack-rows">
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Phones + chargers</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Power bank (crucial for long train days)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>European plug adapter (standard EU 2-pin used in all 3 countries)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Tablet + headphones for kids (long trains)</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Card games / travel games</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Snacks for travel days</span></label>
-          <label class="pack-row"><input type="checkbox" class="pack-check"><span>Sleep mask (Nordic summer nights are BRIGHT)</span></label>
+          <div class="pack-sub-label">All</div>
+          
         </div>
       </div>
 
@@ -1001,10 +1051,14 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/db.js"></script>
+<script src="assets/app.js"></script>
 <script src="assets/trip-security.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
 <script>
-  const PAGE_SECURITY_CONFIG = {
+  window.PAGE_SECURITY_CONFIG = {
     enabled: true,
     pageId: 'scandinavia-2026',
     backUrl: 'index.html',
@@ -1020,9 +1074,9 @@
   };
 
   // ── SETTINGS ─────────────────────────────────
-  const NOK_TO_EUR = 0.086; 
-  const SEK_TO_EUR = 0.088;
-  const GBP_TO_EUR = 1.18;
+  const NOK_TO_EUR = 0.089; 
+  const SEK_TO_EUR = 0.092;
+  const GBP_TO_EUR = 1.15;
 
   // ── SECTION NAV ACTIVE STATE ─────────────────
   (function () {
@@ -1114,43 +1168,31 @@
     let totalPaid = 0;
     let totalAll  = 0;
 
-    const catMap = {
-      'cat-flights':     'sub-flights',
-      'cat-stays':       'sub-stays',
-      'cat-transport':   'sub-transport',
-      'cat-attractions': 'sub-attractions',
-      'cat-daily':       'sub-daily',
-    };
-
-    Object.keys(catMap).forEach(catId => {
-      const catEl = document.getElementById(catId);
-      if (!catEl) return;
+    document.querySelectorAll('.budget-category').forEach(catEl => {
+      const catKey = catEl.id.replace('cat-', '');
       let catTotal = 0;
+
       catEl.querySelectorAll('.budget-row').forEach(row => {
         const eurAmountEl = row.querySelector('.budget-row__eur-amount');
-        const val = Math.round((parseFloat(eurAmountEl.getAttribute('data-eur-val')) || 0) * 100) / 100;
+        const val = parseFloat(eurAmountEl.getAttribute('data-eur-val')) ||
+                    parseFloat(eurAmountEl.textContent.replace(/[€\s,]/g, '')) || 0;
         catTotal += val;
+
+        const isPaid = row.classList.contains('is-paid');
+        totalAll += val;
+        if (isPaid) totalPaid += val;
       });
-      const subEl = document.getElementById(catMap[catId]);
+
+      const subEl = document.getElementById(`sub-${catKey}`);
       if (subEl) {
         const rows = catEl.querySelectorAll('.budget-row');
-        const allPaid = rows.length > 0 && [...rows].every(r => r.querySelector('.check').classList.contains('is-checked'));
+        const allPaid = rows.length > 0 && [...rows].every(r => r.classList.contains('is-paid'));
         subEl.textContent = (allPaid ? '✓ ' : '') + fmt(catTotal);
-        subEl.style.color = allPaid ? 'var(--teal)' : '';
+        subEl.style.color = allPaid ? 'var(--trip-accent)' : '';
       }
     });
 
-    document.querySelectorAll('.budget-row').forEach(row => {
-      const isPaid = row.querySelector('.check').classList.contains('is-checked');
-      const eurAmountEl = row.querySelector('.budget-row__eur-amount');
-      const val = Math.round((parseFloat(eurAmountEl.getAttribute('data-eur-val')) || 0) * 100) / 100;
-      totalAll += val;
-      if (isPaid) totalPaid += val;
-    });
-
-    totalAll  = Math.round(totalAll  * 100) / 100;
-    totalPaid = Math.round(totalPaid * 100) / 100;
-    const totalUnpaid = Math.round((totalAll - totalPaid) * 100) / 100;
+    const totalUnpaid = Math.max(0, totalAll - totalPaid);
     const pct = totalAll > 0 ? (totalPaid / totalAll * 100) : 0;
 
     document.getElementById('total-paid').textContent    = fmt(totalPaid);
@@ -1158,7 +1200,7 @@
     document.getElementById('progress-fill').style.width = pct.toFixed(1) + '%';
     document.getElementById('prog-label-paid').textContent  = '€ ' + Math.round(totalPaid).toLocaleString('en-US') + ' paid';
     document.getElementById('prog-label-total').textContent = '€ ' + Math.round(totalAll).toLocaleString('en-US') + ' total';
-  }
+}
 
   function toggleCheck(el) {
     const row = el.closest('.budget-row');
@@ -1191,34 +1233,63 @@
       fadeObserver.observe(el);
     });
 
-    // ── PACKING LIST ─────────────────────────────
+    // ── 🎒 DUMB & FAST PACKING LIST (LocalStorage) ──
+    function getPackKey() { return 'leggo_pack_scandinavia_2026'; }
+
+    function savePackState() {
+      const state = {};
+      document.querySelectorAll('.pack-check').forEach((cb, i) => {
+        state[i] = cb.checked;
+      });
+      localStorage.setItem(getPackKey(), JSON.stringify(state));
+    }
+
+    function loadPackState() {
+      const saved = localStorage.getItem(getPackKey());
+      if (!saved) return;
+      const state = JSON.parse(saved);
+      document.querySelectorAll('.pack-row').forEach((row, i) => {
+        const cb = row.querySelector('.pack-check');
+        if (state[i]) {
+          cb.checked = true;
+          row.classList.add('is-checked');
+        }
+      });
+    }
+
     function updatePackProgress() {
       const allChecks = document.querySelectorAll('.pack-check');
-      const checked   = document.querySelectorAll('.pack-check:checked');
+      const checked = document.querySelectorAll('.pack-check:checked');
       const progressEl = document.getElementById('pack-progress');
-      if (progressEl) progressEl.textContent = checked.length + ' / ' + allChecks.length;
+      if (progressEl) progressEl.textContent = `${checked.length} / ${allChecks.length}`;
+      
       document.querySelectorAll('.pack-category').forEach(cat => {
-        const total   = cat.querySelectorAll('.pack-check').length;
-        const done    = cat.querySelectorAll('.pack-check:checked').length;
+        const total = cat.querySelectorAll('.pack-check').length;
+        const done = cat.querySelectorAll('.pack-check:checked').length;
         const countEl = cat.querySelector('.pack-category__count');
         if (countEl) {
-          countEl.textContent = done + ' / ' + total;
+          countEl.textContent = `${done} / ${total}`;
           countEl.classList.toggle('all-done', done === total);
         }
       });
     }
+
+    // Initialize
+    loadPackState();
     updatePackProgress();
+
     document.querySelectorAll('.pack-row').forEach(row => {
-      row.addEventListener('click', () => {
+      row.addEventListener('click', (e) => {
         const cb = row.querySelector('.pack-check');
         cb.checked = !cb.checked;
         row.classList.toggle('is-checked', cb.checked);
+        savePackState();
         updatePackProgress();
       });
     });
   });
 
-  function copyURL() {
+function copyURL() {
     navigator.clipboard.writeText(window.location.href);
   }
 
