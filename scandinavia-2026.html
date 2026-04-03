@@ -170,6 +170,53 @@
           padding: 2px 0;
       } 
 
+      /* ── LEDGER BADGES ── */
+      .budget-row__badges {
+          display: flex;
+          gap: 4px;
+          margin-top: 5px;
+          flex-wrap: wrap;
+          align-items: center;
+      }
+      .payer-badge {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-mono, monospace);
+          font-size: 9px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 2px 7px;
+          border-radius: 99px;
+          cursor: pointer;
+          transition: opacity 0.15s;
+          user-select: none;
+          line-height: 1.5;
+      }
+      .payer-badge:hover { opacity: 0.7; }
+      .payer-badge--empty { color: #aaa; border: 1px dashed #ccc; background: transparent; }
+      /* colored payer badges use inline style from LEDGER_FAMILIES config */
+      .shared-badge {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-mono, monospace);
+          font-size: 9px;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+          font-weight: 500;
+          padding: 2px 7px;
+          border-radius: 99px;
+          cursor: pointer;
+          user-select: none;
+          border: none;
+          line-height: 1.5;
+          background: rgba(0,0,0,0.05);
+          color: #999;
+          transition: opacity 0.15s, background 0.15s;
+      }
+      .shared-badge:hover { opacity: 0.75; }
+      .shared-badge.is-shared { background: rgba(43,106,122,0.12); color: var(--trip-accent); }
+
       @media (max-width: 640px) {
           .budget-row,
           .budget-col-header {
@@ -372,8 +419,14 @@
           </li>
           <li>
             <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-train"/></svg></span>
-            <div>Train: Bergen → Voss + Bus to Myrkdalen
+            <div>Train: Bergen → Voss
               <span class="transport-day">Day 3 · 7 Jul</span>
+            </div>
+          </li>
+          <li>
+            <span class="transport-icon"><svg class="icon" width="15" height="15"><use href="#icon-car"/></svg></span>
+            <div>Car Rental Voss
+              <span class="transport-day">Day 3-7 · 7-11 Jul</span>
             </div>
           </li>
           <li>
@@ -408,21 +461,42 @@
       </div>
 
       <div class="snapshot-card">
-        <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Logistics & Docs</div>
+        <div class="snapshot-card__title">
+            <svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Logistics & Docs
+        </div>
         <ul class="logistics-list">
-          <li><span class="logistics-key">Indonesian passports</span><span class="logistics-val logistics-ok">✓ Verify validity</span></li>
-          <li><span class="logistics-key">Schengen Visas</span><span class="logistics-val" style="color:var(--accent)">⚠ Required for IDN passports</span></li>
-          <li>
-            <span class="logistics-key">Currency Note</span>
-            <span class="logistics-val logistics-ok">Mostly Cashless</span>
-            <span class="logistics-detail">NOK, SEK, and EUR used across 3 countries.</span>
-            <span class="logistics-detail">Use contactless cards; cash rarely needed.</span>
-          </li>
-          <li>
-            <span class="logistics-key">Group Costs</span>
-            <span class="logistics-val logistics-ok">Shared split</span>
-            <span class="logistics-detail">Costs tracked below are Ersalina family's share.</span>
-          </li>
+            <li>
+                <span class="logistics-key">Entry Documents</span>
+                <span class="logistics-val logistics-ok">✓ Ready</span>
+                <span class="logistics-detail">Ersalina & Angia: IDN Passport + NL RP</span>
+                <span class="logistics-detail">Delania: IDN Passport + Schengen Visa</span>
+            </li>
+            
+            <li>
+                <span class="logistics-key">Child Safety</span>
+                <span class="logistics-val logistics-warn">⚠ 3 Car Seats</span>
+                <span class="logistics-detail">Boosters req. for kids (Ages 6, 8, 9)</span>
+                <span class="logistics-detail">Required for Voss rental (7-11 July)</span>
+            </li>
+
+            <li>
+                <span class="logistics-key">Transport Mode</span>
+                <span class="logistics-val logistics-ok">Multi-modal</span>
+                <span class="logistics-detail">Flights, Vy/SJ Trains, Car, & Silja Cruise</span>
+            </li>
+
+            <li>
+                <span class="logistics-key">Currency Note</span>
+                <span class="logistics-val logistics-ok">100% Cashless</span>
+                <span class="logistics-detail">NOK (Norway), SEK (Sweden), EUR (Finland)</span>
+                <span class="logistics-detail">Cards/Apple Pay accepted everywhere</span>
+            </li>
+
+            <li>
+                <span class="logistics-key">Group Costs</span>
+                <span class="logistics-val logistics-ok">3-Way Split</span>
+                <span class="logistics-detail">Shared costs tracked as 1/3 share per family</span>
+            </li>
         </ul>
       </div>
     </div>
@@ -513,6 +587,35 @@
         <div class="budget-total-box budget-total-box--unpaid">
           <span class="budget-total-box__label">○ Still to Pay / Est.</span>
           <span class="budget-total-box__amount" id="total-unpaid">€ 0</span>
+        </div>
+      </div>
+
+      <div class="shared-ledger" id="shared-ledger">
+        <div class="shared-ledger__header" onclick="document.getElementById('shared-ledger').classList.toggle('is-open')">
+          <div class="shared-ledger__header-left">
+            <span class="shared-ledger__header-title">Shared Ledger</span>
+            <span class="shared-ledger__header-summary" id="ledger-header-summary">3 families</span>
+          </div>
+          <span class="shared-ledger__header-chevron">▾</span>
+        </div>
+
+        <div class="shared-ledger__body">
+          <div class="shared-ledger__summary-block">
+            <div class="shared-ledger__row shared-ledger__row--total">
+              <span class="shared-ledger__label">Total Shared Cost</span>
+              <span class="shared-ledger__amount" id="ledger-total">€ 0</span>
+            </div>
+            <div class="shared-ledger__row">
+              <span class="shared-ledger__label">Per Family (÷ 3)</span>
+              <span class="shared-ledger__amount" id="ledger-per-family">€ 0</span>
+            </div>
+          </div>
+
+          <div class="shared-ledger__paid-block" id="ledger-paid-rows"></div>
+
+          <div id="ledger-debts">
+            <div class="shared-ledger__settled">Tag items with who paid to calculate debts</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1083,6 +1186,15 @@
     shareUrl: "https://leggo-murex.vercel.app/scandinavia-2026.html"
   };
 
+  // ── SHARED LEDGER CONFIG ─────────────────────
+  // To use on a different trip: change names/colors here only. No other code changes needed.
+  const LEDGER_FAMILIES = [
+    { name: 'Ersalina', color: '#2b6a7a' },
+    { name: 'Angia',    color: '#7b5ea7' },
+    { name: 'Delania',  color: '#c4622d' },
+  ];
+  window.LEDGER_FAMILIES = LEDGER_FAMILIES;
+
   // ── SETTINGS ─────────────────────────────────
   const NOK_TO_EUR = 0.089; 
   const SEK_TO_EUR = 0.092;
@@ -1210,6 +1322,107 @@
     document.getElementById('progress-fill').style.width = pct.toFixed(1) + '%';
     document.getElementById('prog-label-paid').textContent  = '€ ' + Math.round(totalPaid).toLocaleString('en-US') + ' paid';
     document.getElementById('prog-label-total').textContent = '€ ' + Math.round(totalAll).toLocaleString('en-US') + ' total';
+
+    // ── SHARED LEDGER ────────────────────────────
+    const _LF = window.LEDGER_FAMILIES || [];
+    if (!_LF.length || !document.getElementById('ledger-total')) return;
+
+    // Build name→family lookup for O(1) access
+    const _famMap = {};
+    _LF.forEach(f => { _famMap[f.name] = f; });
+    const _famNames = _LF.map(f => f.name);
+
+    const _paid = {}, _owes = {};
+    _famNames.forEach(n => { _paid[n] = 0; _owes[n] = 0; });
+    let _sharedTotal = 0;
+
+    document.querySelectorAll('.budget-row').forEach(row => {
+      if (row.dataset.isShared !== 'true') return;
+      const eurEl = row.querySelector('.budget-row__eur-amount');
+      if (!eurEl) return;
+      const amt = parseFloat(eurEl.getAttribute('data-eur-val')) || 0;
+      if (!amt) return;
+      _sharedTotal += amt;
+      const paidBy    = row.dataset.paidBy || '';
+      const splitWith = (row.dataset.splitWith || _famNames.join(','))
+          .split(',').filter(n => _famMap[n]);
+      if (_famMap[paidBy]) _paid[paidBy] += amt;
+      if (splitWith.length) {
+        const share = amt / splitWith.length;
+        splitWith.forEach(n => { _owes[n] += share; });
+      }
+    });
+
+    const _perFamily = _LF.length ? _sharedTotal / _LF.length : 0;
+    const fmtL = n => '\u20ac\u00a0' + Math.round(n).toLocaleString('en-US');
+
+    document.getElementById('ledger-total').textContent      = fmtL(_sharedTotal);
+    document.getElementById('ledger-per-family').textContent = fmtL(_perFamily);
+
+    // Render paid rows dynamically (so any family config works)
+    const paidRowsEl = document.getElementById('ledger-paid-rows');
+    if (paidRowsEl) {
+      paidRowsEl.innerHTML = _LF.map(f => `
+        <div class="shared-ledger__paid-row" style="border-left-color:${f.color}">
+          <span class="shared-ledger__label">
+            <span class="family-dot" style="background:${f.color}"></span> ${f.name} paid
+          </span>
+          <span class="shared-ledger__amount">${fmtL(_paid[f.name])}</span>
+        </div>`).join('');
+    }
+
+    // Greedy debt settlement
+    const _balance = {};
+    _famNames.forEach(n => { _balance[n] = _paid[n] - _owes[n]; });
+    const _creds   = _famNames.filter(n => _balance[n] >  0.5)
+        .map(n => ({ name: n, color: _famMap[n].color, amt: _balance[n] })).sort((a,b) => b.amt - a.amt);
+    const _debtors = _famNames.filter(n => _balance[n] < -0.5)
+        .map(n => ({ name: n, color: _famMap[n].color, amt: -_balance[n] })).sort((a,b) => b.amt - a.amt);
+    const _settlements = [];
+    const _ca = _creds.map(c => c.amt);
+    const _da = _debtors.map(d => d.amt);
+    let _ci = 0, _di = 0;
+    while (_ci < _creds.length && _di < _debtors.length) {
+      const settle = Math.min(_ca[_ci], _da[_di]);
+      if (settle > 0.5) _settlements.push({ from: _debtors[_di], to: _creds[_ci], amt: settle });
+      _ca[_ci] -= settle; _da[_di] -= settle;
+      if (_ca[_ci] < 0.5) _ci++;
+      if (_da[_di] < 0.5) _di++;
+    }
+
+    // Update header summary (visible when collapsed)
+    const summaryEl = document.getElementById('ledger-header-summary');
+    if (summaryEl) {
+      if (_sharedTotal > 0) {
+        const debtCount = _settlements.length;
+        summaryEl.textContent = fmtL(_sharedTotal) + ' total'
+          + (debtCount > 0 ? ' · ' + debtCount + ' debt' + (debtCount > 1 ? 's' : '') : ' · settled');
+      } else {
+        summaryEl.textContent = _LF.length + ' families';
+      }
+    }
+
+    const debtsEl = document.getElementById('ledger-debts');
+    if (!debtsEl) return;
+    const anyPayer = _famNames.some(n => _paid[n] > 0);
+    if (!anyPayer) {
+      debtsEl.innerHTML = '<div class="shared-ledger__settled">Tag items with who paid to calculate debts</div>';
+    } else if (_settlements.length === 0) {
+      debtsEl.innerHTML = '<div class="shared-ledger__settled">\u2713 All settled</div>';
+    } else {
+      debtsEl.innerHTML = '<div class="shared-ledger__debt-block">'
+        + _settlements.map(s => `
+        <div class="shared-ledger__debt-row">
+          <span class="shared-ledger__label">
+            <span class="family-dot" style="background:${s.from.color}"></span>
+            ${s.from.name} owes
+            <span class="family-dot" style="background:${s.to.color}"></span>
+            ${s.to.name}
+          </span>
+          <span class="shared-ledger__debt-amount">${fmtL(s.amt)}</span>
+        </div>`).join('')
+        + '</div>';
+    }
 }
 
   function toggleCheck(el) {

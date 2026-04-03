@@ -42,7 +42,8 @@ async function syncEverything() {
 
 // 4. 🎨 BUDGET RENDERER
 function renderBudget(items) {
-    // Render rows for every .budget-category in the DOM
+    const hasLedger = Array.isArray(window.LEDGER_FAMILIES) && window.LEDGER_FAMILIES.length > 0;
+
     document.querySelectorAll('.budget-category').forEach(catEl => {
         const cat = catEl.id.replace('cat-', '');
         const container = catEl.querySelector('.budget-rows');
@@ -57,6 +58,31 @@ function renderBudget(items) {
             const row = document.createElement('div');
             row.className = `budget-row ${item.is_paid ? 'is-paid' : ''}`;
             row.setAttribute('data-id', item.id);
+
+            // Ledger data attributes (used by calculateBudget for ledger math)
+            const isShared = item.is_shared_expense !== false;
+            const splitWith = Array.isArray(item.split_with) && item.split_with.length
+                ? item.split_with
+                : (window.LEDGER_FAMILIES || []);
+            row.dataset.paidBy    = item.paid_by || '';
+            row.dataset.splitWith = splitWith.join(',');
+            row.dataset.isShared  = isShared ? 'true' : 'false';
+
+            // Badge HTML (only for ledger-enabled pages)
+            const badgesHTML = hasLedger ? (() => {
+                const paidBy = item.paid_by || '';
+                const famObj = (window.LEDGER_FAMILIES || []).find(f => f.name === paidBy);
+                const payerStyle = famObj ? `style="background:${famObj.color};color:#fff;border:none"` : '';
+                const payerClass = paidBy ? 'payer-badge' : 'payer-badge payer-badge--empty';
+                const payerLabel = paidBy || '+ who paid?';
+                const sharedClass = isShared ? 'is-shared' : '';
+                const sharedLabel = isShared ? '÷ shared' : 'solo';
+                return `<div class="budget-row__badges">
+                    <button class="${payerClass}" ${payerStyle} onclick="cyclePaidBy(this,'${item.id}')">${payerLabel}</button>
+                    <button class="shared-badge ${sharedClass}" onclick="toggleShared(this,'${item.id}')">${sharedLabel}</button>
+                </div>`;
+            })() : '';
+
             row.innerHTML = `
                 <span class="drag-handle">⠿</span>
                 <span class="check ${item.is_paid ? 'is-checked' : ''}"
@@ -64,6 +90,7 @@ function renderBudget(items) {
                 <div class="budget-row__desc">
                     <input class="budget-desc-input" placeholder="Item name…" onchange="updateBudgetDesc('${item.id}', this.value)">
                     <input class="budget-notes-input" placeholder="Details…" onchange="updateBudgetNotes('${item.id}', this.value)">
+                    ${badgesHTML}
                 </div>
                 <div class="budget-row__foreign">
                     <input class="budget-input" onchange="updateBudgetValue('${item.id}', this.value)">
@@ -81,6 +108,46 @@ function renderBudget(items) {
     });
     if (window.calculateBudget) window.calculateBudget();
     initSortable();
+}
+
+// 4b. 🏷 LEDGER BADGE INTERACTIONS
+function cyclePaidBy(btn, itemId) {
+    const famObjs = window.LEDGER_FAMILIES || [];
+    const names   = [...famObjs.map(f => f.name), ''];
+    const row     = btn.closest('.budget-row');
+    const current = row.dataset.paidBy || '';
+    const next    = names[(names.indexOf(current) + 1) % names.length];
+    row.dataset.paidBy = next;
+    if (next) {
+        const famObj = famObjs.find(f => f.name === next);
+        btn.textContent = next;
+        btn.className   = 'payer-badge';
+        btn.style.cssText = famObj ? `background:${famObj.color};color:#fff;border:none` : '';
+    } else {
+        btn.textContent   = '+ who paid?';
+        btn.className     = 'payer-badge payer-badge--empty';
+        btn.style.cssText = '';
+    }
+    updatePaidBy(itemId, next || null);
+}
+
+async function updatePaidBy(id, family) {
+    await window.leggoDB.from('leggo_budget_items').update({ paid_by: family || null }).eq('id', id);
+    if (window.calculateBudget) window.calculateBudget();
+}
+
+function toggleShared(btn, itemId) {
+    const row = btn.closest('.budget-row');
+    const isNowShared = row.dataset.isShared !== 'true';
+    row.dataset.isShared = isNowShared ? 'true' : 'false';
+    btn.textContent = isNowShared ? '÷ shared' : 'solo';
+    btn.classList.toggle('is-shared', isNowShared);
+    updateIsShared(itemId, isNowShared);
+}
+
+async function updateIsShared(id, value) {
+    await window.leggoDB.from('leggo_budget_items').update({ is_shared_expense: value }).eq('id', id);
+    if (window.calculateBudget) window.calculateBudget();
 }
 
 // 5. 🎨 PACKING RENDERER
@@ -123,6 +190,10 @@ async function addNewItem(event, category, table) {
         if (catEl && !catEl.classList.contains('is-open')) catEl.classList.add('is-open');
 
         const newItem = { trip_id: CURRENT_TRIP_ID, category: category, description: '', amount_text: '', amount_eur: 0 };
+        if (Array.isArray(window.LEDGER_FAMILIES) && window.LEDGER_FAMILIES.length) {
+            newItem.split_with = window.LEDGER_FAMILIES;
+            newItem.is_shared_expense = true;
+        }
         const { data, error } = await window.leggoDB.from(table).insert([newItem]).select();
         if (!error) {
             await syncEverything();

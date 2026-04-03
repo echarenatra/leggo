@@ -738,6 +738,157 @@
   font-weight: 600;
 }
 
+/* ── FAMILY DOTS ── */
+.family-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  /* color set via inline style from LEDGER_FAMILIES config */
+}
+
+/* ── SHARED LEDGER ── */
+.shared-ledger {
+  border-top: 2px solid var(--divider);
+}
+.shared-ledger__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--surface-muted);
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+  gap: 12px;
+}
+.shared-ledger__header:hover { background: var(--divider); }
+.shared-ledger__header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.shared-ledger__header-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+.shared-ledger__header-summary {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.shared-ledger__header-chevron {
+  color: var(--muted);
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+.shared-ledger.is-open .shared-ledger__header-chevron { transform: rotate(180deg); }
+
+.shared-ledger__body {
+  display: none;
+  padding: 20px 24px 24px;
+}
+.shared-ledger.is-open .shared-ledger__body { display: block; }
+
+/* Summary block (totals) */
+.shared-ledger__summary-block {
+  background: var(--warm-white);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  padding: 0 16px;
+  margin-bottom: 14px;
+}
+.shared-ledger__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
+  font-size: 13px;
+  color: var(--charcoal);
+  border-bottom: 1px dashed var(--divider);
+}
+.shared-ledger__row:last-child { border-bottom: none; }
+.shared-ledger__row--total { font-weight: 600; }
+.shared-ledger__row--total .shared-ledger__amount {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Paid-by block */
+.shared-ledger__paid-block {
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.shared-ledger__paid-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--charcoal);
+  background: var(--surface);
+  border-left: 3px solid transparent;
+}
+.shared-ledger__paid-row:not(:last-child) { border-bottom: 1px dashed var(--divider); }
+/* border-left-color set via inline style from LEDGER_FAMILIES config */
+
+/* Debt block */
+.shared-ledger__debt-block {
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.shared-ledger__debt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 16px;
+  font-size: 13px;
+  color: var(--charcoal);
+  background: var(--accent-pale);
+  border-left: 3px solid var(--accent);
+}
+.shared-ledger__debt-row:not(:last-child) { border-bottom: 1px dashed var(--divider); }
+
+.shared-ledger__label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.shared-ledger__amount {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.shared-ledger__debt-amount {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.shared-ledger__settled {
+  text-align: center;
+  font-size: 11px;
+  color: var(--teal);
+  font-family: var(--font-mono);
+  padding: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  background: var(--teal-pale);
+}
+@media (max-width: 640px) {
+  .shared-ledger__header { padding: 12px 16px; }
+  .shared-ledger__body   { padding: 16px 12px 20px; }
+}
+
 /* ── ITINERARY ── */
 .itinerary-list {
   display: flex;
