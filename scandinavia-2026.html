@@ -170,7 +170,17 @@
           padding: 2px 0;
       } 
 
-      
+      @media (max-width: 640px) {
+          .budget-row,
+          .budget-col-header {
+              grid-template-columns: 20px 28px 1fr 90px 20px !important;
+              column-gap: 8px;
+              padding: 8px 12px !important;
+          }
+          .budget-row { min-height: 48px; }
+          .budget-row__foreign { display: none; }
+          .budget-col-header span:nth-child(4) { display: none; }
+      }
     </style>
   </head>
 
@@ -1290,7 +1300,24 @@
   });
 
 function copyURL() {
-    navigator.clipboard.writeText(window.location.href);
+    const url = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+    }
   }
 
   // ── THEME TOGGLE ─────────────────────────────

@@ -210,6 +210,8 @@ hr.fancy {
   justify-content: center;
   width: 28px;
   height: 28px;
+  padding: 8px;
+  margin: -8px;
   opacity: 0.55;
 }
 .section-ctrl--icon:hover { opacity: 1; color: var(--charcoal); }
