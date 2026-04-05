@@ -191,7 +191,7 @@ async function addNewItem(event, category, table) {
 
         const newItem = { trip_id: CURRENT_TRIP_ID, category: category, description: '', amount_text: '', amount_eur: 0 };
         if (Array.isArray(window.LEDGER_FAMILIES) && window.LEDGER_FAMILIES.length) {
-            newItem.split_with = window.LEDGER_FAMILIES;
+            newItem.split_with = window.LEDGER_FAMILIES.map(f => f.name);
             newItem.is_shared_expense = true;
         }
         const { data, error } = await window.leggoDB.from(table).insert([newItem]).select();
