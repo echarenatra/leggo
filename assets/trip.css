@@ -1036,6 +1036,13 @@
   display: flex;
   align-items: flex-start;
   gap: 7px;
+  a {
+    text-decoration: none; /* Remove default underline */
+    color: inherit;        /* Keeps the text color the same as the list item */
+  };
+  a:hover {
+    color: var(--accent); /* Optional: make it change color too! */
+  }
 }
 .day-block__items li:last-child { border-bottom: none; }
 .day-block__items li::before {

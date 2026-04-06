@@ -392,7 +392,7 @@
   <div class="container">
     <a href="#snapshot">Snapshot</a>
     <a href="#budget">Budget</a>
-    <a href="#itinerary">Day by Day</a>
+    <a href="#itinerary">Day to Day</a>
     <a href="#packing">Packing</a>
     <a href="#families">Who's Coming</a>
   </div>
@@ -401,7 +401,8 @@
 <main class="trip-main">
   <div class="container">
 
-    <!-- ── TRIP SNAPSHOT ── -->
+    <!---- TRIP SNAPSHOT ---->
+
     <div class="section-header" id="snapshot">
       <h2>Trip Snapshot</h2>
       <span class="label">The big picture</span>
@@ -423,6 +424,7 @@
       <div class="route-stop"><div class="route-stop__dot"></div><div class="route-stop__name">Lisburn</div><div class="route-stop__nights">1 night</div></div>
     </div>
 
+     <!---- HIGHLIGHTS ---->
     <div class="snapshot-grid">
       <div class="snapshot-card">
         <div class="snapshot-card__title">✦ Highlights</div>
@@ -436,9 +438,11 @@
           <li><b>Wild Atlantic</b> The Burren falcons & Galway trad sessions</li>
         </ul>
       </div>
+      <!---- END OF HIGHLIGHTS ---->
 
+      <!---- ACCOMMODATIONS ---->
       <div class="snapshot-card">
-        <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Where We Sleep</div>
+        <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-bed"/></svg>Accommodations</div>
         <table class="stays-table">
           <thead><tr><th>Night</th><th>City</th><th>Accommodation</th></tr></thead>
           <tbody>
@@ -459,7 +463,9 @@
           </tbody>
         </table>
       </div>
+      <!---- END OF ACCOMMODATIONS ---->
 
+      <!---- GETTING AROUND ---->
       <div class="snapshot-card">
         <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-car"/></svg> Getting Around</div>
         <ul class="transport-list">
@@ -500,7 +506,9 @@
           </li>
         </ul>
       </div>
+      <!---- END OF GETTING AROUND ---->
 
+      <!---- LOGISTICS ---->
       <div class="snapshot-card">
         <div class="snapshot-card__title"><svg class="icon" width="14" height="14"><use href="#icon-doc"/></svg> Logistics & Docs</div>
         <ul class="logistics-list">
@@ -534,10 +542,11 @@
         </ul>
       </div>
     </div>
+    <!---- END OF LOGISTICS ---->
 
     <hr class="fancy">
 
-    <!-- ── BUDGET ── -->
+    <!---- BUDGET ---->
     <div class="section-header" id="budget">
       <h2>Budget</h2>
       <span class="label">Family of 3 · Click ○ to mark as Paid</span>
@@ -547,7 +556,7 @@
       </span>
     </div>
 
-    <div class="budget-wrapper">
+      <div class="budget-wrapper">
 
       <!-- Progress bar -->
       <div class="budget-progress">
@@ -619,12 +628,13 @@
         </div>
       </div>
     </div>
+    <!---- END OF BUDGET ---->
 
     <hr class="fancy">
 
-    <!-- ── ITINERARY ── -->
+    <!---- DAY TO DAY ---->
     <div class="section-header" id="itinerary">
-      <h2>Day by Day</h2>
+      <h2>Day to Day</h2>
       <span class="label">16 days · Itinerary & Outfits</span>
       <span class="section-controls">
         <button class="section-ctrl section-ctrl--icon" onclick="expandAll('.day-card')" title="Expand all"><svg class="icon" width="16" height="16"><use href="#icon-expand-all"/></svg></button>
@@ -653,23 +663,82 @@
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
-                <li>07:20 Fly AMS → EDI (easyJet EJU7837 · lands 07:50)</li>
-                <li>09:00 Pick up SIXT VW T-Cross at Edinburgh Airport</li>
-                <li>10:00 The Kelpies, Falkirk — 30m steel horse heads, let the kids run after the flight</li>
-                <li>11:30 Falkirk Wheel — watch the rotating boat lift, grab lunch at the visitor centre</li>
+                <li><span>07:20 Fly AMS → EDI (easyJet EJU7837 · lands 07:50)</span></li>
+                <li>
+                  <span>
+                    09:00 Pick up SIXT VW T-Cross at 
+                    <a href="https://maps.app.goo.gl/HW1j6NPHp7ZifD8b8" target="_blank" class="day-link">
+                      <b>Edinburgh Airport</b>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    10:00 
+                    <a href="https://maps.app.goo.gl/ipJp8piRT25Boxvk9" target="_blank" class="day-link">
+                      <b>The Kelpies, Falkirk</b>
+                    </a> — 30m steel horse heads, let the kids run after the flight
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    11:30 
+                    <a href="https://maps.app.goo.gl/PjR2ndhfn71eqBtk9" target="_blank" class="day-link">
+                      <b>Falkirk Wheel</b>
+                    </a> — watch the rotating boat lift (save lunch for the next stop)
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
-                <li>13:30 Stirling Castle — explore the royal palace, very interactive for kids</li>
-                <li>16:30 Check into Premier Inn Stirling South</li>
+                <li>
+                  <span>
+                    12:30 LUNCH: 
+                    <a href="https://maps.app.goo.gl/cFqkhQqPCnTVQs728" target="_blank" class="day-link">
+                      <b>Canada Wood Kitchen & Bar</b>
+                    </a> (⭐ 4.6) — very spacious, high-quality local food just minutes from the wheel.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    14:00 
+                    <a href="https://maps.app.goo.gl/1MNnym6Xr5NKwQR19" target="_blank" class="day-link">
+                      <b>Stirling Castle</b>
+                    </a> — explore the royal palace, very interactive for kids
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    15:30 CAFÉ & CATCH-UP: 
+                    <a href="https://maps.app.goo.gl/3Hz3g9Xdu7KRE27y6" target="_blank" class="day-link">
+                      <b>Darnley Coffee House</b>
+                    </a> (⭐ 4.6) — cozy but historic vaulted cellar near the castle to rest legs.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    16:30 Check into 
+                    <a href="https://maps.app.goo.gl/Hp2Laa9YQiPgNuWn9" target="_blank" class="day-link">
+                      <b>Premier Inn Stirling South</b>
+                    </a>
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
-                <li>Early dinner and sleep — long travel day!</li>
+                <li>
+                  <span>
+                    18:00 DINNER: 
+                    <a href="https://maps.app.goo.gl/6xwRQ9RrVakGYJwT7" target="_blank" class="day-link">
+                      <b>The River House</b>
+                    </a> (⭐ 4.5) — spacious loch-side dining, relaxing open environment after a long travel day.
+                  </span>
+                </li>
+                <li><span>Early night to recover from the morning flight!</span></li>
               </ul>
             </div>
             <div class="day-block day-block--notes">
@@ -728,7 +797,6 @@
         </div>
       </div>
 
-      <!-- DAY 2 -->
       <div class="day-card is-key" id="day-2">
         <div class="day-card__header" onclick="toggleDay('day-2')">
           <div class="day-card__num">02</div>
@@ -747,23 +815,82 @@
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
-                <li>09:30 Drive to Kilmahog / Trossachs Woollen Mill — feed the Highland Coos! Bring carrots for the iconic hairy cow photo.</li>
-                <li>10:30 Doune Castle — quick stop at the famous filming location (Game of Thrones, Monty Python)</li>
-                <li>12:00 Loch Katrine pier — lunch, then board the SS Walter Scott steamship cruise</li>
+                <li>
+                  <span>
+                    09:30 Drive to 
+                    <a href="https://maps.app.goo.gl/Zg6NipwyDCrrUicz6" target="_blank" class="day-link">
+                      <b>Kilmahog / Trossachs Woollen Mill</b>
+                    </a> — feed the Highland Coos! Bring carrots for the iconic hairy cow photo.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    10:30 
+                    <a href="https://maps.app.goo.gl/Artut54ik8NX84UR6" target="_blank" class="day-link">
+                      <b>Doune Castle</b>
+                    </a> — quick stop at the famous filming location (Game of Thrones, Monty Python)
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    12:00 LUNCH: 
+                    <a href="https://maps.app.goo.gl/tLugH3WKVqve6eLp6" target="_blank" class="day-link">
+                      <b>Venachar Lochside</b>
+                    </a> (⭐ 4.6) — spectacular deck overlooking the water on the way to Loch Katrine, very spacious and phenomenal food.
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
-                <li>14:00 Drive to Aberfoyle</li>
-                <li>Doon Hill Fairy Trail — woodland walk hunting for fairy doors and hidden clues. Natural magic for kids.</li>
+                <li>
+                  <span>
+                    13:30 
+                    <a href="https://maps.app.goo.gl/uePKQCBaAbLsVLZy9" target="_blank" class="day-link">
+                      <b>Loch Katrine pier</b>
+                    </a> — board the SS Walter Scott steamship cruise
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    14:45 Drive to 
+                    <a href="https://maps.app.goo.gl/mQwkT2qivgMbTscZ8" target="_blank" class="day-link">
+                      <b>Aberfoyle</b>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    15:00 
+                    <a href="https://maps.app.goo.gl/Q2p1Mjn6xTKX5qns5" target="_blank" class="day-link">
+                      <b>Doon Hill Fairy Trail</b>
+                    </a> — woodland walk hunting for fairy doors and hidden clues. Natural magic for kids.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    16:00 CAFÉ & CATCH-UP: 
+                    <a href="https://maps.app.goo.gl/P4FAoMDarRKsfKSUA" target="_blank" class="day-link">
+                      <b>The Station Coffee Shop (Aberfoyle)</b>
+                    </a> — a great spot to grab a hot chocolate and rest your legs after hunting for fairies.
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
-                <li>Drive back to Stirling</li>
-                <li>Relaxed dinner — pack up for the Highlands tomorrow</li>
+                <li><span>17:30 Drive back to Stirling</span></li>
+                <li>
+                  <span>
+                    18:00 DINNER: 
+                    <a href="https://maps.app.goo.gl/sdcQZtSBcfNUftuq5" target="_blank" class="day-link">
+                      <b>The Birds and Bees</b>
+                    </a> (⭐ 4.5) — massive, award-winning converted farm gastropub. Eclectic decor, huge portions, a kids' menu, and incredibly spacious.
+                  </span>
+                </li>
+                <li><span>Pack up for the Highlands tomorrow</span></li>
               </ul>
             </div>
             <div class="day-block day-block--notes">
@@ -821,7 +948,6 @@
         </div>
       </div>
 
-      <!-- DAY 3 -->
       <div class="day-card is-key" id="day-3">
         <div class="day-card__header" onclick="toggleDay('day-3')">
           <div class="day-card__num">03</div>
@@ -840,25 +966,101 @@
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sunrise"/></svg> Morning</div>
               <ul class="day-block__items">
-                <li>09:00 Check out from Stirling</li>
-                <li>Loch Lomond stop at Tarbet — stretch legs, take in the loch</li>
-                <li>Drive north on the spectacular A82</li>
+                <li><span>09:00 Check out from Stirling</span></li>
+                <li>
+                  <span>
+                    10:00 
+                    <a href="https://maps.app.goo.gl/B47aYhpkVMw1XB2J6" target="_blank" class="day-link">
+                      <b>Loch Lomond stop at Tarbet</b>
+                    </a> — stretch legs, take in the loch
+                  </span>
+                </li>
+                <li><span>10:30 Drive north on the spectacular A82</span></li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-sun"/></svg> Afternoon</div>
               <ul class="day-block__items">
-                <li>Buachaille Etive Mòr photo stop — the iconic pyramid mountain</li>
-                <li>Glen Etive detour — the Skyfall road. 14-mile single-track dead-end into a hidden glen. Watch for wild red deer.</li>
-                <li>Glencoe Three Sisters viewpoint — stop, short walk, feel the scale</li>
-                <li>Glencoe Visitor Centre — history of the massacre + bathroom break</li>
+                <li>
+                  <span>
+                    12:00 LUNCH: 
+                    <a href="https://maps.app.goo.gl/m4hYoPtzEGDikSKA6" target="_blank" class="day-link">
+                      <b>The Real Food Cafe (Tyndrum)</b>
+                    </a> (⭐ 4.5) — famous for fish and chips. Spacious, built for families on road trips, great facilities.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    13:30 
+                    <a href="https://maps.app.goo.gl/DNFa8UvnWSrdpGBp6" target="_blank" class="day-link">
+                      <b>Buachaille Etive Mòr</b>
+                    </a> photo stop — the iconic pyramid mountain
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    13:45 
+                    <a href="https://maps.app.goo.gl/BFFFCyaqN1ArWCNDA" target="_blank" class="day-link">
+                      <b>Glen Etive detour</b>
+                    </a> — the Skyfall road. 14-mile single-track dead-end into a hidden glen. Watch for wild red deer.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    14:45 
+                    <a href="https://maps.app.goo.gl/nX4WXsV7rntKvarf6" target="_blank" class="day-link">
+                      <b>Glencoe Three Sisters viewpoint</b>
+                    </a> — stop, short walk, feel the scale
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    15:15 
+                    <a href="https://maps.app.goo.gl/BmKkiYmWL2GaHPGV6" target="_blank" class="day-link">
+                      <b>Glencoe Visitor Centre</b>
+                    </a> — history of the massacre + bathroom break
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    15:45 CAFÉ & CATCH-UP: 
+                    <a href="https://maps.app.goo.gl/9yNMzJ55CwnayE8DA" target="_blank" class="day-link">
+                      <b>Crafts & Things (Glencoe)</b>
+                    </a> (⭐ 4.5) — fantastic arts café just past the mountains. Lovely views, great baking, and a craft shop that will entertain the 6yo.
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="day-block">
               <div class="day-block__label"><svg class="icon" width="14" height="14"><use href="#icon-moon"/></svg> Evening</div>
               <ul class="day-block__items">
-                <li>~15:30 Nevis Range Gondola — ride up Aonach Mòr for panoramic views of Ben Nevis and the Great Glen. The gondola is right at the hotel.</li>
-                <li>Check into Base Camp Hotel Nevis Range</li>
+                <li>
+                  <span>
+                    16:45 
+                    <a href="https://maps.app.goo.gl/cZejJnoC1YN7QmLp9" target="_blank" class="day-link">
+                      <b>Nevis Range Gondola</b>
+                    </a> — ride up Aonach Mòr for panoramic views of Ben Nevis and the Great Glen. The gondola is right at the hotel.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    17:45 Check into 
+                    <a href="https://maps.app.goo.gl/3dEvFUcMSZTPvvNZ7" target="_blank" class="day-link">
+                      <b>Base Camp Hotel Nevis Range</b>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    18:30 DINNER: 
+                    <a href="https://maps.app.goo.gl/Rbpd59jzt2AJYjsV6" target="_blank" class="day-link">
+                      <b>The Geographer</b>
+                    </a> (⭐ 4.7) or 
+                    <a href="https://maps.app.goo.gl/6rY2Hga42JAyBbw97" target="_blank" class="day-link">
+                      <b>Garrison West</b>
+                    </a> (⭐ 4.6) in Fort William — both highly rated, spacious, and family-friendly.
+                  </span>
+                </li>
               </ul>
             </div>
             <div class="day-block day-block--notes">
@@ -2103,12 +2305,12 @@
       </div>
 
     </div>
-    <!-- END OF ITINERARY -->
+    <!-- END OF DAY TO DAY -->
 
 
     <hr class="fancy">
 
-    <!-- ── PACKING LIST ── -->
+    <!---- PACKING ---->
     <div class="section-header" id="packing">
       <h2>Packing List</h2>
       <span class="label">Click to check off · <span id="pack-progress">0 / 0</span> packed</span>
@@ -2307,11 +2509,12 @@
         </div>
       </div>
 
-    </div><!-- /pack-wrapper -->
+    </div>
+    <!---- END OF PACKING ---->
 
     <hr class="fancy">
 
-    <!-- ── WHO'S COMING ── -->
+    <!---- WHO's COMING ---->
     <div class="section-header" id="families">
       <h2>Who's Coming</h2>
       <span class="label">Family of 3</span>
@@ -2323,6 +2526,7 @@
         <div class="family-card__notes">Visas confirmed valid until June 2026.</div>
       </div>
     </div>
+    <!---- END OF WHO's COMING ---->
 
     <hr class="fancy">
 
