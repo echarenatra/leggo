@@ -3252,9 +3252,9 @@
         // Update the UI
         eurAmountEl.textContent = fmt(eurVal);
         eurAmountEl.setAttribute('data-eur-val', eurVal);
-    } else {
-        // Reset if input is empty or invalid
-        eurAmountEl.textContent = '€ 0.00';
+      } else {
+        // Use fmt(0) instead of hardcoding '€ 0.00'
+        eurAmountEl.textContent = fmt(0);
         eurAmountEl.setAttribute('data-eur-val', 0);
     }
 
