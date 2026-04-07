@@ -3150,9 +3150,6 @@
     shareUrl: "https://leggo-murex.vercel.app/scotland-2026.html"
   };
 
-  // ── SETTINGS ─────────────────────────────────
-  const GBP_TO_EUR = 1.15;
-
   // ── SECTION NAV ACTIVE STATE ─────────────────
   (function () {
     const sections = Array.from(document.querySelectorAll('.section-header[id]'));
@@ -3235,28 +3232,42 @@
     countdownEl.textContent = `${days}d ${hours}h until ${tripName}`;
   }
 
-  // ── BUDGET CONVERSION ────────────────────────
   function convertRow(inputEl) {
     const row = inputEl.closest('.budget-row');
     const eurAmountEl = row.querySelector('.budget-row__eur-amount');
-    let val = inputEl.value.toUpperCase();
+    
+    // 1. Get the raw text from the input (e.g., "100000 Rp")
+    let val = inputEl.value.toUpperCase().trim();
 
-    const isGBP = val.includes('£') || val.includes('GBP');
-    const num = parseFloat(val.replace(/[€£GBP\s,]/g, ''));
+    // 2. Extract the number (100000) and the currency symbol (RP)
+    // These lines MUST be here so the code knows what numericPart is!
+    const numericPart = parseFloat(val.replace(/[^\d.]/g, '')) || 0;
+    const currencyPart = val.replace(/[\d.,\s]/g, '') || '€';
 
-    if (!isNaN(num)) {
-      const eurVal = isGBP ? num * GBP_TO_EUR : num;
-      eurAmountEl.textContent = '€ ' + eurVal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-      eurAmountEl.setAttribute('data-eur-val', eurVal);
+    // 3. Check if we have a valid number
+    if (numericPart > 0) {
+        // Use the helper function we created earlier
+        const { eurVal } = calculateEur(numericPart, currencyPart);
+        
+        // Update the UI
+        eurAmountEl.textContent = fmt(eurVal);
+        eurAmountEl.setAttribute('data-eur-val', eurVal);
     } else {
-      eurAmountEl.textContent = '€ 0.00';
-      eurAmountEl.setAttribute('data-eur-val', 0);
+        // Reset if input is empty or invalid
+        eurAmountEl.textContent = '€ 0.00';
+        eurAmountEl.setAttribute('data-eur-val', 0);
     }
-    calculateBudget();
-  }
 
-  function fmt(n) {
-  return '€ ' + (Math.round(n * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    // Recalculate the total budget footer
+    calculateBudget();
+}
+
+function fmt(n) {
+  // The '|| 0' handles cases where n might be NaN or null
+  return '€ ' + (n || 0).toLocaleString('en-US', {
+    minimumFractionDigits: 2, 
+    maximumFractionDigits: 2
+  });
 }
 
 function calculateBudget() {
