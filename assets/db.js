@@ -244,16 +244,24 @@ async function toggleStatus(event, id, table, column, currentVal) {
 async function updateBudgetValue(id, text) {
     if (!text) return;
     let val = text.toUpperCase().trim();
+
+    // 1. Extract numbers and determine currency
     const numericPart = parseFloat(val.replace(/[^\d.]/g, '')) || 0;
     let currencyPart = val.replace(/[\d.,\s]/g, '') || '€';
+
+    // 2. Normalize symbols
     if (currencyPart === 'GBP') currencyPart = '£';
+    if (currencyPart === 'IDR') currencyPart = 'Rp'; // Changes IDR text to Rp symbol
+
     const formattedNum = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(numericPart);
     const beautifulText = `${currencyPart} ${formattedNum}`;
 
+    // 3. Conversion Logic (Updated for IDR/Rp)
     let eurVal = numericPart;
     if (beautifulText.includes('NOK')) eurVal = numericPart * 0.089;
     if (beautifulText.includes('SEK')) eurVal = numericPart * 0.092;
-    if (beautifulText.includes('£'))   eurVal = numericPart * 1.15;
+    if (beautifulText.includes('£'))   eurVal = numericPart * 1.20; // Updated to 2026 approx
+    if (beautifulText.includes('Rp'))  eurVal = numericPart * 0.000051; // IDR to EUR
 
     const { error } = await window.leggoDB.from('leggo_budget_items').update({ 
         amount_text: beautifulText, 
