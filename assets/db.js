@@ -244,25 +244,33 @@ async function toggleStatus(event, id, table, column, currentVal) {
 async function updateBudgetValue(id, text) {
     if (!text) return;
     let val = text.toUpperCase().trim();
-
-    // 1. Extract numbers and determine currency
+    
+    // 1. Extract numbers and clean up the string
     const numericPart = parseFloat(val.replace(/[^\d.]/g, '')) || 0;
-    let currencyPart = val.replace(/[\d.,\s]/g, '') || '€';
+    let inputCurrency = val.replace(/[\d.,\s]/g, '') || '€';
 
-    // 2. Normalize symbols
-    if (currencyPart === 'GBP') currencyPart = '£';
-    if (currencyPart === 'IDR') currencyPart = 'Rp'; // Changes IDR text to Rp symbol
+    // 2. Define your Currency Map (Rate is "Currency to EUR")
+    const currencyMap = {
+        '€':   { symbol: '€',  rate: 1 },
+        'EUR': { symbol: '€',  rate: 1 },
+        '£':   { symbol: '£',  rate: 1.20 },
+        'GBP': { symbol: '£',  rate: 1.20 },
+        'NOK': { symbol: 'NOK', rate: 0.089 },
+        'SEK': { symbol: 'SEK', rate: 0.092 },
+        'RP':  { symbol: 'Rp',  rate: 0.000051 },
+        'IDR': { symbol: 'Rp',  rate: 0.000051 },
+        '$':   { symbol: '$',   rate: 0.92 },
+        'USD': { symbol: '$',   rate: 0.92 }
+    };
 
+    // 3. Look up data, default to EUR if currency is unknown
+    const currencyData = currencyMap[inputCurrency] || { symbol: inputCurrency, rate: 1 };
+    
     const formattedNum = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(numericPart);
-    const beautifulText = `${currencyPart} ${formattedNum}`;
+    const beautifulText = `${currencyData.symbol} ${formattedNum}`;
+    const eurVal = numericPart * currencyData.rate;
 
-    // 3. Conversion Logic (Updated for IDR/Rp)
-    let eurVal = numericPart;
-    if (beautifulText.includes('NOK')) eurVal = numericPart * 0.089;
-    if (beautifulText.includes('SEK')) eurVal = numericPart * 0.092;
-    if (beautifulText.includes('£'))   eurVal = numericPart * 1.20; // Updated to 2026 approx
-    if (beautifulText.includes('Rp'))  eurVal = numericPart * 0.000051; // IDR to EUR
-
+    // 4. Update Database
     const { error } = await window.leggoDB.from('leggo_budget_items').update({ 
         amount_text: beautifulText, 
         amount_eur: eurVal 
