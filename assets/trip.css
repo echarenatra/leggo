@@ -1319,6 +1319,9 @@
 .pack-category.is-open .pack-rows { display: block; }
 
 .pack-sub-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 2px;
@@ -1328,6 +1331,46 @@
   background: var(--warm-white);
   border-top: 1px solid var(--divider);
 }
+.pack-sub-label__text {
+  outline: none;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.pack-sub-label__text:focus {
+  border-bottom: 1px dashed var(--accent);
+}
+.pack-sub-label .add-pack-btn,
+.pack-sub-label .delete-subcat-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1px 4px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  font-size: 12px;
+}
+.pack-sub-label:hover .add-pack-btn,
+.pack-sub-label:hover .delete-subcat-btn { opacity: 0.45; }
+.pack-sub-label .add-pack-btn { color: var(--charcoal); font-size: 14px; }
+.pack-sub-label .add-pack-btn:hover { opacity: 1 !important; color: var(--teal); }
+.pack-sub-label .delete-subcat-btn { color: #999; }
+.pack-sub-label .delete-subcat-btn:hover { opacity: 1 !important; color: #d44; }
+
+/* Add sub-group button in category header */
+.add-subcat-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 5px;
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  color: var(--charcoal);
+}
+.pack-category__header:hover .add-subcat-btn { opacity: 0.45; }
+.add-subcat-btn:hover { opacity: 1 !important; color: var(--trip-accent); }
 .pack-category .pack-rows > .pack-sub-label:first-child {
   border-top: none;
 }
@@ -1340,21 +1383,123 @@
   border-top: 1px solid var(--divider);
   font-size: 13px;
   color: var(--charcoal);
-  cursor: pointer;
   transition: background .12s;
   user-select: none;
 }
 .pack-row:hover { background: var(--accent-pale); }
-.pack-row input[type="checkbox"] { display: none; }
-.pack-row::before {
-  content: '';
-  width: 18px;
-  height: 18px;
-  border: 1.5px solid var(--divider);
-  border-radius: 4px;
+
+/* Editable item name input */
+.pack-name-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--charcoal);
+  padding: 0;
+  outline: none;
+}
+.pack-name-input:focus {
+  border-bottom: 1px dashed var(--trip-accent);
+}
+.pack-name-input.is-packed {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--teal-light);
+}
+.pack-name-input::placeholder { color: var(--muted); opacity: 0.5; }
+
+/* Pack row delete button */
+.pack-row .delete-item-btn {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+  line-height: 1;
+}
+.pack-row:hover .delete-item-btn { opacity: 0.45; }
+.pack-row .delete-item-btn:hover { opacity: 1 !important; color: #d44; }
+
+/* Category header action buttons */
+.add-pack-btn,
+.delete-cat-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 5px;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+.pack-category__header:hover .add-pack-btn,
+.pack-category__header:hover .delete-cat-btn { opacity: 0.45; }
+.add-pack-btn:hover { opacity: 1 !important; color: var(--teal); }
+.delete-cat-btn:hover { opacity: 1 !important; color: #d44; }
+.add-pack-btn { color: var(--charcoal); font-size: 16px; }
+.delete-cat-btn { color: #999; }
+
+/* Editable category label */
+.pack-category__label {
+  outline: none;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.pack-category__label:focus {
+  border-bottom: 1px dashed var(--trip-accent);
+}
+
+/* Add category button */
+.add-category-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 24px;
+  margin-bottom: 48px;
+  background: transparent;
+  border: 1px dashed var(--divider);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.add-category-btn:hover {
+  background: var(--accent-pale);
+  color: var(--trip-accent);
+  border-color: var(--trip-accent);
+}
+
+/* Pack row drag handle */
+.pack-row .drag-handle {
+  cursor: grab;
+  color: var(--trip-accent-light);
+  font-size: 18px;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.2s;
   flex-shrink: 0;
-  transition: all .15s;
-  background: var(--surface);
+}
+.pack-row:hover .drag-handle { opacity: 0.5; }
+.pack-row .drag-handle:hover { opacity: 1; }
+.pack-row .drag-handle:active { cursor: grabbing; }
+
+/* Empty state for categories with no items */
+.pack-empty {
+  padding: 16px 24px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+  border-top: 1px solid var(--divider);
 }
 
 body.leggo-locked > *:not(.password-gate-overlay) {
@@ -1429,22 +1574,7 @@ body.leggo-locked > *:not(.password-gate-overlay) {
   font-size: 13px;
   margin-top: 8px;
 }
-.pack-row:hover::before { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-pale); }
-.pack-row.is-checked::before {
-  background: var(--teal);
-  border-color: var(--teal);
-  content: '✓';
-  color: white;
-  font-size: 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pack-row.is-checked span {
-  color: var(--muted);
-  text-decoration: line-through;
-  text-decoration-color: var(--teal-light);
-}
+/* Pack row checked state handled by .check component and .pack-name-input.is-packed */
 
 /* ── PRINT ── */
 @media print {

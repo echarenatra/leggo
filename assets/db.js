@@ -12,32 +12,47 @@ window.leggoDB = leggoClient;
 // 2. 🆔 CONFIGURATION
 const TRIP_MAP = {
     'scandinavia-2026': '11111111-1111-1111-1111-111111111111',
-    'scotland-2026':    '33333333-3333-3333-3333-333333333333' 
+    'scotland-2026':    '33333333-3333-3333-3333-333333333333'
 };
 
-const ERSALINA_FAMILY_ID = '22222222-2222-2222-2222-222222222221';
 let CURRENT_TRIP_ID = null;
 
 // 3. 🔄 THE MASTER SYNC
 async function syncEverything() {
     if (!CURRENT_TRIP_ID) return;
     console.log(`🛰️ Fetching Trip Data: ${CURRENT_TRIP_ID}`);
-    
+
     const { data: budgetData } = await window.leggoDB
         .from('leggo_budget_items')
         .select('*')
         .eq('trip_id', CURRENT_TRIP_ID)
         .order('sort_order', { ascending: true });
 
-    const { data: packData } = await window.leggoDB
+    const { data: packData, error: packErr } = await window.leggoDB
         .from('leggo_packing_items')
         .select('*')
         .eq('trip_id', CURRENT_TRIP_ID)
-        .eq('family_id', ERSALINA_FAMILY_ID)
         .order('sort_order', { ascending: true });
 
+    const { data: catData, error: catErr } = await window.leggoDB
+        .from('leggo_packing_categories')
+        .select('*')
+        .eq('trip_id', CURRENT_TRIP_ID)
+        .order('sort_order', { ascending: true });
+
+    const { data: subCatData, error: subCatErr } = await window.leggoDB
+        .from('leggo_packing_subcategories')
+        .select('*')
+        .eq('trip_id', CURRENT_TRIP_ID)
+        .order('sort_order', { ascending: true });
+
+    if (packErr) console.error('🚨 Packing items fetch error:', packErr);
+    if (catErr) console.error('🚨 Packing categories fetch error:', catErr);
+    if (subCatErr) console.error('🚨 Packing subcategories fetch error:', subCatErr);
+    console.log(`📦 Packing: ${(catData||[]).length} categories, ${(subCatData||[]).length} subcategories, ${(packData||[]).length} items`);
+
     renderBudget(budgetData || []);
-    renderPacking(packData || []);
+    renderPacking(packData || [], catData || [], subCatData || []);
 }
 
 // 4. 🎨 BUDGET RENDERER
@@ -59,7 +74,6 @@ function renderBudget(items) {
             row.className = `budget-row ${item.is_paid ? 'is-paid' : ''}`;
             row.setAttribute('data-id', item.id);
 
-            // Ledger data attributes (used by calculateBudget for ledger math)
             const isShared = item.is_shared_expense !== false;
             const splitWith = Array.isArray(item.split_with) && item.split_with.length
                 ? item.split_with
@@ -68,7 +82,6 @@ function renderBudget(items) {
             row.dataset.splitWith = splitWith.join(',');
             row.dataset.isShared  = isShared ? 'true' : 'false';
 
-            // Badge HTML (only for ledger-enabled pages)
             const badgesHTML = hasLedger ? (() => {
                 const paidBy = item.paid_by || '';
                 const famObj = (window.LEDGER_FAMILIES || []).find(f => f.name === paidBy);
@@ -151,71 +164,261 @@ async function updateIsShared(id, value) {
 }
 
 // 5. 🎨 PACKING RENDERER
-function renderPacking(items) {
-    const sections = ['docs', 'clothes', 'tech-kids'];
-    sections.forEach(sec => {
-        const container = document.querySelector(`#pack-${sec} .pack-rows`);
-        if (!container) return;
-        container.innerHTML = '';
+function renderPacking(items, categories, subcategories) {
+    const wrapper = document.getElementById('pack-wrapper');
+    if (!wrapper) return;
 
-        items.filter(i => i.category_key === sec).forEach(item => {
-            const row = document.createElement('label');
-            row.className = `pack-row ${item.is_packed ? 'is-checked' : ''}`;
-            row.setAttribute('data-id', item.id);
-            row.innerHTML = `
-                <span class="drag-handle">⠿</span>
-                <input type="checkbox" class="pack-check" ${item.is_packed ? 'checked' : ''}>
-                <span>${item.item_name}</span>
+    // Preserve open/closed state across re-renders
+    const openCats = new Set();
+    wrapper.querySelectorAll('.pack-category.is-open').forEach(el => openCats.add(el.id));
+
+    wrapper.innerHTML = '';
+
+    categories.forEach(cat => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'pack-category';
+        catDiv.id = `pack-${cat.category_key}`;
+        if (openCats.has(`pack-${cat.category_key}`)) catDiv.classList.add('is-open');
+
+        catDiv.innerHTML = `
+            <div class="pack-category__header" onclick="togglePack('pack-${cat.category_key}')">
+                <span class="pack-category__label"
+                      contenteditable="true"
+                      onblur="updateCategoryLabel('${cat.id}', this.textContent.trim())"
+                      onclick="event.stopPropagation()">${cat.label}</span>
+                <span class="pack-category__count" id="pcount-${cat.category_key}"></span>
+                <button class="add-pack-btn" onclick="addNewPackItem(event, '${cat.category_key}')" title="Add item">+</button>
+                <button class="add-subcat-btn" onclick="addNewSubcategory(event, '${cat.category_key}')" title="Add sub-group">◫</button>
+                <button class="delete-cat-btn" onclick="deleteCategory(event, '${cat.id}', '${cat.category_key}')" title="Delete category">×</button>
+                <span class="pack-category__toggle">▾</span>
+            </div>
+            <div class="pack-rows"></div>
+        `;
+
+        const rowsContainer = catDiv.querySelector('.pack-rows');
+        const catItems = items.filter(i => i.category_key === cat.category_key);
+        const catSubcats = (subcategories || []).filter(s => s.category_key === cat.category_key);
+
+        // Render ungrouped items first (no subcategory_key)
+        const ungrouped = catItems.filter(i => !i.subcategory_key);
+        ungrouped.forEach(item => rowsContainer.appendChild(buildPackRow(item)));
+
+        // Render each subcategory with its items
+        catSubcats.forEach(sub => {
+            const subLabel = document.createElement('div');
+            subLabel.className = 'pack-sub-label';
+            subLabel.setAttribute('data-subcat-id', sub.id);
+            subLabel.innerHTML = `
+                <span class="pack-sub-label__text"
+                      contenteditable="true"
+                      onblur="updateSubcategoryLabel('${sub.id}', this.textContent.trim())"
+                      onclick="event.stopPropagation()">${sub.label}</span>
+                <button class="add-pack-btn" onclick="addNewPackItem(event, '${cat.category_key}', '${sub.subcategory_key}')" title="Add item to this group">+</button>
+                <button class="delete-subcat-btn" onclick="deleteSubcategory(event, '${sub.id}', '${cat.category_key}', '${sub.subcategory_key}')" title="Remove group">×</button>
             `;
-            row.onclick = (e) => {
-                if (e.target.classList.contains('drag-handle')) return;
-                e.preventDefault();
-                toggleStatus(e, item.id, 'leggo_packing_items', 'is_packed', item.is_packed);
-            };
-            container.appendChild(row);
+            rowsContainer.appendChild(subLabel);
+
+            const subItems = catItems.filter(i => i.subcategory_key === sub.subcategory_key);
+            subItems.forEach(item => rowsContainer.appendChild(buildPackRow(item)));
         });
+
+        wrapper.appendChild(catDiv);
     });
+
     if (window.updatePackProgress) window.updatePackProgress();
     initSortable();
 }
 
-// 6. ➕ ADD NEW ITEM
+function buildPackRow(item) {
+    const row = document.createElement('div');
+    row.className = 'pack-row';
+    row.setAttribute('data-id', item.id);
+    row.innerHTML = `
+        <span class="drag-handle">⠿</span>
+        <span class="check ${item.is_packed ? 'is-checked' : ''}"
+              onclick="togglePackStatus(event, '${item.id}')"></span>
+        <input class="pack-name-input${item.is_packed ? ' is-packed' : ''}"
+               placeholder="Item name…"
+               onchange="updatePackItemName('${item.id}', this.value)"
+               onclick="event.stopPropagation()">
+        <button class="delete-item-btn" onclick="deletePackItem(event, '${item.id}')" title="Delete">×</button>
+    `;
+    row.querySelector('.pack-name-input').value = item.item_name || '';
+    return row;
+}
+
+// 5b. ⚡ PACKING INTERACTIONS
+
+async function togglePackStatus(event, id) {
+    event.stopPropagation();
+    const checkEl = event.currentTarget;
+    const isNowChecked = !checkEl.classList.contains('is-checked');
+    checkEl.classList.toggle('is-checked', isNowChecked);
+    const input = checkEl.closest('.pack-row')?.querySelector('.pack-name-input');
+    if (input) input.classList.toggle('is-packed', isNowChecked);
+    if (window.updatePackProgress) window.updatePackProgress();
+    await window.leggoDB.from('leggo_packing_items').update({ is_packed: isNowChecked }).eq('id', id);
+}
+
+async function addNewPackItem(event, categoryKey, subcategoryKey) {
+    event.stopPropagation();
+    if (!CURRENT_TRIP_ID) return;
+
+    const catEl = document.getElementById(`pack-${categoryKey}`);
+    if (catEl && !catEl.classList.contains('is-open')) catEl.classList.add('is-open');
+
+    const newItem = { trip_id: CURRENT_TRIP_ID, category_key: categoryKey, item_name: '', sort_order: 9999 };
+    if (subcategoryKey) newItem.subcategory_key = subcategoryKey;
+
+    const { data, error } = await window.leggoDB
+        .from('leggo_packing_items')
+        .insert([newItem])
+        .select();
+
+    if (!error) {
+        await syncEverything();
+        if (data && data[0]) {
+            const newRow = document.querySelector(`[data-id="${data[0].id}"]`);
+            if (newRow) newRow.querySelector('.pack-name-input')?.focus();
+        }
+    }
+}
+
+async function deletePackItem(event, id) {
+    event.stopPropagation();
+    const row = event.currentTarget.closest('.pack-row');
+    if (row) { row.style.opacity = '0.3'; row.style.pointerEvents = 'none'; }
+    const { error } = await window.leggoDB.from('leggo_packing_items').delete().eq('id', id);
+    if (!error) syncEverything();
+    else if (row) { row.style.opacity = ''; row.style.pointerEvents = ''; }
+}
+
+async function addNewCategory(event) {
+    event.stopPropagation();
+    if (!CURRENT_TRIP_ID) return;
+
+    const key = 'cat-' + Date.now();
+    const { data, error } = await window.leggoDB
+        .from('leggo_packing_categories')
+        .insert([{ trip_id: CURRENT_TRIP_ID, category_key: key, label: 'New Category', sort_order: 9999 }])
+        .select();
+
+    if (!error) {
+        await syncEverything();
+        const catEl = document.getElementById(`pack-${key}`);
+        if (catEl) {
+            const labelEl = catEl.querySelector('.pack-category__label');
+            if (labelEl) {
+                labelEl.focus();
+                const range = document.createRange();
+                range.selectNodeContents(labelEl);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    }
+}
+
+async function deleteCategory(event, catId, categoryKey) {
+    event.stopPropagation();
+    await window.leggoDB
+        .from('leggo_packing_items')
+        .delete()
+        .eq('trip_id', CURRENT_TRIP_ID)
+        .eq('category_key', categoryKey);
+    await window.leggoDB.from('leggo_packing_categories').delete().eq('id', catId);
+    syncEverything();
+}
+
+async function updatePackItemName(id, value) {
+    await window.leggoDB.from('leggo_packing_items').update({ item_name: value }).eq('id', id);
+}
+
+async function updateCategoryLabel(id, value) {
+    if (!value) return;
+    await window.leggoDB.from('leggo_packing_categories').update({ label: value }).eq('id', id);
+}
+
+// 5c. 📂 SUBCATEGORY INTERACTIONS
+
+async function addNewSubcategory(event, categoryKey) {
+    event.stopPropagation();
+    if (!CURRENT_TRIP_ID) return;
+
+    const catEl = document.getElementById(`pack-${categoryKey}`);
+    if (catEl && !catEl.classList.contains('is-open')) catEl.classList.add('is-open');
+
+    const key = 'sub-' + Date.now();
+    const { data, error } = await window.leggoDB
+        .from('leggo_packing_subcategories')
+        .insert([{ trip_id: CURRENT_TRIP_ID, category_key: categoryKey, subcategory_key: key, label: 'New group', sort_order: 9999 }])
+        .select();
+
+    if (!error) {
+        await syncEverything();
+        if (data && data[0]) {
+            const subEl = document.querySelector(`[data-subcat-id="${data[0].id}"]`);
+            if (subEl) {
+                const labelEl = subEl.querySelector('.pack-sub-label__text');
+                if (labelEl) {
+                    labelEl.focus();
+                    const range = document.createRange();
+                    range.selectNodeContents(labelEl);
+                    const sel = window.getSelection();
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+            }
+        }
+    }
+}
+
+async function deleteSubcategory(event, subId, categoryKey, subcategoryKey) {
+    event.stopPropagation();
+    // Move items to ungrouped (null subcategory_key) instead of deleting
+    await window.leggoDB
+        .from('leggo_packing_items')
+        .update({ subcategory_key: null })
+        .eq('trip_id', CURRENT_TRIP_ID)
+        .eq('category_key', categoryKey)
+        .eq('subcategory_key', subcategoryKey);
+    await window.leggoDB.from('leggo_packing_subcategories').delete().eq('id', subId);
+    syncEverything();
+}
+
+async function updateSubcategoryLabel(id, value) {
+    if (!value) return;
+    await window.leggoDB.from('leggo_packing_subcategories').update({ label: value }).eq('id', id);
+}
+
+// 6. ➕ ADD NEW BUDGET ITEM
 async function addNewItem(event, category, table) {
     event.stopPropagation();
     if (!CURRENT_TRIP_ID) return;
 
-    if (table === 'leggo_budget_items') {
-        // Expand the category so the new row is visible
-        const catEl = document.getElementById(`cat-${category}`);
-        if (catEl && !catEl.classList.contains('is-open')) catEl.classList.add('is-open');
+    const catEl = document.getElementById(`cat-${category}`);
+    if (catEl && !catEl.classList.contains('is-open')) catEl.classList.add('is-open');
 
-        const newItem = { trip_id: CURRENT_TRIP_ID, category: category, description: '', amount_text: '', amount_eur: 0 };
-        if (Array.isArray(window.LEDGER_FAMILIES) && window.LEDGER_FAMILIES.length) {
-            newItem.split_with = window.LEDGER_FAMILIES.map(f => f.name);
-            newItem.is_shared_expense = true;
-        }
-        const { data, error } = await window.leggoDB.from(table).insert([newItem]).select();
-        if (!error) {
-            await syncEverything();
-            if (data && data[0]) {
-                const newRow = document.querySelector(`[data-id="${data[0].id}"]`);
-                if (newRow) {
-                    const input = newRow.querySelector('.budget-desc-input');
-                    if (input) input.focus();
-                }
+    const newItem = { trip_id: CURRENT_TRIP_ID, category: category, description: '', amount_text: '', amount_eur: 0 };
+    if (Array.isArray(window.LEDGER_FAMILIES) && window.LEDGER_FAMILIES.length) {
+        newItem.split_with = window.LEDGER_FAMILIES.map(f => f.name);
+        newItem.is_shared_expense = true;
+    }
+    const { data, error } = await window.leggoDB.from(table).insert([newItem]).select();
+    if (!error) {
+        await syncEverything();
+        if (data && data[0]) {
+            const newRow = document.querySelector(`[data-id="${data[0].id}"]`);
+            if (newRow) {
+                const input = newRow.querySelector('.budget-desc-input');
+                if (input) input.focus();
             }
         }
-    } else {
-        // Packing: keep prompt for now
-        const name = prompt(`Enter name for new ${category} item:`);
-        if (!name) return;
-        const newItem = { trip_id: CURRENT_TRIP_ID, family_id: ERSALINA_FAMILY_ID, category_key: category, item_name: name };
-        const { error } = await window.leggoDB.from(table).insert([newItem]);
-        if (!error) syncEverything();
     }
 }
 
-// 6b. 🗑 DELETE ITEM
+// 6b. 🗑 DELETE BUDGET ITEM
 async function deleteItem(event, id) {
     event.stopPropagation();
     const row = event.currentTarget.closest('.budget-row');
@@ -225,18 +428,17 @@ async function deleteItem(event, id) {
     else if (row) { row.style.opacity = ''; row.style.pointerEvents = ''; }
 }
 
-// 7. ⚡ STATUS & VALUE UPDATES
+// 7. ⚡ BUDGET STATUS & VALUE UPDATES
 async function toggleStatus(event, id, table, column, currentVal) {
     const el = event.currentTarget;
     const isNowChecked = !el.classList.contains('is-checked');
     el.classList.toggle('is-checked', isNowChecked);
-    const parentRow = el.closest('.budget-row') || el.closest('.pack-row');
+    const parentRow = el.closest('.budget-row');
     if (parentRow) parentRow.classList.toggle('is-paid', isNowChecked);
     const checkbox = el.querySelector('input');
     if (checkbox) checkbox.checked = isNowChecked;
 
     if (window.calculateBudget) window.calculateBudget();
-    if (window.updatePackProgress) window.updatePackProgress();
 
     await window.leggoDB.from(table).update({ [column]: isNowChecked }).eq('id', id);
 }
@@ -244,12 +446,10 @@ async function toggleStatus(event, id, table, column, currentVal) {
 async function updateBudgetValue(id, text) {
     if (!text) return;
     let val = text.toUpperCase().trim();
-    
-    // 1. Extract numbers and clean up the string
+
     const numericPart = parseFloat(val.replace(/[^\d.]/g, '')) || 0;
     let inputCurrency = val.replace(/[\d.,\s]/g, '') || '€';
 
-    // 2. Define your Currency Map (Rate is "Currency to EUR")
     const currencyMap = {
         '€':   { symbol: '€',  rate: 1 },
         'EUR': { symbol: '€',  rate: 1 },
@@ -263,19 +463,17 @@ async function updateBudgetValue(id, text) {
         'USD': { symbol: '$',   rate: 0.92 }
     };
 
-    // 3. Look up data, default to EUR if currency is unknown
     const currencyData = currencyMap[inputCurrency] || { symbol: inputCurrency, rate: 1 };
-    
+
     const formattedNum = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(numericPart);
     const beautifulText = `${currencyData.symbol} ${formattedNum}`;
     const eurVal = numericPart * currencyData.rate;
 
-    // 4. Update Database
-    const { error } = await window.leggoDB.from('leggo_budget_items').update({ 
-        amount_text: beautifulText, 
-        amount_eur: eurVal 
+    const { error } = await window.leggoDB.from('leggo_budget_items').update({
+        amount_text: beautifulText,
+        amount_eur: eurVal
     }).eq('id', id);
-    
+
     if (!error) syncEverything();
 }
 
@@ -314,7 +512,6 @@ async function updateSortOrder(container, table) {
 
 // 🚦 START — The Master Switchboard
 document.addEventListener('DOMContentLoaded', () => {
-    // Safely look for the config whether it's a const or window variable
     let pageId = null;
     if (typeof PAGE_SECURITY_CONFIG !== 'undefined') {
         pageId = PAGE_SECURITY_CONFIG.pageId;
