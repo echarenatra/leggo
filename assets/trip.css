@@ -1363,11 +1363,15 @@
   border: none;
   cursor: pointer;
   padding: 2px 5px;
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   line-height: 1;
   opacity: 0;
   transition: opacity 0.15s, color 0.15s;
   color: var(--charcoal);
+  white-space: nowrap;
 }
 .pack-category__header:hover .add-subcat-btn { opacity: 0.45; }
 .add-subcat-btn:hover { opacity: 1 !important; color: var(--trip-accent); }
@@ -1575,6 +1579,105 @@ body.leggo-locked > *:not(.password-gate-overlay) {
   margin-top: 8px;
 }
 /* Pack row checked state handled by .check component and .pack-name-input.is-packed */
+
+/* ── CONFIRM MODAL ── */
+#leggo-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#leggo-modal-overlay.is-visible { display: flex; }
+.leggo-modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+.leggo-modal__title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  margin-bottom: 6px;
+}
+.leggo-modal__message {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.leggo-modal__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.leggo-modal-btn {
+  background: var(--surface-muted);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--charcoal);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+.leggo-modal-btn:hover { background: var(--divider); }
+.leggo-modal-btn.danger { color: #c44; border-color: rgba(204, 68, 68, 0.35); }
+.leggo-modal-btn.danger:hover { background: rgba(204, 68, 68, 0.07); }
+.leggo-modal-btn.cancel { color: var(--muted); }
+
+/* ── UNDO TOAST ── */
+#leggo-undo-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  background: var(--ink, #222);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 8999;
+  pointer-events: none;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+#leggo-undo-toast.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+#leggo-undo-toast .toast-undo-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+#leggo-undo-toast .toast-undo-btn:hover { background: rgba(255, 255, 255, 0.18); }
 
 /* ── PRINT ── */
 @media print {

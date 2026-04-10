@@ -16,6 +16,7 @@ const TRIP_MAP = {
 };
 
 let CURRENT_TRIP_ID = null;
+const _pendingDeletes = new Map(); // id -> { timer }
 
 // 3. 🔄 THE MASTER SYNC
 async function syncEverything() {
@@ -69,7 +70,7 @@ function renderBudget(items) {
                 <span></span><span></span><span>ITEM</span><span>AMOUNT</span><span>≈ EUR</span><span></span>
             </div>`;
 
-        items.filter(i => i.category === cat).forEach(item => {
+        items.filter(i => i.category === cat && !_pendingDeletes.has(i.id)).forEach(item => {
             const row = document.createElement('div');
             row.className = `budget-row ${item.is_paid ? 'is-paid' : ''}`;
             row.setAttribute('data-id', item.id);
@@ -186,10 +187,10 @@ function renderPacking(items, categories, subcategories) {
                       contenteditable="true"
                       onblur="updateCategoryLabel('${cat.id}', this.textContent.trim())"
                       onclick="event.stopPropagation()">${cat.label}</span>
-                <span class="pack-category__count" id="pcount-${cat.category_key}"></span>
                 <button class="add-pack-btn" onclick="addNewPackItem(event, '${cat.category_key}')" title="Add item">+</button>
-                <button class="add-subcat-btn" onclick="addNewSubcategory(event, '${cat.category_key}')" title="Add sub-group">◫</button>
+                <button class="add-subcat-btn" onclick="addNewSubcategory(event, '${cat.category_key}')" title="Add sub-group">+ subcategory</button>
                 <button class="delete-cat-btn" onclick="deleteCategory(event, '${cat.id}', '${cat.category_key}')" title="Delete category">×</button>
+                <span class="pack-category__count" id="pcount-${cat.category_key}"></span>
                 <span class="pack-category__toggle">▾</span>
             </div>
             <div class="pack-rows"></div>
@@ -200,7 +201,7 @@ function renderPacking(items, categories, subcategories) {
         const catSubcats = (subcategories || []).filter(s => s.category_key === cat.category_key);
 
         // Render ungrouped items first (no subcategory_key)
-        const ungrouped = catItems.filter(i => !i.subcategory_key);
+        const ungrouped = catItems.filter(i => !i.subcategory_key && !_pendingDeletes.has(i.id));
         ungrouped.forEach(item => rowsContainer.appendChild(buildPackRow(item)));
 
         // Render each subcategory with its items
@@ -218,7 +219,7 @@ function renderPacking(items, categories, subcategories) {
             `;
             rowsContainer.appendChild(subLabel);
 
-            const subItems = catItems.filter(i => i.subcategory_key === sub.subcategory_key);
+            const subItems = catItems.filter(i => i.subcategory_key === sub.subcategory_key && !_pendingDeletes.has(i.id));
             subItems.forEach(item => rowsContainer.appendChild(buildPackRow(item)));
         });
 
@@ -243,7 +244,14 @@ function buildPackRow(item) {
                onclick="event.stopPropagation()">
         <button class="delete-item-btn" onclick="deletePackItem(event, '${item.id}')" title="Delete">×</button>
     `;
-    row.querySelector('.pack-name-input').value = item.item_name || '';
+    const nameInput = row.querySelector('.pack-name-input');
+    nameInput.value = item.item_name || '';
+    nameInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addNewPackItem({ stopPropagation: () => {} }, item.category_key, item.subcategory_key || undefined);
+        }
+    });
     return row;
 }
 
@@ -284,13 +292,11 @@ async function addNewPackItem(event, categoryKey, subcategoryKey) {
     }
 }
 
-async function deletePackItem(event, id) {
+function deletePackItem(event, id) {
     event.stopPropagation();
-    const row = event.currentTarget.closest('.pack-row');
-    if (row) { row.style.opacity = '0.3'; row.style.pointerEvents = 'none'; }
-    const { error } = await window.leggoDB.from('leggo_packing_items').delete().eq('id', id);
-    if (!error) syncEverything();
-    else if (row) { row.style.opacity = ''; row.style.pointerEvents = ''; }
+    scheduleDeleteWithUndo(id, 'Item deleted',
+        () => window.leggoDB.from('leggo_packing_items').delete().eq('id', id)
+    );
 }
 
 async function addNewCategory(event) {
@@ -322,11 +328,19 @@ async function addNewCategory(event) {
 
 async function deleteCategory(event, catId, categoryKey) {
     event.stopPropagation();
-    await window.leggoDB
-        .from('leggo_packing_items')
-        .delete()
-        .eq('trip_id', CURRENT_TRIP_ID)
-        .eq('category_key', categoryKey);
+    const catLabel = event.currentTarget.closest('.pack-category')
+        ?.querySelector('.pack-category__label')?.textContent?.trim() || 'this category';
+    const action = await showConfirmModal({
+        title: `Delete "${catLabel}"?`,
+        message: 'This will permanently delete the category and all its items.',
+        buttons: [
+            { label: 'Delete everything', action: 'confirm', variant: 'danger' },
+            { label: 'Cancel', action: 'cancel', variant: 'cancel' }
+        ]
+    });
+    if (action !== 'confirm') return;
+    await window.leggoDB.from('leggo_packing_items').delete().eq('trip_id', CURRENT_TRIP_ID).eq('category_key', categoryKey);
+    await window.leggoDB.from('leggo_packing_subcategories').delete().eq('trip_id', CURRENT_TRIP_ID).eq('category_key', categoryKey);
     await window.leggoDB.from('leggo_packing_categories').delete().eq('id', catId);
     syncEverything();
 }
@@ -376,13 +390,29 @@ async function addNewSubcategory(event, categoryKey) {
 
 async function deleteSubcategory(event, subId, categoryKey, subcategoryKey) {
     event.stopPropagation();
-    // Move items to ungrouped (null subcategory_key) instead of deleting
-    await window.leggoDB
-        .from('leggo_packing_items')
-        .update({ subcategory_key: null })
-        .eq('trip_id', CURRENT_TRIP_ID)
-        .eq('category_key', categoryKey)
-        .eq('subcategory_key', subcategoryKey);
+    const subLabel = event.currentTarget.closest('.pack-sub-label')
+        ?.querySelector('.pack-sub-label__text')?.textContent?.trim() || 'this sub-group';
+    const action = await showConfirmModal({
+        title: `Remove "${subLabel}"?`,
+        message: null,
+        buttons: [
+            { label: 'Keep items — move to ungrouped', action: 'keep' },
+            { label: 'Delete all items in this group', action: 'delete', variant: 'danger' },
+            { label: 'Cancel', action: 'cancel', variant: 'cancel' }
+        ]
+    });
+    if (action === 'cancel') return;
+    if (action === 'delete') {
+        await window.leggoDB.from('leggo_packing_items').delete()
+            .eq('trip_id', CURRENT_TRIP_ID)
+            .eq('category_key', categoryKey)
+            .eq('subcategory_key', subcategoryKey);
+    } else {
+        await window.leggoDB.from('leggo_packing_items').update({ subcategory_key: null })
+            .eq('trip_id', CURRENT_TRIP_ID)
+            .eq('category_key', categoryKey)
+            .eq('subcategory_key', subcategoryKey);
+    }
     await window.leggoDB.from('leggo_packing_subcategories').delete().eq('id', subId);
     syncEverything();
 }
@@ -419,13 +449,11 @@ async function addNewItem(event, category, table) {
 }
 
 // 6b. 🗑 DELETE BUDGET ITEM
-async function deleteItem(event, id) {
+function deleteItem(event, id) {
     event.stopPropagation();
-    const row = event.currentTarget.closest('.budget-row');
-    if (row) { row.style.opacity = '0.3'; row.style.pointerEvents = 'none'; }
-    const { error } = await window.leggoDB.from('leggo_budget_items').delete().eq('id', id);
-    if (!error) syncEverything();
-    else if (row) { row.style.opacity = ''; row.style.pointerEvents = ''; }
+    scheduleDeleteWithUndo(id, 'Item deleted',
+        () => window.leggoDB.from('leggo_budget_items').delete().eq('id', id)
+    );
 }
 
 // 7. ⚡ BUDGET STATUS & VALUE UPDATES
@@ -508,6 +536,88 @@ async function updateSortOrder(container, table) {
         const id = rows[i].getAttribute('data-id');
         await window.leggoDB.from(table).update({ sort_order: i + 1 }).eq('id', id);
     }
+}
+
+// 9. 🗑 UNDO TOAST & CONFIRM MODAL
+
+function scheduleDeleteWithUndo(id, message, deleteFn) {
+    // Mark as pending — renderers will skip this id
+    _pendingDeletes.set(id, null);
+    syncEverything(); // re-render without the item immediately
+
+    const timer = setTimeout(async () => {
+        _pendingDeletes.delete(id);
+        await deleteFn();
+        syncEverything();
+    }, 4000);
+
+    _pendingDeletes.set(id, { timer });
+    showUndoToast(message, id);
+}
+
+function showUndoToast(message, id) {
+    let toast = document.getElementById('leggo-undo-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'leggo-undo-toast';
+        document.body.appendChild(toast);
+    }
+    if (toast._hideTimer) clearTimeout(toast._hideTimer);
+
+    toast.innerHTML = `<span>${message}</span><button class="toast-undo-btn" onclick="undoDelete('${id}')">Undo</button>`;
+    toast.classList.add('is-visible');
+
+    toast._hideTimer = setTimeout(() => toast.classList.remove('is-visible'), 4500);
+}
+
+function undoDelete(id) {
+    const pending = _pendingDeletes.get(id);
+    if (pending) {
+        clearTimeout(pending.timer);
+        _pendingDeletes.delete(id);
+        syncEverything(); // re-render with item restored
+    }
+    const toast = document.getElementById('leggo-undo-toast');
+    if (toast) {
+        if (toast._hideTimer) clearTimeout(toast._hideTimer);
+        toast.classList.remove('is-visible');
+    }
+}
+
+function showConfirmModal({ title, message, buttons }) {
+    let overlay = document.getElementById('leggo-modal-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'leggo-modal-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    const btnsHtml = buttons.map(b =>
+        `<button class="leggo-modal-btn ${b.variant || ''}" data-action="${b.action}">${b.label}</button>`
+    ).join('');
+
+    overlay.innerHTML = `
+        <div class="leggo-modal">
+            <div class="leggo-modal__title">${title}</div>
+            ${message ? `<div class="leggo-modal__message">${message}</div>` : ''}
+            <div class="leggo-modal__buttons">${btnsHtml}</div>
+        </div>`;
+    overlay.classList.add('is-visible');
+
+    return new Promise(resolve => {
+        overlay.querySelectorAll('.leggo-modal-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                overlay.classList.remove('is-visible');
+                resolve(btn.dataset.action);
+            });
+        });
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) {
+                overlay.classList.remove('is-visible');
+                resolve('cancel');
+            }
+        }, { once: true });
+    });
 }
 
 // 🚦 START — The Master Switchboard
